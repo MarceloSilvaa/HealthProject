@@ -3,6 +3,7 @@
   box-sizing: border-box;
   --color-red: rgb(175, 0, 0);
   --color-green: rgb(29, 143, 59);
+  --color-lightblue: rgb(0, 153, 255);
 }
 
 html, body {
@@ -12,40 +13,39 @@ html, body {
 
 .main-header {
   padding: 1rem;
+  font-weight: bold;
   background-color: black;
-  color: white;
 }
 
 .main-nav {
   display: flex;
-  text-decoration: none;
+  align-items: center;
+  color: white;
 }
 
 .big-brand-name {
-  font-size: 50px;
+  font-size: 3rem;
 }
 
 .brand-name {
   margin: 0;
-  font-weight: bold;
   color: var(--color-red);
-}
-
-.nav ul {
-  margin: 0;
-  align-self: center;
-}
-
-.nav li {
-  display: inline;
-  padding: 0.5rem;
-  font-size: 1.5rem;
-  color: var(--color-green);
-  font-weight: bold;
-  align-items: center;
 }
 
 .brand-name:hover, .nav li:hover {
   color:white;
   cursor:pointer;
+}
+
+.nav ul {
+  margin: 0;
+  flex-grow: 1;
+  text-align: end;
+}
+
+.nav li {
+  display: inline;
+  padding: 0 1.5rem 0 1.5rem; 
+  font-size: 1.5rem;
+  color: var(--color-lightblue);
 }
