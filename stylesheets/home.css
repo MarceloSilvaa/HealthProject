@@ -2,10 +2,53 @@
   margin: 3rem 10rem 3rem 10rem;
 }
 
+.overview-header-row {
+  display: flex;
+  align-items: center;
+}
+
+.overview-row {
+  display: flex;
+  flex-grow: 1;
+}
+
 .overview-header {
   font-size: 1.2rem;
+  font-weight: bold;
+  border-bottom: .3rem solid darkgrey;
+  border-radius: 10%;
+  padding-bottom: .75rem;
 }
 
 .overview-column {
-  padding: 1rem;
+  margin-left: 1rem;
+  text-align: center;
+}
+
+.overview-column:first-child {
+  padding-left: 0;
+}
+
+.overview-product {
+  width: 25%;
+}
+
+.overview-company {
+  width: 15%;
+}
+
+.overview-serving {
+  width: 15%;
+}
+
+.overview-time {
+  width: 15%;
+}
+
+.overview-refil {
+  width: 15%;
+}
+
+.overview-purchase {
+  width: 15%;
 }

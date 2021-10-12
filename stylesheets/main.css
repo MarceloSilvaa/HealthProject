@@ -17,7 +17,7 @@ body {
 }
 
 .main-header {
-  padding: 1rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
   font-weight: bold;
   background-color: black;
 }
@@ -38,8 +38,8 @@ body {
 }
 
 .brand-name:hover, .nav li:hover, .nav a:hover {
-  color:white;
-  cursor:pointer;
+  color: white;
+  cursor: pointer;
 }
 
 .nav ul {
@@ -66,7 +66,7 @@ body {
   height: 5rem;
   width: 100%;
   background-color: var(--color-lightblue);
-  background-blend-mode: multiply;
+  background-blend-mode: darken;
   background-image: url(../images/health2.jpg);
   background-position: 30% 70%;
   background-size: cover;
