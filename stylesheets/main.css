@@ -75,3 +75,11 @@ body {
 .footer-wrap {
   padding-top: 5rem;
 }
+
+.btn {
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 25px;
+  padding: 1rem;
+}

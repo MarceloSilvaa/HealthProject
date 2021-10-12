@@ -23,7 +23,7 @@
 
 .overview-column {
   color: black;
-  margin-left: 1rem;
+  margin-left: 1%;
   text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -43,15 +43,15 @@
 }
 
 .overview-serving {
-  width: 15%;
+  width: 16%;
 }
 
 .overview-time {
-  width: 10%;
+  width: 12%;
 }
 
 .overview-food {
-  width: 15%;
+  width: 16%;
 }
 
 .overview-refil {
@@ -60,4 +60,17 @@
 
 .overview-link {
   width: 15%;
+}
+
+.overview-new-item {
+  display: flex;
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+.btn-new-item {
+  color: black;
+  background-color: white;
+  font-size: 1rem;
+  border: 3px solid darkgrey;
 }
