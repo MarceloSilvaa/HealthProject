@@ -11,6 +11,11 @@ html, body {
   padding: 0;
 }
 
+body {
+  position: relative;
+  min-height: 100vh;
+}
+
 .main-header {
   padding: 1rem;
   font-weight: bold;
@@ -65,4 +70,8 @@ html, body {
   background-image: url(../images/health2.jpg);
   background-position: 30% 70%;
   background-size: cover;
+}
+
+.footer-wrap {
+  padding-top: 5rem;
 }
