@@ -32,7 +32,7 @@ html, body {
   color: var(--color-red);
 }
 
-.brand-name:hover, .nav li:hover {
+.brand-name:hover, .nav li:hover, .nav a:hover {
   color:white;
   cursor:pointer;
 }
@@ -46,16 +46,20 @@ html, body {
 .nav li {
   display: inline;
   padding: 0 1.5rem 0 1.5rem; 
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: var(--color-lightblue);
 }
 
-.main-section {
-  margin: 1rem;
+.nav a {
+  text-decoration: none;
+  color: var(--color-lightblue);
 }
 
 .main-footer {
-  height: 10rem;
+  position: absolute;
+  bottom: 0;
+  height: 5rem;
+  width: 100%;
   background-color: var(--color-lightblue);
   background-blend-mode: multiply;
   background-image: url(../images/health2.jpg);
