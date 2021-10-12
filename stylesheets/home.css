@@ -10,6 +10,7 @@
 .overview-row {
   display: flex;
   flex-grow: 1;
+  margin-top: 1rem;
 }
 
 .overview-header {
@@ -21,8 +22,12 @@
 }
 
 .overview-column {
+  color: black;
   margin-left: 1rem;
   text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .overview-column:first-child {
@@ -33,10 +38,6 @@
   width: 25%;
 }
 
-.overview-company {
-  width: 15%;
-}
-
 .overview-serving {
   width: 15%;
 }
@@ -45,10 +46,14 @@
   width: 15%;
 }
 
+.overview-food {
+  width: 15%;
+}
+
 .overview-refil {
   width: 15%;
 }
 
-.overview-purchase {
+.overview-link {
   width: 15%;
 }
