@@ -34,7 +34,7 @@ body {
 
 .brand-name {
   margin: 0;
-  color: var(--color-red);
+  color: var(--color-lightblue);
 }
 
 .brand-name:hover, .nav li:hover, .nav a:hover {
