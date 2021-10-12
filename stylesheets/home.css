@@ -31,11 +31,15 @@
 }
 
 .overview-column:first-child {
-  padding-left: 0;
+  margin-left: 0;
 }
 
-.overview-product {
-  width: 25%;
+.overview-nutrient {
+  width: 15%;
+}
+
+.overview-dosage {
+  width: 10%;
 }
 
 .overview-serving {
@@ -43,7 +47,7 @@
 }
 
 .overview-time {
-  width: 15%;
+  width: 10%;
 }
 
 .overview-food {
@@ -51,7 +55,7 @@
 }
 
 .overview-refil {
-  width: 15%;
+  width: 10%;
 }
 
 .overview-link {
