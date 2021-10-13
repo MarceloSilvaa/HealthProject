@@ -94,6 +94,12 @@ body {
 }
 
 .input {
-  vertical-align: middle;
   font-size: 1rem;
+  vertical-align: middle;
+}
+
+.select {
+  font-size: 1rem;
+  text-align: center;
+  vertical-align: middle;
 }

@@ -19,17 +19,31 @@
       </nav>
     </header>
     <section class="supplement-section">
-      <div class="container name-container">
-        <label for="supplement-name" class="big-label large-header">Supplement</label>
-        <input type="text" name="supplement-name" id="supplement-name" class="input supplement-name" placeholder="Name of the supplement" autofocus required>
+      <div class="name-container">
+        <div class="container-header">
+          <label class="big-label large-header" for="supplement-name">Supplement</label>
+          <input class="input supplement-name" type="text" name="supplement-name" id="supplement-name" placeholder="Name of the supplement" autofocus required>
+        </div>
       </div>
-      <div class="container scientific-container">
-        <div class="container-header">About the nutrient</div>
+      <div class="scientific-container">
+        <span class="container-header">About the nutrient</span>
+        <div class="supplement-row">
+          <label class="label" for="nutrient">Type of nutrient</label>
+          <select class="select" name="nutrient" id="nutrient" required>
+            <option value="Vitamin">Vitamin</option>
+            <option value="Mineral">Mineral</option>
+            <option value="Herb">Herb</option>
+          </select>
+        </div>
+        <div class="supplement-row">
+          <label class="label" for="nutrient-storage">Stored in body</label>
+          <input type="checkbox" name="nutrient-storage" id="nutrient-storage"> 
+        </div>
       </div>
-      <div class="container product-container">
+      <div class="product-container">
         <div class="container-header">About the product</div>
       </div>
-      <div class="container personal-container">
+      <div class="personal-container">
         <div class="container-header">Personal use</div>
       </div>
     </section> 
