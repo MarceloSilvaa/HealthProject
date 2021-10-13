@@ -1,0 +1,44 @@
+.supplement-section {
+  display: grid;
+  grid-template-columns: 45% 45%;
+  grid-column-gap: 10%;
+  grid-row-gap: 3rem;
+  margin: 3rem 10rem 3rem 10rem;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.name-container {
+  grid-column-start: 1;
+  grid-column-end: -1;
+  padding: 0;
+}
+
+.scientific-container {
+  grid-row: span 2;
+}
+
+.product-container {
+}
+
+.personal-container {
+}
+
+.container-header {
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-bottom: .3rem solid darkgrey;
+  border-radius: 10%;
+}
+
+.input-text {
+  
+}
+
+.supplement-name {
+  margin-left: 1rem;
+}

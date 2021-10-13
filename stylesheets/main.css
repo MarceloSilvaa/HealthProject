@@ -78,8 +78,22 @@ body {
 
 .btn {
   text-align: center;
-  vertical-align: middle;
   cursor: pointer;
   border-radius: 25px;
   padding: 1rem;
+  font-size: 1rem;
+}
+
+.label {
+  font-size: 1rem;
+}
+
+.big-label {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.input {
+  vertical-align: middle;
+  font-size: 1rem;
 }
