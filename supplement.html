@@ -19,14 +19,12 @@
       </nav>
     </header>
     <section class="supplement-section">
-      <div class="name-container">
-        <div class="container-header">
-          <label class="big-label large-header" for="supplement-name">Supplement</label>
-          <input class="input supplement-name" type="text" name="supplement-name" id="supplement-name" placeholder="Name of the supplement" autofocus required>
-        </div>
+      <div class="container container-header name-container">
+        <label class="big-label large-header supplement-name-label" for="supplement-name">Supplement</label>
+        <input class="input supplement-name" type="text" name="supplement-name" id="supplement-name" placeholder="Name of the supplement" autofocus required>
       </div>
       <div class="scientific-container">
-        <span class="container-header">About the nutrient</span>
+        <span class="container container-header">About the nutrient</span>
         <div class="supplement-row">
           <label class="label" for="nutrient">Type of nutrient</label>
           <select class="select" name="nutrient" id="nutrient" required>
@@ -37,14 +35,18 @@
         </div>
         <div class="supplement-row">
           <label class="label" for="nutrient-storage">Stored in body</label>
-          <input type="checkbox" name="nutrient-storage" id="nutrient-storage"> 
+          <input class="checkbox" type="checkbox" name="nutrient-storage" id="nutrient-storage"> 
         </div>
       </div>
       <div class="product-container">
-        <div class="container-header">About the product</div>
+        <div class="container container-header">About the product</div>
       </div>
       <div class="personal-container">
-        <div class="container-header">Personal use</div>
+        <div class="container container-header">Personal use</div>
+      </div>
+      <div class="container buttons-container">
+        <button class="btn btn-confirm" type="button">Confirm</button>
+        <button class="btn btn-cancel" type="button">Cancel</button>
       </div>
     </section> 
     <footer class="main-footer"></footer>

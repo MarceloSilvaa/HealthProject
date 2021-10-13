@@ -6,9 +6,21 @@
   margin: 3rem 10rem 3rem 10rem;
 }
 
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.container-header {
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-bottom: .3rem solid darkgrey;
+  border-radius: 10%;
+  padding-bottom: 0.5rem;
+}
+
 .name-container {
-  grid-column-start: 1;
-  grid-column-end: -1;
+  grid-column: span 2;
 }
 
 .scientific-container {
@@ -21,19 +33,34 @@
 .personal-container {
 }
 
-.container-header {
-  display: flex;
+.buttons-container {
+  grid-column: span 2;
   justify-content: center;
-  font-size: 1.2rem;
-  font-weight: bold;
-  border-bottom: .3rem solid darkgrey;
-  border-radius: 10%;
+}
+
+.supplement-name-label {
+  margin-right: 1rem;
 }
 
 .supplement-name {
   margin-left: 1rem;
+  border: none;
 }
 
 .supplement-row {
   margin-top: 1rem;
+}
+
+.btn-confirm {
+  color: black;
+  background-color: white;
+  border: 3px solid #333333;
+  margin-right: 2.5%;
+}
+
+.btn-cancel {
+  color: black;
+  background-color: white;
+  border: 3px solid #333333;
+  margin-left: 2.5%;
 }
