@@ -76,6 +76,11 @@ body {
   padding-top: 5rem;
 }
 
+.form-element:focus {
+    box-shadow: 0 0 0.1rem 0.2rem var(--color-lightblue);
+    outline: none;
+}
+
 .btn {
   text-align: center;
   cursor: pointer;

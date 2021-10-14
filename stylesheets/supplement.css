@@ -1,8 +1,8 @@
 .supplement-section {
   display: grid;
   grid-template-columns: 45% 45%;
-  grid-column-gap: 10%;
-  grid-row-gap: 2rem;
+  column-gap: 10%;
+  row-gap: 2rem;
   margin: 3rem 10rem 3rem 10rem;
 }
 
@@ -51,8 +51,9 @@
 }
 
 .supplement-row {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 40% 55%;
+  column-gap: 5%;
   margin-top: 1rem;
 }
 
