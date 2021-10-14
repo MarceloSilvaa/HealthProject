@@ -6,6 +6,7 @@
     <meta name="description" content="Your health improves if your awareness improves">
     <link rel="stylesheet" href="stylesheets/main.css">
     <link rel="stylesheet" href="stylesheets/supplement.css">
+    <script type="text/javascript" src="scripts/supplement.js" defer></script>
   </head>
   <body>
     <header class="main-header">
@@ -65,16 +66,16 @@
             <option selected>Select an option</option>
             <option value="g">g</option>
             <option value="mg">mg</option>
-            <option value="μg / mcg">μg / mcg</option>
+            <option value="mcg">mcg</option>
           </select>
         </div>
         <div class="supplement-row">
           <label class="label" for="nutrient-recommended-intake">Recommended daily intake</label>
-          <input class="input input-number" type="number" name="nutrient-recommended-intake" id="nutrient-recommended-intake">
+          <input class="input large-input-number" type="number" name="nutrient-recommended-intake" id="nutrient-recommended-intake" min="1">
         </div>
         <div class="supplement-row">
           <label class="label" for="nutrient-maximum-intake">Maximum daily intake</label>
-          <input class="input input-number" type="number" name="nutrient-maximum-intake" id="nutrient-maximum-intake">
+          <input class="input large-input-number" type="number" name="nutrient-maximum-intake" id="nutrient-maximum-intake" min="1">
         </div>
         <div class="supplement-row">
           <label class="label" for="nutrient-notes">Notes</label>
@@ -83,6 +84,37 @@
       </div>
       <div class="product-container">
         <div class="container container-header">About the product</div>
+        <div class="supplement-row">
+          <label class="label" for="product-amount">Amount</label>
+          <input class="input large-input-number" type="number" name="product-amount" id="product-amount" min="1">
+          <span id="product-amount-measurement"></span>
+        </div>
+        <div class="supplement-row">
+          <label class="label" for="product-servings">Number of capsules/tablets</label>
+          <input class="input small-input-number" type="number" name="product-servings" id="product-servings" min="1">
+        </div>
+        <div class="supplement-row">
+          <label class="label" for="product-price">Price</label>
+          <input class="input small-input-number" type="number" name="product-price" id="product-price" min="1">
+          <select class="select select-imported-style" name="product-price-currency" id="product-price-currency">
+            <option selected>Select an option</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="USD">USD</option>
+          </select>
+        </div>
+        <div class="supplement-row">
+          <label class="label" for="product-company">Company name</label>
+          <input class="input" type="text" name="product-company" id="product-company">
+        </div>
+        <div class="supplement-row">
+          <label class="label" for="product-link">Link</label>
+          <input class="input" type="url" name="product-link" id="product-link">
+        </div>
+        <div class="supplement-row">
+          <label class="label" for="product-consuming">Consuming currently</label>
+          <input class="checkbox" type="checkbox" name="product-consuming" id="product-consuming"> 
+        </div>
       </div>
       <div class="personal-container">
         <div class="container container-header">Personal use</div>
