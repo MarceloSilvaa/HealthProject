@@ -26,7 +26,8 @@
         <span class="container container-header">About the nutrient</span>
         <div class="supplement-row">
           <label class="label" for="nutrient">Type of nutrient</label>
-          <select class="select" name="nutrient" id="nutrient" required>
+          <select class="select select-imported-style" name="nutrient" id="nutrient">
+            <option selected>Select an option</option>
             <option value="Vitamin">Vitamin</option>
             <option value="Mineral">Mineral</option>
             <option value="Herb">Herb</option>
@@ -39,6 +40,45 @@
         <div class="supplement-row">
           <label class="label" for="nutrient-water-soluble">Water soluble</label>
           <input class="checkbox" type="checkbox" name="nutrient-water-soluble" id="nutrient-water-soluble"> 
+        </div>
+        <div class="supplement-row">
+          <label class="label" for="nutrient-time">Time of day</label>
+          <select class="select select-imported-style" name="nutrient-time" id="nutrient-time">
+            <option selected>Select an option</option>
+            <option value="Morning">Morning</option>
+            <option value="Afternoon">Afternoon</option>
+            <option value="Night">Night</option>
+          </select>
+        </div>
+        <div class="supplement-row">
+          <label class="label" for="nutrient-food">Relation with food</label>
+          <select class="select select-imported-style" name="nutrient-food" id="nutrient-food">
+            <option selected>Select an option</option>
+            <option value="Do not take with food">Do not take with food</option>
+            <option value="Take before eating">Take before eating</option>
+            <option value="Take after eating">Take after eating</option>
+          </select>
+        </div>
+        <div class="supplement-row">
+          <label class="label" for="nutrient-unit-measurement">Unit of measurement</label>
+          <select class="select select-imported-style" name="nutrient-unit-measurement" id="nutrient-unit-measurement">
+            <option selected>Select an option</option>
+            <option value="g">g</option>
+            <option value="mg">mg</option>
+            <option value="μg / mcg">μg / mcg</option>
+          </select>
+        </div>
+        <div class="supplement-row">
+          <label class="label" for="nutrient-recommended-intake">Recommended daily intake</label>
+          <input class="input input-number" type="number" name="nutrient-recommended-intake" id="nutrient-recommended-intake">
+        </div>
+        <div class="supplement-row">
+          <label class="label" for="nutrient-maximum-intake">Maximum daily intake</label>
+          <input class="input input-number" type="number" name="nutrient-maximum-intake" id="nutrient-maximum-intake">
+        </div>
+        <div class="supplement-row">
+          <label class="label" for="nutrient-notes">Notes</label>
+          <textarea class="input textarea" type="number" name="nutrient-notes" id="nutrient-notes" rows="2">Should be taken with:&#10;&#10;Should not be taken with:&#10;&#10;Can cause decrease in:&#10;</textarea>
         </div>
       </div>
       <div class="product-container">
