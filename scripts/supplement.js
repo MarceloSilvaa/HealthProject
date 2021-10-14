@@ -3,4 +3,7 @@ document.querySelector("#nutrient-unit-measurement").addEventListener("change", 
   if(unit === "g" || unit === "mg" || unit === "mcg") {
     document.querySelector("#product-amount-measurement").innerHTML = unit
   }
+  else {
+    document.querySelector("#product-amount-measurement").innerHTML = ""
+  }
 })
