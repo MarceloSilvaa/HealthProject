@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 45% 45%;
   grid-column-gap: 10%;
-  grid-row-gap: 3rem;
+  grid-row-gap: 2rem;
   margin: 3rem 10rem 3rem 10rem;
 }
 
@@ -38,13 +38,15 @@
   justify-content: center;
 }
 
-.supplement-name-label {
-  margin-right: 1rem;
+.supplement-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  border: none;
 }
 
-.supplement-name {
-  margin-left: 1rem;
-  border: none;
+.supplement-name:focus {
+  background-color: #EEEEEE;
 }
 
 .supplement-row {
@@ -53,14 +55,14 @@
 
 .btn-confirm {
   color: black;
-  background-color: white;
+  background-color: #EEEEEE;
   border: 3px solid #333333;
   margin-right: 2.5%;
 }
 
 .btn-cancel {
   color: black;
-  background-color: white;
+  background-color: #EEEEEE;
   border: 3px solid #333333;
   margin-left: 2.5%;
 }
