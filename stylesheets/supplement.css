@@ -27,13 +27,6 @@
   grid-row: span 2;
 }
 
-.product-container {
-
-}
-
-.personal-container {
-}
-
 .buttons-container {
   grid-column: span 2;
   justify-content: center;
@@ -54,6 +47,7 @@
   display: grid;
   grid-template-columns: 40% 55%;
   column-gap: 5%;
+  justify-items: stretch;
   margin-top: 1rem;
 }
 

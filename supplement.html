@@ -79,7 +79,7 @@
         </div>
         <div class="supplement-row">
           <label class="label" for="nutrient-notes">Notes</label>
-          <textarea class="form-element input textarea" type="number" name="nutrient-notes" id="nutrient-notes" rows="2">Should be taken with:&#10;&#10;Should not be taken with:&#10;&#10;Can cause decrease in:&#10;</textarea>
+          <textarea class="form-element input textarea" type="number" name="nutrient-notes" id="nutrient-notes" rows="6">Should be taken with:&#10;&#10;Should not be taken with:&#10;&#10;Can cause decrease in:&#10;</textarea>
         </div>
       </div>
       <div class="product-container">
@@ -93,12 +93,12 @@
         </div>
         <div class="supplement-row">
           <label class="label" for="product-servings">Number of capsules/tablets</label>
-          <input class="form-element input small-input-number" type="number" name="product-servings" id="product-servings" min="1">
+          <input class="form-element input large-input-number" type="number" name="product-servings" id="product-servings" min="1">
         </div>
         <div class="supplement-row">
           <label class="label" for="product-price">Price</label>
           <div>
-            <input class="form-element input small-input-number" type="number" name="product-price" id="product-price" min="1">
+            <input class="form-element input large-input-number" type="number" name="product-price" id="product-price" min="1">
             <select class="form-element select select-imported-style" name="product-price-currency" id="product-price-currency">
               <option></option>
               <option value="EUR">EUR</option>
@@ -122,9 +122,30 @@
       </div>
       <div class="personal-container">
         <div class="container container-header">Personal use</div>
+        <div class="supplement-row">
+          <label class="label" for="personal-servings">Number of servings per day</label>
+          <input class="form-element input large-input-number" type="number" name="personal-servings" id="personal-servings" min="1">
+        </div>
+        <div class="supplement-row">
+          <label class="label" for="personal-time">Time of day</label>
+          <select class="form-element select select-imported-style" name="personal-time" id="personal-time">
+            <option></option>
+            <option value="Morning">Morning</option>
+            <option value="Afternoon">Afternoon</option>
+            <option value="Night">Night</option>
+          </select>
+        </div>
+        <div class="supplement-row">
+          <label class="label" for="personal-start">Bottle opened at</label>
+          <input class="form-element input" type="date" name="personal-start" id="personal-start">
+        </div>
+        <div class="supplement-row">
+          <label class="label" for="personal-refil">Refil date</label>
+          <input class="form-element input" type="date" name="personal-refil" id="personal-refil">
+        </div>
       </div>
       <div class="container buttons-container">
-        <button class="form-element btn btn-confirm" type="button">Confirm</button>
+        <button class="form-element btn btn-confirm" type="submit">Confirm</button>
         <button class="form-element btn btn-cancel" type="button">Cancel</button>
       </div>
     </section> 
