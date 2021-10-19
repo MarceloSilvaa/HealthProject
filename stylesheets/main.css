@@ -77,7 +77,7 @@ body {
 }
 
 .form-element:focus {
-    box-shadow: 0 0 0.1rem 0.2rem var(--color-lightblue);
+    box-shadow: 0 0 0.1rem 0.1rem var(--color-lightblue);
     outline: none;
 }
 
@@ -104,7 +104,6 @@ body {
 }
 
 .small-input-number {
-  background-color: #ffffff;
   width: 4.5rem;
 }
 
