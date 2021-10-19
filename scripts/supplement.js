@@ -20,6 +20,10 @@ document.querySelector("#nutrient-unit-measurement").addEventListener("change", 
   }
 })
 
+document.querySelector("#product-servings").addEventListener("change", calculateRefilDate)
+
+document.querySelector("#personal-servings").addEventListener("change", calculateRefilDate)
+
 document.querySelector("#personal-start").addEventListener("blur", () => {
   let input = event.target.value
 
@@ -30,19 +34,7 @@ document.querySelector("#personal-start").addEventListener("blur", () => {
     return;
   }
 
-  // Update estimated refil date if empty and if there is enough information to make an estimation
-  let refilElement = document.querySelector("#personal-refil")
-  if(refilElement.value === "") {
-    let totalServings = document.querySelector("#product-servings").value
-    let dayServings = document.querySelector("#personal-servings").value
-    if(totalServings >= 1 && dayServings >= 1) {
-      let days = totalServings / dayServings
-      let refilDate = new Date(aux[0], aux[1] - 1, aux[2])
-      refilDate.setDate(refilDate.getDate() + days)
-      console.log(dateToString(refilDate))
-      refilElement.value = dateToString(refilDate)
-    }
-  }
+  calculateRefilDate()
 })
 
 document.querySelector(".btn-confirm").addEventListener("click", () => {
@@ -54,6 +46,24 @@ document.querySelector(".btn-cancel").addEventListener("click", showOverview)
 
 function ready() {
   
+}
+
+function calculateRefilDate() {
+  // Update estimated refil date if there is enough information to make an estimation
+  let refilElement = document.querySelector("#personal-refil")
+  let totalServings = document.querySelector("#product-servings").value
+  let dayServings = document.querySelector("#personal-servings").value
+  let openDate = document.querySelector("#personal-start").value
+
+  if(totalServings < 1 || dayServings < 1 || openDate === "") {
+    return;
+  }
+  
+  let aux = openDate.split("-")
+  let days = totalServings / dayServings
+  let refilDate = new Date(aux[0], aux[1] - 1, aux[2])
+  refilDate.setDate(refilDate.getDate() + days)
+  refilElement.value = dateToString(refilDate)
 }
 
 function isValid(input, today) {
