@@ -4,6 +4,7 @@
   --color-red: rgb(175, 0, 0);
   --color-green: rgb(29, 143, 59);
   --color-lightblue: rgb(0, 153, 255);
+  --color-darkgrey: #202124;
 }
 
 html, body {
@@ -19,7 +20,7 @@ body {
 .main-header {
   padding: 0.5rem 1rem 0.5rem 1rem;
   font-weight: bold;
-  background-color: black;
+  background-color: #1A1A1B;
 }
 
 .main-nav {
@@ -160,6 +161,6 @@ select.select-imported-style {
   cursor: pointer;
   font-size: 1rem;
   color: #669df6;
-  background-color: #202124;
+  background-color: var(--color-darkgrey);
   border: none;
 }
