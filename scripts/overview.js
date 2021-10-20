@@ -22,7 +22,6 @@ document.querySelector(".file-load").addEventListener("change", (event) => {
 
 document.querySelector(".file-save").addEventListener("click", () => {
   if(Object.keys(data).length === 0) {
-    alert("Nothing to save")
     return;
   }
   saveData()
