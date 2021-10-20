@@ -22,6 +22,7 @@ document.querySelector(".file-load").addEventListener("change", (event) => {
 
 document.querySelector(".file-save").addEventListener("click", () => {
   if(Object.keys(data).length === 0) {
+    showNotification("There is no data to be saved.")
     return;
   }
   saveData()
@@ -39,4 +40,9 @@ function saveData() {
   document.body.appendChild(downloadAnchor);
   downloadAnchor.click();
   downloadAnchor.remove();
+}
+
+function showNotification(message) {
+  document.querySelector(".notification-message").innerText = message
+  document.querySelector(".notification-container").style.display = "flex";
 }
