@@ -139,9 +139,10 @@ select.select-imported-style {
 .notification-container {
   display: none;
   flex-direction: column;
-  position: absolute;
+  position: fixed;
+  z-index: 100;
   left: 2rem;
-  bottom: 7rem;
+  bottom: 2rem;
   max-width: 50%;
   min-width: 10%;
   min-height: 40px;

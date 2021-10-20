@@ -22,7 +22,7 @@ document.querySelector(".file-load").addEventListener("change", (event) => {
 
 document.querySelector(".file-save").addEventListener("click", () => {
   if(Object.keys(data).length === 0) {
-    showNotification("There is no data to be saved.")
+    showNotification("There is no data to save.")
     return;
   }
   saveData()
