@@ -18,6 +18,7 @@ document.querySelector(".file-load").addEventListener("change", (event) => {
   reader.onload = readerEvent => {
     data = JSON.parse(readerEvent.target.result);
   }
+  showNotification("Content was successfully loaded.")
 })
 
 document.querySelector(".file-save").addEventListener("click", () => {
