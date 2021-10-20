@@ -5,6 +5,10 @@ else {
   ready();
 }
 
+function ready() {
+  
+}
+
 document.querySelector(".supplement-name").addEventListener("change", () => {
   let name = event.target.value
   event.target.value = name.charAt(0).toUpperCase() + name.substring(1, name.length)
@@ -43,10 +47,6 @@ document.querySelector(".btn-confirm").addEventListener("click", () => {
 })
 
 document.querySelector(".btn-cancel").addEventListener("click", showOverview)
-
-function ready() {
-  
-}
 
 function calculateRefilDate() {
   // Update estimated refil date if there is enough information to make an estimation

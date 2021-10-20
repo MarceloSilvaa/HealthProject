@@ -73,3 +73,7 @@
   background-color: #EEEEEE;
   border: 3px solid #333333;
 }
+
+.file-load, .file-save {
+  display: none;
+}
