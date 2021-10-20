@@ -37,7 +37,7 @@ body {
   color: var(--color-lightblue);
 }
 
-.brand-name:hover, .nav li:hover, .nav a:hover {
+.nav li:hover, .nav a:hover, .nav label:hover {
   color: white;
   cursor: pointer;
 }
@@ -50,7 +50,7 @@ body {
 
 .nav li {
   display: inline;
-  padding: 0 1.5rem 0 1.5rem; 
+  margin: 0 1.5rem 0 1.5rem; 
   font-size: 1.2rem;
   color: var(--color-lightblue);
 }
