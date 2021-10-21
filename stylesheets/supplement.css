@@ -64,3 +64,9 @@
   border: 3px solid #333333;
   margin-left: 2.5%;
 }
+
+.error-message {
+  background-color: var(--color-lightred);
+  color: var(--color-red);
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+}

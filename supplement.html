@@ -10,6 +10,10 @@
     <script type="text/javascript" src="scripts/supplement.js" defer></script>
   </head>
   <body>
+    <div class="notification-container">
+      <div class="notification-message"></div>
+      <button class="notification-btn">Close</button>
+    </div>
     <section class="supplement-section">
       <div class="container name-container">
         <input class="form-element input supplement-name" type="text" name="supplement-name" id="supplement-name" placeholder="Name of the supplement" autofocus required>
@@ -25,6 +29,7 @@
             <option value="Herb">Herb</option>
           </select>
         </div>
+        <div class="error-message" id="nutrient-error">hello</div>
         <div class="supplement-row">
           <label class="label" for="nutrient-fat-soluble">Fat soluble</label>
           <input class="checkbox" type="checkbox" name="nutrient-fat-soluble" id="nutrient-fat-soluble"> 
