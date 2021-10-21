@@ -45,13 +45,17 @@ document.querySelector("#personal-start").addEventListener("blur", () => {
   calculateRefilDate()
 })
 
-document.querySelector(".btn-confirm").addEventListener("click", () => {
-  clearFieldErrors()
+document.querySelector(".btn-confirm").addEventListener("click", (event) => {
+  document.querySelectorAll(".error-message").forEach(element => {
+    element.remove()
+  })
+  event.target.blur()
   if(verifyRequiredFields()) {
     showOverview()
   }
   else {
-    showNotification("There are still important fields to fill.");
+    selectRequiredField()
+    showNotification("There are still important fields to fill.")
   }
 })
 
@@ -121,22 +125,20 @@ function showNotification(message) {
   document.querySelector(".notification-container").style.display = "flex";
 }
 
+let errorFields 
+
 function verifyRequiredFields() {
+  errorFields = []
   let confirm = true;
   let arr = document.querySelectorAll(".user-required")
   arr.forEach(element => {
     if(!element.value) {
       confirm = false;
+      errorFields.push(element)
       highlightField(element)
     }
   })
   return confirm;
-}
-
-function clearFieldErrors() {
-  document.querySelectorAll(".error-message").forEach(element => {
-    element.remove()
-  })
 }
 
 function highlightField(element) {
@@ -147,6 +149,15 @@ function highlightField(element) {
     element.parentElement.insertBefore(errorElement, element.nextSibling)
   }
   else {
-    element.parentElement.parentElement.insertBefore(errorElement, element.parentElement.nextSibling)
+    if(element.parentElement.classList.contains("supplement-row")) {
+      element.parentElement.parentElement.insertBefore(errorElement, element.parentElement.nextSibling)
+    }
+    else {
+      element.parentElement.parentElement.parentElement.insertBefore(errorElement, element.parentElement.parentElement.nextSibling)
+    }
   }
+}
+
+function selectRequiredField() {
+  errorFields[0].focus()
 }
