@@ -46,6 +46,7 @@ document.querySelector("#personal-start").addEventListener("blur", () => {
 })
 
 document.querySelector(".btn-confirm").addEventListener("click", () => {
+  clearFieldErrors()
   if(verifyRequiredFields()) {
     showOverview()
   }
@@ -132,9 +133,20 @@ function verifyRequiredFields() {
   return confirm;
 }
 
+function clearFieldErrors() {
+  document.querySelectorAll(".error-message").forEach(element => {
+    element.remove()
+  })
+}
+
 function highlightField(element) {
   let errorElement = document.createElement("div")
   errorElement.classList = "error-message"
   errorElement.innerText = "\u26A0 This field needs to be filled."
-  element.parentElement.insertBefore(errorElement, element.nextSibling)
+  if(element.classList.contains("user-required-name")) {
+    element.parentElement.insertBefore(errorElement, element.nextSibling)
+  }
+  else {
+    element.parentElement.parentElement.insertBefore(errorElement, element.parentElement.nextSibling)
+  }
 }
