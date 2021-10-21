@@ -20,7 +20,11 @@
 }
 
 .name-container {
+  display: flex;
+  flex-direction: column;
   grid-column: span 2;
+  width: 30%;
+  justify-self: center;
 }
 
 .scientific-container {
@@ -68,5 +72,6 @@
 .error-message {
   background-color: var(--color-lightred);
   color: var(--color-red);
-  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  padding: 0rem 0.5rem 0rem 0.5rem;
+  vertical-align: center;
 }

@@ -16,31 +16,30 @@
     </div>
     <section class="supplement-section">
       <div class="container name-container">
-        <input class="form-element input supplement-name" type="text" name="supplement-name" id="supplement-name" placeholder="Name of the supplement" autofocus required>
+        <input class="user-field user-required form-element input supplement-name" type="text" name="supplement-name" id="supplement-name" placeholder="Name of the supplement *" autofocus required>
       </div>
       <div class="scientific-container">
         <span class="container container-header">About the nutrient</span>
         <div class="supplement-row">
           <label class="label" for="nutrient">Type of nutrient</label>
-          <select class="form-element select select-imported-style" name="nutrient" id="nutrient">
+          <select class="user-field form-element select select-imported-style" name="nutrient" id="nutrient">
             <option></option>
             <option value="Vitamin">Vitamin</option>
             <option value="Mineral">Mineral</option>
             <option value="Herb">Herb</option>
           </select>
         </div>
-        <div class="error-message" id="nutrient-error">hello</div>
         <div class="supplement-row">
           <label class="label" for="nutrient-fat-soluble">Fat soluble</label>
-          <input class="checkbox" type="checkbox" name="nutrient-fat-soluble" id="nutrient-fat-soluble"> 
+          <input class="user-field checkbox" type="checkbox" name="nutrient-fat-soluble" id="nutrient-fat-soluble"> 
         </div>
         <div class="supplement-row">
           <label class="label" for="nutrient-water-soluble">Water soluble</label>
-          <input class="checkbox" type="checkbox" name="nutrient-water-soluble" id="nutrient-water-soluble"> 
+          <input class="user-field checkbox" type="checkbox" name="nutrient-water-soluble" id="nutrient-water-soluble"> 
         </div>
         <div class="supplement-row">
           <label class="label" for="nutrient-time">Best time of day to take</label>
-          <select class="form-element select select-imported-style" name="nutrient-time" id="nutrient-time">
+          <select class="user-field form-element select select-imported-style" name="nutrient-time" id="nutrient-time">
             <option></option>
             <option value="Morning">Morning</option>
             <option value="Afternoon">Afternoon</option>
@@ -49,7 +48,7 @@
         </div>
         <div class="supplement-row">
           <label class="label" for="nutrient-food">Relation with food</label>
-          <select class="form-element select select-imported-style" name="nutrient-food" id="nutrient-food">
+          <select class="user-field form-element select select-imported-style" name="nutrient-food" id="nutrient-food">
             <option></option>
             <option value="Do not take with food">Do not take with food</option>
             <option value="Take before eating">Take before eating</option>
@@ -58,7 +57,7 @@
         </div>
         <div class="supplement-row">
           <label class="label" for="nutrient-unit-measurement">Unit of measurement</label>
-          <select class="form-element select select-imported-style" name="nutrient-unit-measurement" id="nutrient-unit-measurement">
+          <select class="user-field form-element select select-imported-style" name="nutrient-unit-measurement" id="nutrient-unit-measurement">
             <option></option>
             <option value="ml">ml</option>
             <option value="g">g</option>
@@ -68,15 +67,21 @@
         </div>
         <div class="supplement-row">
           <label class="label" for="nutrient-recommended-intake">Recommended daily intake</label>
-          <input class="form-element form-element input large-input-number" type="number" name="nutrient-recommended-intake" id="nutrient-recommended-intake" min="1">
+          <div>
+            <input class="user-field form-element form-element input large-input-number" type="number" name="nutrient-recommended-intake" id="nutrient-recommended-intake" min="1">
+            <span id="nutrient-recommended-unit"></span>
+          </div>
         </div>
         <div class="supplement-row">
           <label class="label" for="nutrient-maximum-intake">Maximum daily intake</label>
-          <input class="form-element input large-input-number" type="number" name="nutrient-maximum-intake" id="nutrient-maximum-intake" min="1">
+          <div>
+            <input class="user-field form-element input large-input-number" type="number" name="nutrient-maximum-intake" id="nutrient-maximum-intake" min="1">
+            <span id="nutrient-maximum-unit"></span>
+          </div>
         </div>
         <div class="supplement-row">
           <label class="label" for="nutrient-notes">Notes</label>
-          <textarea class="form-element input textarea" type="number" name="nutrient-notes" id="nutrient-notes" rows="6">Should be taken with:&#10;&#10;Should not be taken with:&#10;&#10;Can cause decrease in:&#10;</textarea>
+          <textarea class="user-field form-element input textarea" type="number" name="nutrient-notes" id="nutrient-notes" rows="6">Should be taken with:&#10;&#10;Should not be taken with:&#10;&#10;Can cause decrease in:&#10;</textarea>
         </div>
       </div>
       <div class="product-container">
@@ -84,19 +89,19 @@
         <div class="supplement-row">
           <label class="label" for="product-amount">Amount per serving</label>
           <div>
-            <input class="form-element input large-input-number" type="number" name="product-amount" id="product-amount" min="1">
-            <span id="product-amount-measurement"></span>
+            <input class="user-field form-element input large-input-number" type="number" name="product-amount" id="product-amount" min="1">
+            <span id="product-amount-unit"></span>
           </div>
         </div>
         <div class="supplement-row">
           <label class="label" for="product-servings">Number of servings</label>
-          <input class="form-element input large-input-number" type="number" name="product-servings" id="product-servings" min="1">
+          <input class="user-field form-element input large-input-number" type="number" name="product-servings" id="product-servings" min="1">
         </div>
         <div class="supplement-row">
           <label class="label" for="product-price">Price</label>
           <div>
-            <input class="form-element input large-input-number" type="number" name="product-price" id="product-price" min="1">
-            <select class="form-element select select-imported-style" name="product-price-currency" id="product-price-currency">
+            <input class="user-field form-element input large-input-number" type="number" name="product-price" id="product-price" min="1">
+            <select class="user-field form-element select select-imported-style" name="product-price-currency" id="product-price-currency">
               <option></option>
               <option value="EUR">EUR</option>
               <option value="GBP">GBP</option>
@@ -106,26 +111,26 @@
         </div>
         <div class="supplement-row">
           <label class="label" for="product-company">Company name</label>
-          <input class="form-element input" type="text" name="product-company" id="product-company">
+          <input class="user-field form-element input" type="text" name="product-company" id="product-company">
         </div>
         <div class="supplement-row">
           <label class="label" for="product-link">Link</label>
-          <input class="form-element input" type="url" name="product-link" id="product-link">
+          <input class="user-field form-element input" type="url" name="product-link" id="product-link">
         </div>
         <div class="supplement-row">
           <label class="label" for="product-consuming">Consuming currently</label>
-          <input class="checkbox" type="checkbox" name="product-consuming" id="product-consuming"> 
+          <input class="user-field checkbox" type="checkbox" name="product-consuming" id="product-consuming"> 
         </div>
       </div>
       <div class="personal-container">
         <div class="container container-header">Personal use</div>
         <div class="supplement-row">
           <label class="label" for="personal-servings">Number of servings per day</label>
-          <input class="form-element input large-input-number" type="number" name="personal-servings" id="personal-servings" min="1">
+          <input class="user-field form-element input large-input-number" type="number" name="personal-servings" id="personal-servings" min="1">
         </div>
         <div class="supplement-row">
           <label class="label" for="personal-time">Chosen time to take</label>
-          <select class="form-element select select-imported-style" name="personal-time" id="personal-time">
+          <select class="user-field form-element select select-imported-style" name="personal-time" id="personal-time">
             <option></option>
             <option value="Morning">Morning</option>
             <option value="Afternoon">Afternoon</option>
@@ -134,11 +139,11 @@
         </div>
         <div class="supplement-row">
           <label class="label" for="personal-start">Bottle opening date</label>
-          <input class="form-element input" type="date" name="personal-start" id="personal-start">
+          <input class="user-field form-element input" type="date" name="personal-start" id="personal-start">
         </div>
         <div class="supplement-row">
           <label class="label" for="personal-refil">Estimated refil date</label>
-          <input class="form-element input" type="date" name="personal-refil" id="personal-refil">
+          <input class="user-field form-element input" type="date" name="personal-refil" id="personal-refil">
         </div>
       </div>
       <div class="container buttons-container">

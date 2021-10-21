@@ -17,10 +17,14 @@ document.querySelector(".supplement-name").addEventListener("change", () => {
 document.querySelector("#nutrient-unit-measurement").addEventListener("change", () => {
   let unit = event.target.value;
   if(unit === "ml" || unit === "g" || unit === "mg" || unit === "mcg") {
-    document.querySelector("#product-amount-measurement").innerHTML = unit
+    document.querySelector("#nutrient-recommended-unit").innerHTML = unit
+    document.querySelector("#nutrient-maximum-unit").innerHTML = unit
+    document.querySelector("#product-amount-unit").innerHTML = unit
   }
   else {
-    document.querySelector("#product-amount-measurement").innerHTML = ""
+    document.querySelector("#nutrient-recommended-unit").innerHTML = ""
+    document.querySelector("#nutrient-maximum-unit").innerHTML = ""
+    document.querySelector("#product-amount-unit").innerHTML = ""
   }
 })
 
@@ -42,8 +46,12 @@ document.querySelector("#personal-start").addEventListener("blur", () => {
 })
 
 document.querySelector(".btn-confirm").addEventListener("click", () => {
-  
-  showOverview()
+  if(verifyRequiredFields()) {
+    showOverview()
+  }
+  else {
+    showNotification("There are still important fields to fill.");
+  }
 })
 
 document.querySelector(".btn-cancel").addEventListener("click", showOverview)
@@ -105,4 +113,28 @@ function dateToString(date) {
 
 function showOverview() {
   window.location.href = "overview.html"
+}
+
+function showNotification(message) {
+  document.querySelector(".notification-message").innerText = message
+  document.querySelector(".notification-container").style.display = "flex";
+}
+
+function verifyRequiredFields() {
+  let confirm = true;
+  let arr = document.querySelectorAll(".user-required")
+  arr.forEach(element => {
+    if(!element.value) {
+      confirm = false;
+      highlightField(element)
+    }
+  })
+  return confirm;
+}
+
+function highlightField(element) {
+  let errorElement = document.createElement("div")
+  errorElement.classList = "error-message"
+  errorElement.innerText = "\u26A0 This field needs to be filled."
+  element.parentElement.insertBefore(errorElement, element.nextSibling)
 }

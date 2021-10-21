@@ -35,7 +35,7 @@ document.querySelector(".btn-new-item").addEventListener("click", () => {
 
 function saveData() {
   var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data));
-  var downloadAnchor = document.createElement('a');
+  var downloadAnchor = document.createElement("a");
   downloadAnchor.setAttribute("href", dataStr);
   downloadAnchor.setAttribute("download", "Supplement overview" + ".json");
   document.body.appendChild(downloadAnchor);
