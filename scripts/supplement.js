@@ -86,10 +86,8 @@ function verifyInputNumber(element) {
   let max = element.max;
 
   if(value < min || value > max) {
-    element.value = ""
     return false;
   }
-  
   return true;
 }
 
