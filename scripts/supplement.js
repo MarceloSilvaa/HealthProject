@@ -244,5 +244,5 @@ async function storeData() {
       "refil-date": document.querySelector("#personal-refil").value
     }
   }
-  document.cookie = "new-supplement-data=" + JSON.stringify(data) + "; path=/"
+  localStorage.setItem("new-supplement-data",JSON.stringify(data))
 }
