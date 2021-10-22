@@ -13,14 +13,8 @@ function ready() {
 }
 
 document.querySelector(".file-load").addEventListener("change", (event) => {
-  let file = event.target.files[0]
-  let reader = new FileReader()
-  reader.readAsText(file, "utf-8")
-  reader.onload = readerEvent => {
-    data = JSON.parse(readerEvent.target.result);
-  }
-  displayOverviewData()
-  showNotification("Content was successfully loaded.")
+  clearOverviewRows()
+  loadOverviewFile(event.target.files[0])
 })
 
 document.querySelector(".file-save").addEventListener("click", () => {
@@ -42,6 +36,21 @@ function showNotification(message) {
   document.querySelector(".notification-container").style.display = "flex";
 }
 
+function clearOverviewRows() {
+  document.querySelector(".overview-items").innerHTML = ""
+}
+
+function loadOverviewFile(file) {
+  let reader = new FileReader()
+  reader.onload = res => {
+    data = JSON.parse(res.target.result)
+    displayOverviewData()
+    setOverviewStorage()
+    showNotification("Content was successfully loaded.")
+  }
+  reader.readAsText(file, "utf-8")
+}
+
 function setOverviewData() {
   if(localStorage.getItem("supplement-overview-data") == null) {
     data = 
@@ -61,8 +70,7 @@ function setOverviewStorage() {
 
 function displayOverviewData() {
   data.supplements.forEach(element => {
-    let newRow = document.createElement("div");
-    newRow.innerHTML = 
+    document.querySelector(".overview-items").innerHTML +=
     `<div class="overview-row">
       <span class="overview-nutrient overview-column">${element.name}</span>
       <span class="overview-dosage overview-column">${element.product.amount}</span>
@@ -72,7 +80,6 @@ function displayOverviewData() {
       <span class="overview-refil overview-column">${element.personal["refil-date"]}</span>
       <a target="_blank" class="overview-link overview-column"href="${element.product.link}">${element.product.link}</a>
     </div>`
-    document.querySelector(".overview-items").append(newRow)
   })
 }
 
