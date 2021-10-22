@@ -22,9 +22,9 @@ document.querySelector("#nutrient-unit-measurement").addEventListener("change", 
     document.querySelector("#product-amount-unit").innerHTML = unit
   }
   else {
-    document.querySelector("#nutrient-recommended-unit").innerHTML = ""
-    document.querySelector("#nutrient-maximum-unit").innerHTML = ""
-    document.querySelector("#product-amount-unit").innerHTML = ""
+    document.querySelector("#nutrient-recommended-unit").innerHTML = "Unit undefined"
+    document.querySelector("#nutrient-maximum-unit").innerHTML = "Unit undefined"
+    document.querySelector("#product-amount-unit").innerHTML = "Unit undefined"
   }
 })
 
