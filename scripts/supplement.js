@@ -61,16 +61,25 @@ function verifyDate(element, type) {
 
   let date = stringToDate(element.value, true)
 
-  if(beforeToday(date)) {
-    element.value = ""
-    highlightField(element, "\u26A0 The date cannot be earlier than today.", "error-date")
-    return;
+  if(type === "start") {
+    if(beforeToday(date) && !goesBackOneYear(date)) {
+      element.value = ""
+      highlightField(element, "\u26A0 The date cannot be earlier than today.", "error-date")
+      return;
+    }
   }
 
-  if(type === "refil" && beforeOpenDate(date)) {
-    element.value = ""
-    highlightField(element, "\u26A0 The date cannot be earlier than bottle opening date.", "error-date")
-    return;
+  if(type === "refil") {
+    if(beforeToday(date)) {
+      element.value = ""
+      highlightField(element, "\u26A0 The date cannot be earlier than today.", "error-date")
+      return;
+    }
+    if(!openDateIsEmpty() && beforeOpenDate(date)) {
+      element.value = ""
+      highlightField(element, "\u26A0 The date cannot be earlier than bottle opening date.", "error-date")
+      return;
+    }
   }
 }
 
@@ -83,6 +92,26 @@ function beforeToday(input) {
     return true;
   }
 
+  return false;
+}
+
+function goesBackOneYear(input) {
+  let lastYear = new Date()
+  lastYear.setFullYear(lastYear.getFullYear() - 1)
+  lastYear.setHours(0, 0, 0, 0)
+
+  //Verify if the date goes back no longer than one year
+  if(input.valueOf() >= lastYear.valueOf()) {
+    return true;
+  }
+
+  return false;
+}
+
+function openDateIsEmpty() {
+  if(document.querySelector("#personal-start").value === "") {
+    return true;
+  }
   return false;
 }
 
