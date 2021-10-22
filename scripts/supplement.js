@@ -277,7 +277,7 @@ function selectRequiredField() {
 async function storeData() {
   let data = 
   {
-    id: 1,
+    id: (JSON.parse(localStorage.getItem("supplement-overview-data")).size + 1),
     name: document.querySelector("#supplement-name").value,
     nutrient:
     {
