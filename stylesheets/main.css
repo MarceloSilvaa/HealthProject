@@ -62,6 +62,10 @@ body {
   color: var(--color-lightblue);
 }
 
+a[href=""] {
+  display: none;
+}
+
 .main-footer {
   position: absolute;
   bottom: 0;
