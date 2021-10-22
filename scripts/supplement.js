@@ -33,18 +33,16 @@ document.querySelector("#product-servings").addEventListener("change", calculate
 document.querySelector("#personal-servings").addEventListener("change", calculateRefilDate)
 
 document.querySelector("#personal-start").addEventListener("blur", (event) => {
-  verifyDate(event.target)
+  verifyDate(event.target, "start")
   calculateRefilDate()
 })
 
 document.querySelector("#personal-refil").addEventListener("blur", (event) => {
-  verifyDate(event.target)
+  verifyDate(event.target, "refil")
 })
 
 document.querySelector(".btn-confirm").addEventListener("click", (event) => {
-  document.querySelectorAll(".error-message").forEach(element => {
-    element.remove()
-  })
+  clearAllErrors()
   event.target.blur()
   if(verifyRequiredFields()) {
     storeData()
@@ -58,16 +56,20 @@ document.querySelector(".btn-confirm").addEventListener("click", (event) => {
 
 document.querySelector(".btn-cancel").addEventListener("click", showOverview)
 
-function verifyDate(element) {
-  let input = element.value
+function verifyDate(element, type) {
+  clearSpecificErrors("error-date")
 
-  let aux = input.split("-")
-  let date = new Date(aux[0], aux[1] - 1, aux[2])
-  date.setHours(0, 0, 0, 0)
+  let date = stringToDate(element.value, true)
 
-  if(!beforeToday(date)) {
+  if(beforeToday(date)) {
     element.value = ""
-    highlightField(element, "\u26A0 Can not select a date before today.")
+    highlightField(element, "\u26A0 The date cannot be earlier than today.", "error-date")
+    return;
+  }
+
+  if(type === "refil" && beforeOpenDate(date)) {
+    element.value = ""
+    highlightField(element, "\u26A0 The date cannot be earlier than bottle opening date.", "error-date")
     return;
   }
 }
@@ -76,12 +78,26 @@ function beforeToday(input) {
   let today = new Date()
   today.setHours(0, 0, 0, 0)
 
-  //Verify that date is not before today
+  //Verify if the date is earlier than today
   if(input.valueOf() < today.valueOf()) {
-    return false;
+    return true;
   }
 
-  return true;
+  return false;
+}
+
+function beforeOpenDate(input) {
+  let startInput = document.querySelector("#personal-start").value
+  if(startInput === "") {
+    return true;
+  }
+
+  let openDate = stringToDate(startInput, true)
+  if(input.valueOf() < openDate.valueOf()) {
+    return true;
+  }
+
+  return false;
 }
 
 function calculateRefilDate() {
@@ -105,6 +121,15 @@ function calculateRefilDate() {
 function setDateToday(element) {
   let date = dateToString(new Date())
   element.value = date
+}
+
+function stringToDate(str, setTimeToZero) {
+  let aux = str.split("-")
+  let date = new Date(aux[0], aux[1] - 1, aux[2])
+  if(setTimeToZero) {
+    date.setHours(0, 0, 0, 0)
+  }
+  return date
 }
 
 function dateToString(date) {
@@ -138,6 +163,18 @@ function showNotification(message) {
 
 let errorFields 
 
+function clearSpecificErrors(errorClass) {
+  document.querySelectorAll("." + errorClass).forEach(element => {
+    element.remove()
+  })
+}
+
+function clearAllErrors() {
+  document.querySelectorAll(".error-message").forEach(element => {
+    element.remove()
+  })
+}
+
 function verifyRequiredFields() {
   errorFields = []
   let confirm = true;
@@ -146,15 +183,15 @@ function verifyRequiredFields() {
     if(!element.value) {
       confirm = false;
       errorFields.push(element)
-      highlightField(element, "\u26A0 This field needs to be filled.")
+      highlightField(element, "\u26A0 This field needs to be filled.", "error-required")
     }
   })
   return confirm;
 }
 
-function highlightField(element, message) {
+function highlightField(element, message, extraclass) {
   let errorElement = document.createElement("div")
-  errorElement.classList = "error-message"
+  errorElement.classList = "error-message " + extraclass
   errorElement.innerText = message
   if(element.classList.contains("user-required-name")) {
     element.parentElement.insertBefore(errorElement, element.nextSibling)
