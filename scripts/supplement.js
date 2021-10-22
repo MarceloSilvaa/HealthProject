@@ -51,6 +51,7 @@ document.querySelector(".btn-confirm").addEventListener("click", (event) => {
   })
   event.target.blur()
   if(verifyRequiredFields()) {
+    storeData()
     showOverview()
   }
   else {
@@ -160,4 +161,41 @@ function highlightField(element) {
 
 function selectRequiredField() {
   errorFields[0].focus()
+}
+
+async function storeData() {
+  let data = 
+  {
+    id: 1,
+    name: document.querySelector("#supplement-name").value,
+    nutrient:
+    {
+      type: document.querySelector("#nutrient-type").value,
+      "fat-soluble": document.querySelector("#nutrient-fat-soluble").checked,
+      "water-soluble": document.querySelector("#nutrient-water-soluble").checked,
+      time: document.querySelector("#nutrient-time").value,
+      food: document.querySelector("#nutrient-food").value,
+      unit: document.querySelector("#nutrient-unit-measurement").value,
+      "recommended-intake": document.querySelector("#nutrient-recommended-intake").value,
+      "maximum-intake": document.querySelector("#nutrient-maximum-intake").value,
+      notes: document.querySelector("#nutrient-notes").value
+    },
+    product: 
+    {
+      amount: document.querySelector("#product-amount").value,
+      servings: document.querySelector("#product-servings").value,
+      price: document.querySelector("#product-price").value,
+      currency: document.querySelector("#product-price-currency").value,
+      company: document.querySelector("#product-company").value,
+      link: document.querySelector("#product-link").value
+    },
+    personal: 
+    {
+      servings: document.querySelector("#personal-servings").value,
+      time: document.querySelector("#personal-time").value,
+      "opening-date": document.querySelector("#personal-start").value,
+      "refil-date": document.querySelector("#personal-refil").value
+    }
+  }
+  document.cookie = "new-supplement-data=" + JSON.stringify(data) + "; path=/"
 }
