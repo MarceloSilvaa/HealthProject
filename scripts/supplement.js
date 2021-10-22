@@ -28,9 +28,33 @@ document.querySelector("#nutrient-unit-measurement").addEventListener("change", 
   }
 })
 
-document.querySelector("#product-servings").addEventListener("change", calculateRefilDate)
+document.querySelector("#nutrient-recommended-intake").addEventListener("change", (event) => {
+  verifyInputNumber(event.target)
+})
 
-document.querySelector("#personal-servings").addEventListener("change", calculateRefilDate)
+document.querySelector("#nutrient-maximum-intake").addEventListener("change", (event) => {
+  verifyInputNumber(event.target)
+})
+
+document.querySelector("#product-amount").addEventListener("change", (event) => {
+  verifyInputNumber(event.target)
+})
+
+document.querySelector("#product-servings").addEventListener("change", (event) => {
+  if(verifyInputNumber(event.target)) {
+    calculateRefilDate()
+  }
+})
+
+document.querySelector("#product-price").addEventListener("change", (event) => {
+  verifyInputNumber(event.target)
+})
+
+document.querySelector("#personal-servings").addEventListener("change", (event) => {
+  if(verifyInputNumber(event.target)) {
+    calculateRefilDate()
+  }
+})
 
 document.querySelector("#personal-start").addEventListener("blur", (event) => {
   verifyDate(event.target, "start")
@@ -55,6 +79,19 @@ document.querySelector(".btn-confirm").addEventListener("click", (event) => {
 })
 
 document.querySelector(".btn-cancel").addEventListener("click", showOverview)
+
+function verifyInputNumber(element) {
+  let value = element.value;
+  let min = element.min;
+  let max = element.max;
+
+  if(value < min || value > max) {
+    element.value = ""
+    return false;
+  }
+  
+  return true;
+}
 
 function verifyDate(element, type) {
   clearSpecificErrors("error-date")
