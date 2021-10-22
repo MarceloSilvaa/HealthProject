@@ -32,17 +32,13 @@ document.querySelector("#product-servings").addEventListener("change", calculate
 
 document.querySelector("#personal-servings").addEventListener("change", calculateRefilDate)
 
-document.querySelector("#personal-start").addEventListener("blur", () => {
-  let input = event.target.value
-
-  let aux = input.split("-")
-
-  if(!isValid(new Date(aux[0], aux[1] - 1, aux[2]), new Date())) {
-    event.target.value = ""
-    return;
-  }
-
+document.querySelector("#personal-start").addEventListener("blur", (event) => {
+  verifyDate(event.target)
   calculateRefilDate()
+})
+
+document.querySelector("#personal-refil").addEventListener("blur", (event) => {
+  verifyDate(event.target)
 })
 
 document.querySelector(".btn-confirm").addEventListener("click", (event) => {
@@ -62,6 +58,32 @@ document.querySelector(".btn-confirm").addEventListener("click", (event) => {
 
 document.querySelector(".btn-cancel").addEventListener("click", showOverview)
 
+function verifyDate(element) {
+  let input = element.value
+
+  let aux = input.split("-")
+  let date = new Date(aux[0], aux[1] - 1, aux[2])
+  date.setHours(0, 0, 0, 0)
+
+  if(!beforeToday(date)) {
+    element.value = ""
+    highlightField(element, "\u26A0 Can not select a date before today.")
+    return;
+  }
+}
+
+function beforeToday(input) {
+  let today = new Date()
+  today.setHours(0, 0, 0, 0)
+
+  //Verify that date is not before today
+  if(input.valueOf() < today.valueOf()) {
+    return false;
+  }
+
+  return true;
+}
+
 function calculateRefilDate() {
   // Update estimated refil date if there is enough information to make an estimation
   let refilElement = document.querySelector("#personal-refil")
@@ -78,18 +100,6 @@ function calculateRefilDate() {
   let refilDate = new Date(aux[0], aux[1] - 1, aux[2])
   refilDate.setDate(refilDate.getDate() + days)
   refilElement.value = dateToString(refilDate)
-}
-
-function isValid(input, today) {
-  input.setHours(0, 0, 0, 0)
-  today.setHours(0, 0, 0, 0)
-
-  //Verify that date is not before today
-  if(input.valueOf() < today.valueOf()) {
-    return false;
-  }
-
-  return true;
 }
 
 function setDateToday(element) {
@@ -136,16 +146,16 @@ function verifyRequiredFields() {
     if(!element.value) {
       confirm = false;
       errorFields.push(element)
-      highlightField(element)
+      highlightField(element, "\u26A0 This field needs to be filled.")
     }
   })
   return confirm;
 }
 
-function highlightField(element) {
+function highlightField(element, message) {
   let errorElement = document.createElement("div")
   errorElement.classList = "error-message"
-  errorElement.innerText = "\u26A0 This field needs to be filled."
+  errorElement.innerText = message
   if(element.classList.contains("user-required-name")) {
     element.parentElement.insertBefore(errorElement, element.nextSibling)
   }
