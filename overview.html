@@ -10,26 +10,34 @@
     <script type="text/javascript" src="scripts/overview.js" defer></script>
   </head>
   <body>
-    <header class="main-header">
+    <header class="action-background main-header">
       <nav class="nav main-nav">
         <h1 class="brand-name big-brand-name">Health Awareness</h1>
         <ul>
+          <li>
+            <a target="_blank" href="https://www.nhs.uk/conditions/vitamins-and-minerals/">Guide</a>
+          </li>
           <li>
             <label for="file-load">Load</label>
             <input class="file-load" type="file" name="file-load" id="file-load">
           </li>
           <li class="file-save">Save</li>
-          <li>
-            <a target="_blank" href="https://www.nhs.uk/conditions/vitamins-and-minerals/">Guide</a>
-          </li>
+          <li class="data-reset">Reset</li>
         </ul>
       </nav>
     </header>
-    <div class="notification-container">
+    <div class="action-background dark-message-container notification-container">
       <div class="notification-message"></div>
       <button class="notification-btn">Close</button>
     </div>
-    <section class="overview-section">
+    <div class="dark-message-container action-container">
+      <div class="action-message"></div>
+      <div class="action-btn-container">
+        <button class="btn action-btn action-confirmation-btn">Confirm</button>
+        <button class="btn action-btn action-cancel-btn">Cancel</button>
+      </div>
+    </div>
+    <section class="action-background overview-section">
       <div class="overview-header-row overview-row">
         <span class="overview-nutrient overview-header overview-column">Nutrient</span>
         <span class="overview-dosage overview-header overview-column">Dosage</span>
@@ -42,10 +50,10 @@
       <div class="overview-items">
       </div>
       <div class="overview-new-item">
-        <button class="form-element btn btn-new-item" type="button">Add new supplement</button>
+        <button class="form-element btn btn-round btn-new-item" type="button">Add new supplement</button>
       </div>
     </section>
-    <footer class="main-footer"></footer>
-    <div class="footer-wrap"></div>
+    <footer class="action-background main-footer"></footer>
+    <div class="action-background footer-wrap"></div>
   </body>
 </html>

@@ -26,6 +26,7 @@ body {
 
 .main-nav {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   color: white;
 }
@@ -90,9 +91,12 @@ a[href=""] {
 .btn {
   text-align: center;
   cursor: pointer;
-  border-radius: 25px;
   padding: 1rem;
   font-size: 1rem;
+}
+
+.btn-round {
+  border-radius: 25px;
 }
 
 .label {
@@ -142,21 +146,24 @@ select.select-imported-style {
   transform: scale(2);
 }
 
-.notification-container {
+.dark-message-container {
   display: none;
   flex-direction: column;
   position: fixed;
-  z-index: 100;
-  left: 2rem;
-  bottom: 2rem;
-  max-width: 50%;
-  min-width: 10%;
-  min-height: 40px;
   padding: 1rem 2rem 1rem 2rem;
   font-size: 1rem;
   color: #ddd;
   background-color: #202124;
   border-radius: 1rem;
+}
+
+.notification-container {
+  z-index: 1;
+  left: 2rem;
+  bottom: 2rem;
+  max-width: 50%;
+  min-width: 10%;
+  min-height: 40px;
 }
 
 .notification-btn {
@@ -168,4 +175,34 @@ select.select-imported-style {
   color: #669df6;
   background-color: var(--color-darkgrey);
   border: none;
+}
+
+.action-container {
+  top: 40%;
+  left: 30%;
+  z-index: 2;
+  min-height: 10%;
+  max-height: 20%;
+  width: 40%;
+}
+
+.action-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.action-btn {
+  padding: 0;
+  border: none;
+  color: #669df6;
+  background-color: var(--color-darkgrey);
+}
+
+.action-confirmation-btn {
+  margin-right: 5%;
+}
+
+.action-cancel-btn {
+  margin-left: 5%;
 }

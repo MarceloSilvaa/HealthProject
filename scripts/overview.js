@@ -18,11 +18,15 @@ document.querySelector(".file-load").addEventListener("change", (event) => {
 })
 
 document.querySelector(".file-save").addEventListener("click", () => {
-  if(Object.keys(data).length === 0) {
+  if(data.size === 0) {
     showNotification("There is no data to save.")
     return;
   }
   saveData()
+})
+
+document.querySelector(".data-reset").addEventListener("click", () => {
+  confirmAction("This action is irreversible. Are you sure you want to delete all stored data?")
 })
 
 document.querySelector(".btn-new-item").addEventListener("click", () => {
@@ -34,6 +38,15 @@ var data;
 function showNotification(message) {
   document.querySelector(".notification-message").innerText = message
   document.querySelector(".notification-container").style.display = "flex";
+}
+
+function confirmAction(message) {
+  document.querySelector(".action-message").innerText = message
+  document.querySelector(".action-container").style.display = "flex";
+  document.querySelectorAll(".action-background").forEach(element => {
+    element.style.opacity = 0.5
+    element.style.pointerEvents = "none"
+  })
 }
 
 function clearOverviewRows() {
