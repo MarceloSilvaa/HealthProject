@@ -62,6 +62,21 @@
   width: 15%;
 }
 
+.overview-editor {
+  display: grid;
+  grid-template-columns: 10% 10% 70%;
+  column-gap: 5%;
+  text-align: center;
+}
+
+.overview-icon {
+  line-height: 1;
+}
+
+.overview-edit, .overview-remove {
+  cursor: pointer;
+}
+
 .overview-new-item {
   display: flex;
   margin-top: 2rem;
