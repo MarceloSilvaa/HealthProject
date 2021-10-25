@@ -1,15 +1,8 @@
 if(document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", ready)
+  document.addEventListener("DOMContentLoaded", start)
 }
 else {
-  ready()
-}
-
-function ready() {
-  setOverviewData()
-  addNewSupplement()
-  setOverviewStorage()
-  displayOverviewData()
+  start()
 }
 
 document.querySelector(".file-load").addEventListener("change", (event) => {
@@ -33,7 +26,21 @@ document.querySelector(".btn-new-item").addEventListener("click", () => {
   window.location.href = "supplement.html"
 })
 
+document.querySelector(".action-confirmation-btn").addEventListener("click", event => {
+  clearData()
+  clearAction()
+})
+
+document.querySelector(".action-cancel-btn").addEventListener("click", clearAction)
+
 var data;
+
+function start() {
+  setOverviewData()
+  addNewSupplement()
+  setOverviewStorage()
+  displayOverviewData()
+}
 
 function showNotification(message) {
   document.querySelector(".notification-message").innerText = message
@@ -46,6 +53,15 @@ function confirmAction(message) {
   document.querySelectorAll(".action-background").forEach(element => {
     element.style.opacity = 0.5
     element.style.pointerEvents = "none"
+  })
+}
+
+function clearAction() {
+  document.querySelector(".action-message").innerText = ""
+  document.querySelector(".action-container").style.display = "none";
+  document.querySelectorAll(".action-background").forEach(element => {
+    element.style.opacity = 1
+    element.style.pointerEvents = "auto"
   })
 }
 
@@ -113,4 +129,11 @@ function saveData() {
   document.body.appendChild(downloadAnchor);
   downloadAnchor.click();
   downloadAnchor.remove();
+}
+
+function clearData() {
+  localStorage.removeItem("new-supplement-data")
+  localStorage.removeItem("supplement-overview-data")
+  clearOverviewRows()
+  start()
 }

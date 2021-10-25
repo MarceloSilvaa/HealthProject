@@ -1,12 +1,8 @@
 if(document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", ready)
+  document.addEventListener("DOMContentLoaded", start)
 }
 else {
-  ready();
-}
-
-function ready() {
-  
+  start();
 }
 
 document.querySelector(".supplement-name").addEventListener("change", () => {
@@ -79,6 +75,10 @@ document.querySelector(".btn-confirm").addEventListener("click", (event) => {
 })
 
 document.querySelector(".btn-cancel").addEventListener("click", showOverview)
+
+function start() {
+  
+}
 
 function verifyInputNumber(element) {
   let value = element.value;
