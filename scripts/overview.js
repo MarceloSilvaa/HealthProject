@@ -102,7 +102,7 @@ function displayOverviewData() {
     document.querySelector(".overview-items").innerHTML +=
     `<div class="overview-row">
       <span class="overview-nutrient overview-column">${element.name}</span>
-      <span class="overview-dosage overview-column">${element.product.amount}</span>
+      <span class="overview-dosage overview-column">${element.product.amount + " " + element.nutrient.unit}</span>
       <span class="overview-serving overview-column">${element.personal.servings}</span>
       <span class="overview-time overview-column">${element.personal.time}</span>
       <span class="overview-food overview-column">${element.nutrient.food}</span>
