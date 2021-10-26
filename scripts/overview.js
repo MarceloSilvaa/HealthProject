@@ -126,7 +126,10 @@ function displayOverviewData() {
 
 function getItemData(element) {
   let id =  element.parentElement.querySelector(".overview-id").innerText
-  return data.supplements[id - 1]
+  let itemData = data.supplements.find(element => {
+    return element.id === parseInt(id)
+  })
+  return itemData
 }
 
 function addNewSupplement() {
@@ -150,7 +153,6 @@ function editSupplement() {
 function deleteSupplement() {
   localStorage.removeItem("view-supplement-data")
   let removeData = JSON.parse(localStorage.getItem("delete-supplement-data"))
-  console.log(removeData)
   if(removeData != null) {
     let id = removeData
     data.supplements = data.supplements.filter(item => {
