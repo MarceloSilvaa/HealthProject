@@ -146,6 +146,10 @@ select.select-imported-style {
   transform: scale(2);
 }
 
+.icon {
+  line-height: 1;
+}
+
 .dark-message-container {
   display: none;
   flex-direction: column;

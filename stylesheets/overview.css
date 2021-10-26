@@ -62,19 +62,9 @@
   width: 15%;
 }
 
-.overview-editor {
-  display: grid;
-  grid-template-columns: 10% 10% 70%;
-  column-gap: 5%;
-  text-align: center;
-}
-
-.overview-icon {
-  line-height: 1;
-}
-
-.overview-edit, .overview-remove {
+.overview-nutrient:not(.overview-header) {
   cursor: pointer;
+  text-decoration: underline;
 }
 
 .overview-new-item {
