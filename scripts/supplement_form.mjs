@@ -11,10 +11,10 @@ export function updateUnitFields(unit) {
   }
 }
 
-export function getFormData() {
+export function getFormData(id) {
   let data = 
   {
-    id: (JSON.parse(localStorage.getItem("supplement-overview-data")).next),
+    id: id,
     name: document.querySelector("#supplement-name").value,
     nutrient:
     {

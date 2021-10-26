@@ -146,7 +146,12 @@ function editSupplement() {
   localStorage.removeItem("view-supplement-data")
   let editData = JSON.parse(localStorage.getItem("edit-supplement-data"))
   if(editData != null) {
-    //localStorage.removeItem("edit-supplement-data")
+    let id = editData.id
+    let index = data.supplements.findIndex(item => {
+      return item.id === id
+    })
+    data.supplements[index] = editData
+    localStorage.removeItem("edit-supplement-data")
   }
 }
 

@@ -58,12 +58,10 @@ document.querySelector(".btn-confirm").addEventListener("click", (event) => {
   event.target.blur()
   if(verifyRequiredFields()) {
     if(event.target.classList.contains("btn-add")) {
-      alert("new")
-      supplementStorage("new-supplement-data") 
+      supplementStorage("add") 
     }
     if(event.target.classList.contains("btn-edit")) {
-      alert("edit")
-      supplementStorage("edit-supplement-data") 
+      supplementStorage("edit") 
     }
     showOverview()
   }
@@ -274,5 +272,12 @@ function selectRequiredField() {
 }
 
 function supplementStorage(storage) {
-  localStorage.setItem(storage, JSON.stringify(getFormData()))
+  if(storage === "add") {
+    let nextId = JSON.parse(localStorage.getItem("supplement-overview-data")).next
+    localStorage.setItem("new-supplement-data", JSON.stringify(getFormData(nextId)))
+  }
+  if(storage === "edit") {
+    let curId = JSON.parse(localStorage.getItem("view-supplement-data")).id
+    localStorage.setItem("edit-supplement-data", JSON.stringify(getFormData(curId)))
+  }
 }
