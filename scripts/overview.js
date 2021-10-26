@@ -24,6 +24,13 @@ document.querySelector(".data-reset").addEventListener("click", () => {
 
 document.querySelectorAll(".overview-nutrient:not(.overview-header)").forEach(element => {
   element.addEventListener("click", event => {
+
+    let aux = {
+      id: 2,
+      action: "",
+      data: ""
+    }
+    localStorage.setItem("edit-supplement-data", JSON.stringify(aux))
     window.location.href = "edit_supplement.html"
   })
 })
@@ -107,6 +114,7 @@ function displayOverviewData() {
   data.supplements.forEach(element => {
     document.querySelector(".overview-items").innerHTML +=
     `<div class="overview-row">
+      <span class="overview-id">${element.id}</span>
       <span class="overview-nutrient overview-column">${element.name}</span>
       <span class="overview-dosage overview-column">${element.product.amount + " " + element.nutrient.unit}</span>
       <span class="overview-serving overview-column">${element.personal.servings}</span>
@@ -139,6 +147,7 @@ function saveData() {
 
 function clearData() {
   localStorage.removeItem("new-supplement-data")
+  localStorage.removeItem("edit-supplement-data")
   localStorage.removeItem("supplement-overview-data")
   clearOverviewRows()
   start()

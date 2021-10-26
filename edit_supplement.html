@@ -8,13 +8,21 @@
     <link rel="stylesheet" href="stylesheets/supplement.css">
     <script type="text/javascript" src="scripts/main.js" defer></script>
     <script type="text/javascript" src="scripts/supplement.js" defer></script>
+    <script type="text/javascript" src="scripts/edit_supplement.js" defer></script>
   </head>
   <body>
-    <div class="dark-message-container notification-container">
+    <div class="action-background dark-message-container notification-container">
       <div class="notification-message"></div>
       <button class="notification-btn">Close</button>
     </div>
-    <section class="supplement-section">
+    <div class="dark-message-container action-container">
+      <div class="action-message"></div>
+      <div class="action-btn-container">
+        <button class="btn action-btn action-confirmation-btn">Confirm</button>
+        <button class="btn action-btn action-cancel-btn">Cancel</button>
+      </div>
+    </div>
+    <section class="action-background supplement-section">
       <div class="container name-container">
         <input class="user-required user-field user-required-name form-element input supplement-name" type="text" name="supplement-name" id="supplement-name" placeholder="Name of the supplement *" autofocus required>
       </div>

@@ -30,11 +30,12 @@
   white-space: nowrap;
 }
 
-.overview-column:first-child {
-  margin-left: 0;
+.overview-id {
+  display: none;
 }
 
 .overview-nutrient {
+  margin-left: 0;
   width: 15%;
 }
 
