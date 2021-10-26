@@ -1,3 +1,5 @@
+import { updateUnitFields, getFormData } from "./supplement_form.mjs";
+
 if(document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", start)
 }
@@ -10,18 +12,8 @@ document.querySelector(".supplement-name").addEventListener("change", () => {
   event.target.value = name.charAt(0).toUpperCase() + name.substring(1, name.length)
 })
 
-document.querySelector("#nutrient-unit-measurement").addEventListener("change", () => {
-  let unit = event.target.value;
-  if(unit === "ml" || unit === "g" || unit === "mg" || unit === "mcg") {
-    document.querySelector("#nutrient-recommended-unit").innerHTML = unit
-    document.querySelector("#nutrient-maximum-unit").innerHTML = unit
-    document.querySelector("#product-amount-unit").innerHTML = unit
-  }
-  else {
-    document.querySelector("#nutrient-recommended-unit").innerHTML = "Unit undefined"
-    document.querySelector("#nutrient-maximum-unit").innerHTML = "Unit undefined"
-    document.querySelector("#product-amount-unit").innerHTML = "Unit undefined"
-  }
+document.querySelector("#nutrient-unit-measurement").addEventListener("change", event => {
+  updateUnitFields(event.target.value)
 })
 
 document.querySelector("#nutrient-recommended-intake").addEventListener("change", (event) => {
@@ -61,19 +53,20 @@ document.querySelector("#personal-refil").addEventListener("blur", (event) => {
   verifyDate(event.target, "refil")
 })
 
-document.querySelector(".btn-confirm").addEventListener("click", (event) => {
-  clearAllErrors()
-  event.target.blur()
-  if(verifyRequiredFields()) {
-    storeData()
-    showOverview()
-  }
-  else {
-    selectRequiredField()
-    showNotification("There are still important fields to fill.")
-  }
-})
-
+if(document.querySelector(".btn-add") != null) {
+  document.querySelector(".btn-add").addEventListener("click", (event) => {
+    clearAllErrors()
+    event.target.blur()
+    if(verifyRequiredFields()) {
+      addSupplement()
+      showOverview()
+    }
+    else {
+      selectRequiredField()
+      showNotification("There are still important fields to fill.")
+    }
+  })
+}
 document.querySelector(".btn-cancel").addEventListener("click", showOverview)
 
 function start() {
@@ -274,39 +267,10 @@ function selectRequiredField() {
   errorFields[0].focus()
 }
 
-function storeData() {
-  let data = 
-  {
-    id: (JSON.parse(localStorage.getItem("supplement-overview-data")).next),
-    name: document.querySelector("#supplement-name").value,
-    nutrient:
-    {
-      type: document.querySelector("#nutrient-type").value,
-      "fat-soluble": document.querySelector("#nutrient-fat-soluble").checked,
-      "water-soluble": document.querySelector("#nutrient-water-soluble").checked,
-      time: document.querySelector("#nutrient-time").value,
-      food: document.querySelector("#nutrient-food").value,
-      unit: document.querySelector("#nutrient-unit-measurement").value,
-      "recommended-intake": document.querySelector("#nutrient-recommended-intake").value,
-      "maximum-intake": document.querySelector("#nutrient-maximum-intake").value,
-      notes: document.querySelector("#nutrient-notes").value
-    },
-    product: 
-    {
-      amount: document.querySelector("#product-amount").value,
-      servings: document.querySelector("#product-servings").value,
-      price: document.querySelector("#product-price").value,
-      currency: document.querySelector("#product-price-currency").value,
-      company: document.querySelector("#product-company").value,
-      link: document.querySelector("#product-link").value
-    },
-    personal: 
-    {
-      servings: document.querySelector("#personal-servings").value,
-      time: document.querySelector("#personal-time").value,
-      "opening-date": document.querySelector("#personal-start").value,
-      "refil-date": document.querySelector("#personal-refil").value
-    }
-  }
-  localStorage.setItem("new-supplement-data",JSON.stringify(data))
+function addSupplement() {
+  localStorage.setItem("new-supplement-data", JSON.stringify(getFormData()))
+}
+
+function editSupplement() {
+  localStorage.setItem("new-supplement-data", JSON.stringify(getFormData()))
 }
