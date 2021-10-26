@@ -274,7 +274,7 @@ function selectRequiredField() {
   errorFields[0].focus()
 }
 
-async function storeData() {
+function storeData() {
   let data = 
   {
     id: (JSON.parse(localStorage.getItem("supplement-overview-data")).next + 1),

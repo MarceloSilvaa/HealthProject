@@ -25,7 +25,7 @@ document.querySelector(".data-reset").addEventListener("click", () => {
 document.querySelectorAll(".overview-nutrient:not(.overview-header)").forEach(element => {
   element.addEventListener("click", event => {
     let aux = getItemData(event.target)
-    localStorage.setItem("edit-supplement-data", JSON.stringify(aux))
+    localStorage.setItem("view-supplement-data", JSON.stringify(aux))
     window.location.href = "edit_supplement.html"
   })
 })
@@ -124,11 +124,7 @@ function displayOverviewData() {
 
 function getItemData(element) {
   let id =  element.parentElement.querySelector(".overview-id").innerText
-  return {
-    id: id,
-    action: "",
-    data: data.supplements[id - 1]
-  }
+  return data.supplements[id - 1]
 }
 
 function addNewSupplement() {
@@ -138,6 +134,22 @@ function addNewSupplement() {
     data.size++;
     data.next++;
     localStorage.removeItem("new-supplement-data")
+  }
+}
+
+function editSupplement() {
+  localStorage.removeItem("view-supplement-data")
+  let editData = localStorage.getItem("edit-supplement-data")
+  if(editData != null) {
+
+  }
+}
+
+function deleteSupplement() {
+  localStorage.removeItem("view-supplement-data")
+  let removeData = localStorage.getItem("delete-supplement-data")
+  if(removeData != null) {
+    
   }
 }
 
@@ -153,7 +165,9 @@ function saveData() {
 
 function clearData() {
   localStorage.removeItem("new-supplement-data")
+  localStorage.removeItem("view-supplement-data")
   localStorage.removeItem("edit-supplement-data")
+  localStorage.removeItem("delete-supplement-data")
   localStorage.removeItem("supplement-overview-data")
   clearOverviewRows()
   start()
