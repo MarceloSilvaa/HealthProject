@@ -24,12 +24,7 @@ document.querySelector(".data-reset").addEventListener("click", () => {
 
 document.querySelectorAll(".overview-nutrient:not(.overview-header)").forEach(element => {
   element.addEventListener("click", event => {
-
-    let aux = {
-      id: 2,
-      action: "",
-      data: ""
-    }
+    let aux = getItemData(event.target)
     localStorage.setItem("edit-supplement-data", JSON.stringify(aux))
     window.location.href = "edit_supplement.html"
   })
@@ -98,6 +93,7 @@ function setOverviewData() {
     data = 
     {
       size: 0,
+      next: 0,
       supplements: []
     }
   }
@@ -126,11 +122,21 @@ function displayOverviewData() {
   })
 }
 
+function getItemData(element) {
+  let id =  element.parentElement.querySelector(".overview-id").innerText
+  return {
+    id: id,
+    action: "",
+    data: data.supplements[id - 1]
+  }
+}
+
 function addNewSupplement() {
   let newSupplement = localStorage.getItem("new-supplement-data")
   if(newSupplement != null) {
     data.supplements[data.size] = JSON.parse(newSupplement)
     data.size++;
+    data.next++;
     localStorage.removeItem("new-supplement-data")
   }
 }
