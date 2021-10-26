@@ -13,11 +13,12 @@ function start() {
   loadForm(data)
 }
 
-document.querySelector(".btn-delete").addEventListener("click", event => {
+document.querySelector(".btn-delete").addEventListener("click", () => {
+  event.target.blur()
   confirmAction("This action is irreversible. Are you sure you want to delete this item?")
 })
 
-document.querySelector(".action-confirmation-btn").addEventListener("click", event => {
+document.querySelector(".action-confirmation-btn").addEventListener("click", () => {
   deleteDataRequest()
   clearAction()
   window.location.href = "overview.html"

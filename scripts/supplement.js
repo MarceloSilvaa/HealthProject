@@ -53,20 +53,26 @@ document.querySelector("#personal-refil").addEventListener("blur", (event) => {
   verifyDate(event.target, "refil")
 })
 
-if(document.querySelector(".btn-add") != null) {
-  document.querySelector(".btn-add").addEventListener("click", (event) => {
-    clearAllErrors()
-    event.target.blur()
-    if(verifyRequiredFields()) {
-      addSupplement()
-      showOverview()
+document.querySelector(".btn-confirm").addEventListener("click", (event) => {
+  clearAllErrors()
+  event.target.blur()
+  if(verifyRequiredFields()) {
+    if(event.target.classList.contains("btn-add")) {
+      alert("new")
+      supplementStorage("new-supplement-data") 
     }
-    else {
-      selectRequiredField()
-      showNotification("There are still important fields to fill.")
+    if(event.target.classList.contains("btn-edit")) {
+      alert("edit")
+      supplementStorage("edit-supplement-data") 
     }
-  })
-}
+    showOverview()
+  }
+  else {
+    selectRequiredField()
+    showNotification("There are still important fields to fill.")
+  }
+})
+
 document.querySelector(".btn-cancel").addEventListener("click", showOverview)
 
 function start() {
@@ -267,10 +273,6 @@ function selectRequiredField() {
   errorFields[0].focus()
 }
 
-function addSupplement() {
-  localStorage.setItem("new-supplement-data", JSON.stringify(getFormData()))
-}
-
-function editSupplement() {
-  localStorage.setItem("new-supplement-data", JSON.stringify(getFormData()))
+function supplementStorage(storage) {
+  localStorage.setItem(storage, JSON.stringify(getFormData()))
 }
