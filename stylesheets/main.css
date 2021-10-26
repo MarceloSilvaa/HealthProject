@@ -99,6 +99,12 @@ a[href=""] {
   border-radius: 25px;
 }
 
+.btn-color {
+  color: black;
+  background-color: #EEEEEE;
+  border: 3px solid #333333;
+}
+
 .label {
   font-size: 1rem;
 }

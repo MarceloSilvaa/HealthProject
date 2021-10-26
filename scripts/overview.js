@@ -5,7 +5,7 @@ else {
   start()
 }
 
-document.querySelector(".file-load").addEventListener("change", (event) => {
+document.querySelector(".file-load").addEventListener("change", event => {
   clearOverviewRows()
   loadOverviewFile(event.target.files[0])
 })
@@ -22,8 +22,14 @@ document.querySelector(".data-reset").addEventListener("click", () => {
   confirmAction("This action is irreversible. Are you sure you want to delete all stored data?")
 })
 
+document.querySelectorAll(".overview-nutrient:not(.overview-header)").forEach(element => {
+  element.addEventListener("click", event => {
+    window.location.href = "edit_supplement.html"
+  })
+})
+
 document.querySelector(".btn-new-item").addEventListener("click", () => {
-  window.location.href = "supplement.html"
+  window.location.href = "add_supplement.html"
 })
 
 document.querySelector(".action-confirmation-btn").addEventListener("click", event => {
