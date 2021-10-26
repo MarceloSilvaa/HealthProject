@@ -46,6 +46,8 @@ var data;
 function start() {
   setOverviewData()
   addNewSupplement()
+  editSupplement()
+  deleteSupplement()
   setOverviewStorage()
   displayOverviewData()
 }
@@ -93,7 +95,7 @@ function setOverviewData() {
     data = 
     {
       size: 0,
-      next: 0,
+      next: 1,
       supplements: []
     }
   }
@@ -131,15 +133,15 @@ function addNewSupplement() {
   let newSupplement = localStorage.getItem("new-supplement-data")
   if(newSupplement != null) {
     data.supplements[data.size] = JSON.parse(newSupplement)
-    data.size++;
-    data.next++;
+    data.size++
+    data.next++
     localStorage.removeItem("new-supplement-data")
   }
 }
 
 function editSupplement() {
   localStorage.removeItem("view-supplement-data")
-  let editData = localStorage.getItem("edit-supplement-data")
+  let editData = JSON.parse(localStorage.getItem("edit-supplement-data"))
   if(editData != null) {
 
   }
@@ -147,9 +149,15 @@ function editSupplement() {
 
 function deleteSupplement() {
   localStorage.removeItem("view-supplement-data")
-  let removeData = localStorage.getItem("delete-supplement-data")
+  let removeData = JSON.parse(localStorage.getItem("delete-supplement-data"))
+  console.log(removeData)
   if(removeData != null) {
-    
+    let id = removeData
+    data.supplements = data.supplements.filter(item => {
+      return item.id != id
+    })
+    data.size--
+    localStorage.removeItem("delete-supplement-data")
   }
 }
 

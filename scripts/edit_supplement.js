@@ -14,14 +14,18 @@ document.querySelector(".btn-delete").addEventListener("click", event => {
 })
 
 document.querySelector(".action-confirmation-btn").addEventListener("click", event => {
+  deleteDataRequest()
   clearAction()
   window.location.href = "overview.html"
 })
 
 document.querySelector(".action-cancel-btn").addEventListener("click", clearAction)
 
+var id
+
 function loadData() {
   let data = JSON.parse(localStorage.getItem("view-supplement-data"))
+  id = data.id
   
   document.querySelector("#supplement-name").value = data.name
 
@@ -51,6 +55,10 @@ function loadData() {
   document.querySelector("#personal-refil").value = data.personal["refil-date"]
 
   document.querySelector("#supplement-name").blur()
+}
+
+function deleteDataRequest() {
+  localStorage.setItem("delete-supplement-data", JSON.stringify(id))
 }
 
 function confirmAction(message) {
