@@ -277,7 +277,7 @@ function selectRequiredField() {
 function storeData() {
   let data = 
   {
-    id: (JSON.parse(localStorage.getItem("supplement-overview-data")).next + 1),
+    id: (JSON.parse(localStorage.getItem("supplement-overview-data")).next),
     name: document.querySelector("#supplement-name").value,
     nutrient:
     {
