@@ -1,7 +1,7 @@
 import { showOverview } from "./global.mjs"
-import { showNotification } from "./dialog.mjs" 
-import { isBeforeToday, stringToDate, dateToString } from "./date.mjs"
-import { openDateIsEmpty, goesBackOneYear, updateUnitFields, getFormData } from "./supplement_form.mjs";
+import { showNotification, clearNotification, confirmAction, clearAction } from "./dialog.mjs" 
+import { isBeforeToday, goesBackOneYear, stringToDate, dateToString } from "./date.mjs"
+import { isEditPage, getItemId, isValidNumber, openDateIsEmpty, updateUnitFields, loadForm, getFormData } from "./supplement_form.mjs";
 
 if(document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", start)
@@ -10,85 +10,96 @@ else {
   start();
 }
 
-document.querySelector(".supplement-name").addEventListener("change", () => {
-  let name = event.target.value
-  event.target.value = name.charAt(0).toUpperCase() + name.substring(1, name.length)
-})
-
-document.querySelector("#nutrient-unit-measurement").addEventListener("change", event => {
-  updateUnitFields(event.target.value)
-})
-
-document.querySelector("#nutrient-recommended-intake").addEventListener("change", (event) => {
-  verifyInputNumber(event.target)
-})
-
-document.querySelector("#nutrient-maximum-intake").addEventListener("change", (event) => {
-  verifyInputNumber(event.target)
-})
-
-document.querySelector("#product-amount").addEventListener("change", (event) => {
-  verifyInputNumber(event.target)
-})
-
-document.querySelector("#product-servings").addEventListener("change", (event) => {
-  if(verifyInputNumber(event.target)) {
-    calculateRefilDate()
-  }
-})
-
-document.querySelector("#product-price").addEventListener("change", (event) => {
-  verifyInputNumber(event.target)
-})
-
-document.querySelector("#personal-servings").addEventListener("change", (event) => {
-  if(verifyInputNumber(event.target)) {
-    calculateRefilDate()
-  }
-})
-
-document.querySelector("#personal-start").addEventListener("blur", (event) => {
-  verifyDate(event.target, "start")
-  calculateRefilDate()
-})
-
-document.querySelector("#personal-refil").addEventListener("blur", (event) => {
-  verifyDate(event.target, "refil")
-})
-
-document.querySelector(".btn-confirm").addEventListener("click", (event) => {
-  clearAllErrors()
-  event.target.blur()
-  if(verifyRequiredFields()) {
-    if(event.target.classList.contains("btn-add")) {
-      supplementStorage("add") 
-    }
-    if(event.target.classList.contains("btn-edit")) {
-      supplementStorage("edit") 
-    }
-    showOverview()
-  }
-  else {
-    selectRequiredField()
-    showNotification("There are still important fields to fill.")
-  }
-})
-
-document.querySelector(".btn-cancel").addEventListener("click", showOverview)
+var id
+var edit
 
 function start() {
-  
+  id = getItemId()
+  edit = isEditPage()
+  if(edit) {
+    loadForm()
+  }
+  setEventListeners()
 }
 
-function verifyInputNumber(element) {
-  let value = element.value;
-  let min = element.min;
-  let max = element.max;
+function setEventListeners() {
+  setDataEventListeners()
+  setDialogEventListeners()
+  setButtonEventListeners()
+}
 
-  if(value < min || value > max) {
-    return false;
+function setDataEventListeners() {
+  document.querySelector(".supplement-name").addEventListener("change", () => {
+    let name = event.target.value
+    event.target.value = name.charAt(0).toUpperCase() + name.substring(1, name.length)
+  })
+
+  document.querySelector("#nutrient-unit-measurement").addEventListener("change", event => {
+    updateUnitFields(event.target.value)
+  })
+  
+  document.querySelector("#product-servings").addEventListener("change", event => {
+    if(isValidNumber(event.target)) {
+      calculateRefilDate()
+    }
+  })
+  
+  document.querySelector("#personal-servings").addEventListener("change", event => {
+    if(isValidNumber(event.target)) {
+      calculateRefilDate()
+    }
+  })
+  
+  document.querySelector("#personal-start").addEventListener("blur", event => {
+    verifyDate(event.target, "start")
+    calculateRefilDate()
+  })
+  
+  document.querySelector("#personal-refil").addEventListener("blur", event => {
+    verifyDate(event.target, "refil")
+  })
+}
+
+function setDialogEventListeners() {
+  document.querySelector(".notification-btn").addEventListener("click", clearNotification)
+
+  if(!edit) {
+    return
   }
-  return true;
+
+  document.querySelector(".action-confirmation-btn").addEventListener("click", () => {
+    storeDeleteAction()
+    clearAction()
+    showOverview()
+  })
+  
+  document.querySelector(".action-cancel-btn").addEventListener("click", clearAction)
+}
+
+function setButtonEventListeners() {
+  document.querySelector(".btn-confirm").addEventListener("click", event => {
+    clearAllErrors()
+    event.target.blur()
+    if(verifyRequiredFields()) {
+      storeSupplement()
+      showOverview()
+    }
+    else {
+      selectRequiredField()
+      showNotification("There are still important fields to fill.")
+    }
+  })
+
+  document.querySelector(".btn-cancel").addEventListener("click", showOverview)
+
+  if(!edit) {
+    return
+  }
+
+  document.querySelector(".btn-delete").addEventListener("click", event => {
+    event.target.blur()
+    confirmAction("This action is irreversible. Are you sure you want to delete this item?")
+  })
 }
 
 function verifyDate(element, type) {
@@ -199,13 +210,16 @@ function selectRequiredField() {
   errorFields[0].focus()
 }
 
-function supplementStorage(storage) {
-  if(storage === "add") {
-    let nextId = JSON.parse(localStorage.getItem("supplement-overview-data")).next
-    localStorage.setItem("new-supplement-data", JSON.stringify(getFormData(nextId)))
+function storeSupplement() {
+  let id = getItemId()
+  if(edit) {
+    localStorage.setItem("edit-supplement-data", JSON.stringify(getFormData(id)))
   }
-  if(storage === "edit") {
-    let curId = JSON.parse(localStorage.getItem("view-supplement-data")).id
-    localStorage.setItem("edit-supplement-data", JSON.stringify(getFormData(curId)))
+  else {
+    localStorage.setItem("new-supplement-data", JSON.stringify(getFormData(id)))
   }
+}
+
+function storeDeleteAction() {
+  localStorage.setItem("delete-supplement-data", JSON.stringify(id))
 }

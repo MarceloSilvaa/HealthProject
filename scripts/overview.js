@@ -1,5 +1,5 @@
 import { showAddSupplement, showEditSupplement } from "./global.mjs"
-import { showNotification, clearNotification } from "./dialog.mjs"
+import { showNotification, clearNotification, confirmAction, clearAction } from "./dialog.mjs"
 
 if(document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", start)
@@ -55,24 +55,6 @@ function start() {
   deleteSupplement()
   setOverviewStorage()
   displayOverviewData()
-}
-
-function confirmAction(message) {
-  document.querySelector(".action-message").innerText = message
-  document.querySelector(".action-container").style.display = "flex";
-  document.querySelectorAll(".action-background").forEach(element => {
-    element.style.opacity = 0.5
-    element.style.pointerEvents = "none"
-  })
-}
-
-function clearAction() {
-  document.querySelector(".action-message").innerText = ""
-  document.querySelector(".action-container").style.display = "none";
-  document.querySelectorAll(".action-background").forEach(element => {
-    element.style.opacity = 1
-    element.style.pointerEvents = "auto"
-  })
 }
 
 function clearOverviewRows() {

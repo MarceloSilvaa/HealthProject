@@ -1,3 +1,28 @@
+export function isEditPage() {
+  if(localStorage.getItem("view-supplement-data") == null) {
+    return false
+  }
+  return true
+}
+
+export function getItemId() {
+  if(isEditPage()) {
+    return JSON.parse(localStorage.getItem("view-supplement-data")).id
+  }
+  return JSON.parse(localStorage.getItem("supplement-overview-data")).next
+}
+
+export function isValidNumber(element) {
+  let value = element.value;
+  let min = element.min;
+  let max = element.max;
+
+  if(value < min || value > max) {
+    return false;
+  }
+  return true;
+}
+
 export function openDateIsEmpty() {
   if(document.querySelector("#personal-start").value === "") {
     return true;
@@ -55,7 +80,13 @@ export function getFormData(id) {
   return data
 }
 
-export function loadForm(data) {
+function getItemDataFromStorage() {
+  return JSON.parse(localStorage.getItem("view-supplement-data"))
+}
+
+export function loadForm() {
+  let data = getItemDataFromStorage()
+
   document.querySelector("#supplement-name").value = data.name
 
   document.querySelector("#nutrient-type").value = data.nutrient.type
