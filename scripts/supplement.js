@@ -1,4 +1,7 @@
-import { updateUnitFields, getFormData } from "./supplement_form.mjs";
+import { showOverview } from "./global.mjs"
+import { showNotification } from "./dialog.mjs" 
+import { isBeforeToday, stringToDate, dateToString } from "./date.mjs"
+import { openDateIsEmpty, goesBackOneYear, updateUnitFields, getFormData } from "./supplement_form.mjs";
 
 if(document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", start)
@@ -94,7 +97,7 @@ function verifyDate(element, type) {
   let date = stringToDate(element.value, true)
 
   if(type === "start") {
-    if(beforeToday(date) && !goesBackOneYear(date)) {
+    if(isBeforeToday(date) && !goesBackOneYear(date)) {
       element.value = ""
       highlightField(element, "\u26A0 The date cannot be earlier than today.", "error-date")
       return;
@@ -102,7 +105,7 @@ function verifyDate(element, type) {
   }
 
   if(type === "refil") {
-    if(beforeToday(date)) {
+    if(isBeforeToday(date)) {
       element.value = ""
       highlightField(element, "\u26A0 The date cannot be earlier than today.", "error-date")
       return;
@@ -113,38 +116,6 @@ function verifyDate(element, type) {
       return;
     }
   }
-}
-
-function beforeToday(input) {
-  let today = new Date()
-  today.setHours(0, 0, 0, 0)
-
-  //Verify if the date is earlier than today
-  if(input.valueOf() < today.valueOf()) {
-    return true;
-  }
-
-  return false;
-}
-
-function goesBackOneYear(input) {
-  let lastYear = new Date()
-  lastYear.setFullYear(lastYear.getFullYear() - 1)
-  lastYear.setHours(0, 0, 0, 0)
-
-  //Verify if the date goes back no longer than one year
-  if(input.valueOf() >= lastYear.valueOf()) {
-    return true;
-  }
-
-  return false;
-}
-
-function openDateIsEmpty() {
-  if(document.querySelector("#personal-start").value === "") {
-    return true;
-  }
-  return false;
 }
 
 function beforeOpenDate(input) {
@@ -177,49 +148,6 @@ function calculateRefilDate() {
   let refilDate = new Date(aux[0], aux[1] - 1, aux[2])
   refilDate.setDate(refilDate.getDate() + days)
   refilElement.value = dateToString(refilDate)
-}
-
-function setDateToday(element) {
-  let date = dateToString(new Date())
-  element.value = date
-}
-
-function stringToDate(str, setTimeToZero) {
-  let aux = str.split("-")
-  let date = new Date(aux[0], aux[1] - 1, aux[2])
-  if(setTimeToZero) {
-    date.setHours(0, 0, 0, 0)
-  }
-  return date
-}
-
-function dateToString(date) {
-  let str = date.getFullYear() + "-"
-
-  if(date.getMonth() + 1 < 10) {
-    str += "0" + (date.getMonth() + 1) + "-"
-  }
-  else {
-    str += (date.getMonth() + 1) + "-"
-  }
-
-  if(date.getDate() < 10) {
-    str += "0" + date.getDate()
-  }
-  else {
-    str += date.getDate()
-  }
-
-  return str
-}
-
-function showOverview() {
-  window.location.href = "overview.html"
-}
-
-function showNotification(message) {
-  document.querySelector(".notification-message").innerText = message
-  document.querySelector(".notification-container").style.display = "flex";
 }
 
 let errorFields 

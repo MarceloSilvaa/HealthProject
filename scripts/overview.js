@@ -1,3 +1,6 @@
+import { showAddSupplement, showEditSupplement } from "./global.mjs"
+import { showNotification, clearNotification } from "./dialog.mjs"
+
 if(document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", start)
 }
@@ -26,13 +29,15 @@ document.querySelectorAll(".overview-nutrient:not(.overview-header)").forEach(el
   element.addEventListener("click", event => {
     let aux = getItemData(event.target)
     localStorage.setItem("view-supplement-data", JSON.stringify(aux))
-    window.location.href = "edit_supplement.html"
+    showEditSupplement()
   })
 })
 
 document.querySelector(".btn-new-item").addEventListener("click", () => {
-  window.location.href = "add_supplement.html"
+  showAddSupplement()
 })
+
+document.querySelector(".notification-btn").addEventListener("click", clearNotification)
 
 document.querySelector(".action-confirmation-btn").addEventListener("click", event => {
   clearData()
@@ -50,11 +55,6 @@ function start() {
   deleteSupplement()
   setOverviewStorage()
   displayOverviewData()
-}
-
-function showNotification(message) {
-  document.querySelector(".notification-message").innerText = message
-  document.querySelector(".notification-container").style.display = "flex";
 }
 
 function confirmAction(message) {

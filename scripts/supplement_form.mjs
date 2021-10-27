@@ -1,3 +1,10 @@
+export function openDateIsEmpty() {
+  if(document.querySelector("#personal-start").value === "") {
+    return true;
+  }
+  return false;
+}
+
 export function updateUnitFields(unit) {
   if(unit === "ml" || unit === "g" || unit === "mg" || unit === "mcg") {
     document.querySelector("#nutrient-recommended-unit").innerHTML = unit
@@ -73,7 +80,7 @@ export function loadForm(data) {
   document.querySelector("#personal-start").value = data.personal["opening-date"]
   document.querySelector("#personal-refil").value = data.personal["refil-date"]
 
-  document.querySelector("#supplement-name").blur()
-
   updateUnitFields(data.nutrient.unit)
+
+  document.querySelector("#supplement-name").blur()
 }
