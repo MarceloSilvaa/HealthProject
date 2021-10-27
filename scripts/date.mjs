@@ -1,21 +1,20 @@
-export function isBeforeToday(input) {
+export function isBeforeToday(date) {
   let today = new Date()
   today.setHours(0, 0, 0, 0)
 
-  if(input.valueOf() < today.valueOf()) {
+  if(date.valueOf() < today.valueOf()) {
     return true;
   }
 
   return false;
 }
 
-export function goesBackOneYear(input) {
+export function goesBackOneYear(date) {
   let lastYear = new Date()
   lastYear.setFullYear(lastYear.getFullYear() - 1)
-  lastYear.setHours(0, 0, 0, 0)
 
   //Verify if the date goes back no longer than one year
-  if(input.valueOf() >= lastYear.valueOf()) {
+  if(date.valueOf() >= lastYear.valueOf()) {
     return true;
   }
 

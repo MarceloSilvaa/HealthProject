@@ -1,7 +1,7 @@
 import { showOverview } from "./global.mjs"
 import { showNotification, clearNotification, confirmAction, clearAction } from "./dialog.mjs" 
 import { isBeforeToday, goesBackOneYear, stringToDate, dateToString } from "./date.mjs"
-import { isEditPage, getItemId, isValidNumber, openDateIsEmpty, updateUnitFields, loadForm, getFormData } from "./supplement_form.mjs";
+import { isEditPage, getItemId, loadForm, getFormData } from "./supplement_data.mjs";
 
 if(document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", start)
@@ -102,6 +102,30 @@ function setButtonEventListeners() {
   })
 }
 
+function isValidNumber(element) {
+  let value = element.value;
+  let min = element.min;
+  let max = element.max;
+
+  if(value < min || value > max) {
+    return false;
+  }
+  return true;
+}
+
+function updateUnitFields(unit) {
+  if(unit === "ml" || unit === "g" || unit === "mg" || unit === "mcg") {
+    document.querySelector("#nutrient-recommended-unit").innerText = unit
+    document.querySelector("#nutrient-maximum-unit").innerText = unit
+    document.querySelector("#product-amount-unit").innerText = unit
+  }
+  else {
+    document.querySelector("#nutrient-recommended-unit").innerText = "Unit undefined"
+    document.querySelector("#nutrient-maximum-unit").innerText = "Unit undefined"
+    document.querySelector("#product-amount-unit").innerText = "Unit undefined"
+  }
+}
+
 function verifyDate(element, type) {
   clearSpecificErrors("error-date")
 
@@ -127,6 +151,13 @@ function verifyDate(element, type) {
       return;
     }
   }
+}
+
+function openDateIsEmpty() {
+  if(document.querySelector("#personal-start").value === "") {
+    return true;
+  }
+  return false;
 }
 
 function beforeOpenDate(input) {

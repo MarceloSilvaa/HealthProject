@@ -12,37 +12,6 @@ export function getItemId() {
   return JSON.parse(localStorage.getItem("supplement-overview-data")).next
 }
 
-export function isValidNumber(element) {
-  let value = element.value;
-  let min = element.min;
-  let max = element.max;
-
-  if(value < min || value > max) {
-    return false;
-  }
-  return true;
-}
-
-export function openDateIsEmpty() {
-  if(document.querySelector("#personal-start").value === "") {
-    return true;
-  }
-  return false;
-}
-
-export function updateUnitFields(unit) {
-  if(unit === "ml" || unit === "g" || unit === "mg" || unit === "mcg") {
-    document.querySelector("#nutrient-recommended-unit").innerHTML = unit
-    document.querySelector("#nutrient-maximum-unit").innerHTML = unit
-    document.querySelector("#product-amount-unit").innerHTML = unit
-  }
-  else {
-    document.querySelector("#nutrient-recommended-unit").innerHTML = "Unit undefined"
-    document.querySelector("#nutrient-maximum-unit").innerHTML = "Unit undefined"
-    document.querySelector("#product-amount-unit").innerHTML = "Unit undefined"
-  }
-}
-
 export function getFormData(id) {
   let data = 
   {
@@ -80,7 +49,7 @@ export function getFormData(id) {
   return data
 }
 
-function getItemDataFromStorage() {
+export function getItemDataFromStorage() {
   return JSON.parse(localStorage.getItem("view-supplement-data"))
 }
 
@@ -96,10 +65,13 @@ export function loadForm() {
   document.querySelector("#nutrient-food").value = data.nutrient.food
   document.querySelector("#nutrient-unit-measurement").value = data.nutrient.unit
   document.querySelector("#nutrient-recommended-intake").value = data.nutrient["recommended-intake"]
+  document.querySelector("#nutrient-recommended-unit").innerText = data.nutrient.unit
   document.querySelector("#nutrient-maximum-intake").value = data.nutrient["maximum-intake"]
+  document.querySelector("#nutrient-maximum-unit").innerText = data.nutrient.unit
   document.querySelector("#nutrient-notes").value = data.nutrient.notes
 
   document.querySelector("#product-amount").value = data.product.amount
+  document.querySelector("#product-amount-unit").innerText = data.nutrient.unit
   document.querySelector("#product-servings").value = data.product.servings
   document.querySelector("#product-price").value = data.product.price
   document.querySelector("#product-price-currency").value = data.product.currency
@@ -110,8 +82,6 @@ export function loadForm() {
   document.querySelector("#personal-time").value = data.personal.time
   document.querySelector("#personal-start").value = data.personal["opening-date"]
   document.querySelector("#personal-refil").value = data.personal["refil-date"]
-
-  updateUnitFields(data.nutrient.unit)
 
   document.querySelector("#supplement-name").blur()
 }

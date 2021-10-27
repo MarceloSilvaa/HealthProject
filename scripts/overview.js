@@ -8,71 +8,67 @@ else {
   start()
 }
 
-document.querySelector(".file-load").addEventListener("change", event => {
-  clearOverviewRows()
-  loadOverviewFile(event.target.files[0])
-})
-
-document.querySelector(".file-save").addEventListener("click", () => {
-  if(data.size === 0) {
-    showNotification("There is no data to save.")
-    return;
-  }
-  saveData()
-})
-
-document.querySelector(".data-reset").addEventListener("click", () => {
-  confirmAction("This action is irreversible. Are you sure you want to delete all stored data?")
-})
-
-document.querySelectorAll(".overview-nutrient:not(.overview-header)").forEach(element => {
-  element.addEventListener("click", event => {
-    let aux = getItemData(event.target)
-    localStorage.setItem("view-supplement-data", JSON.stringify(aux))
-    showEditSupplement()
-  })
-})
-
-document.querySelector(".btn-new-item").addEventListener("click", () => {
-  showAddSupplement()
-})
-
-document.querySelector(".notification-btn").addEventListener("click", clearNotification)
-
-document.querySelector(".action-confirmation-btn").addEventListener("click", event => {
-  clearData()
-  clearAction()
-})
-
-document.querySelector(".action-cancel-btn").addEventListener("click", clearAction)
-
 var data;
 
 function start() {
-  setOverviewData()
-  addNewSupplement()
-  editSupplement()
-  deleteSupplement()
+  initializeOverviewData()
+  getDataFromStorage()
   setOverviewStorage()
   displayOverviewData()
+  setEventListeners()
 }
 
-function clearOverviewRows() {
-  document.querySelector(".overview-items").innerHTML = ""
+function setEventListeners() {
+  setDataEventListeners()
+  setItemEventListeners()
+  setButtonEventListeners()
 }
 
-function loadOverviewFile(file) {
-  let reader = new FileReader()
-  reader.onload = res => {
-    data = JSON.parse(res.target.result)
-    displayOverviewData()
-    setOverviewStorage()
-    showNotification("Content was successfully loaded.")
-  }
-  reader.readAsText(file, "utf-8")
+function setDataEventListeners() {
+  document.querySelector(".file-load").addEventListener("change", event => {
+    clearOverviewRows()
+    loadOverviewFile(event.target.files[0])
+  })
+  
+  document.querySelector(".file-save").addEventListener("click", () => {
+    if(data.size === 0) {
+      showNotification("There is no data to save.")
+      return;
+    }
+    saveData()
+  })
+  
+  document.querySelector(".data-reset").addEventListener("click", () => {
+    confirmAction("This action is irreversible. Are you sure you want to delete all stored data?")
+  })
 }
 
-function setOverviewData() {
+function setItemEventListeners() {
+  document.querySelectorAll(".overview-nutrient:not(.overview-header)").forEach(element => {
+    element.addEventListener("click", event => {
+      let aux = getItemData(event.target)
+      localStorage.setItem("view-supplement-data", JSON.stringify(aux))
+      showEditSupplement()
+    })
+  })
+}
+
+function setButtonEventListeners() {
+  document.querySelector(".notification-btn").addEventListener("click", clearNotification)
+
+  document.querySelector(".action-confirmation-btn").addEventListener("click", event => {
+    clearData()
+    clearAction()
+  })
+  
+  document.querySelector(".action-cancel-btn").addEventListener("click", clearAction)
+
+  document.querySelector(".btn-new-item").addEventListener("click", () => {
+    showAddSupplement()
+  })
+}
+
+function initializeOverviewData() {
   if(localStorage.getItem("supplement-overview-data") == null) {
     data = 
     {
@@ -86,32 +82,10 @@ function setOverviewData() {
   }
 }
 
-function setOverviewStorage() {
-  localStorage.setItem("supplement-overview-data", JSON.stringify(data))
-}
-
-function displayOverviewData() {
-  data.supplements.forEach(element => {
-    document.querySelector(".overview-items").innerHTML +=
-    `<div class="overview-row">
-      <span class="overview-id">${element.id}</span>
-      <span class="overview-nutrient overview-column">${element.name}</span>
-      <span class="overview-dosage overview-column">${element.product.amount + " " + element.nutrient.unit}</span>
-      <span class="overview-serving overview-column">${element.personal.servings}</span>
-      <span class="overview-time overview-column">${element.personal.time}</span>
-      <span class="overview-food overview-column">${element.nutrient.food}</span>
-      <span class="overview-refil overview-column">${element.personal["refil-date"]}</span>
-      <a target="_blank" class="overview-link overview-column" href="${element.product.link}">${element.product.link}</a>
-    </div>`
-  })
-}
-
-function getItemData(element) {
-  let id =  element.parentElement.querySelector(".overview-id").innerText
-  let itemData = data.supplements.find(element => {
-    return element.id === parseInt(id)
-  })
-  return itemData
+function getDataFromStorage() {
+  addNewSupplement()
+  editSupplement()
+  deleteSupplement()
 }
 
 function addNewSupplement() {
@@ -150,6 +124,50 @@ function deleteSupplement() {
   }
 }
 
+function setOverviewStorage() {
+  localStorage.setItem("supplement-overview-data", JSON.stringify(data))
+}
+
+function displayOverviewData() {
+  data.supplements.forEach(element => {
+    document.querySelector(".overview-items").innerHTML +=
+    `<div class="overview-row">
+      <span class="overview-id">${element.id}</span>
+      <span class="overview-nutrient overview-column">${element.name}</span>
+      <span class="overview-dosage overview-column">${element.product.amount + " " + element.nutrient.unit}</span>
+      <span class="overview-serving overview-column">${element.personal.servings}</span>
+      <span class="overview-time overview-column">${element.personal.time}</span>
+      <span class="overview-food overview-column">${element.nutrient.food}</span>
+      <span class="overview-refil overview-column">${element.personal["refil-date"]}</span>
+      <a target="_blank" class="overview-link overview-column" href="${element.product.link}">${element.product.link}</a>
+    </div>`
+  })
+}
+
+function clearOverviewRows() {
+  document.querySelector(".overview-items").innerHTML = ""
+}
+
+function getItemData(element) {
+  let id =  element.parentElement.querySelector(".overview-id").innerText
+  let itemData = data.supplements.find(element => {
+    return element.id === parseInt(id)
+  })
+  return itemData
+}
+
+function loadOverviewFile(file) {
+  let reader = new FileReader()
+  reader.onload = res => {
+    data = JSON.parse(res.target.result)
+    setOverviewStorage()
+    displayOverviewData()
+    setItemEventListeners()
+    showNotification("Content was successfully loaded.")
+  }
+  reader.readAsText(file, "utf-8")
+}
+
 function saveData() {
   var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data));
   var downloadAnchor = document.createElement("a");
@@ -167,5 +185,6 @@ function clearData() {
   localStorage.removeItem("delete-supplement-data")
   localStorage.removeItem("supplement-overview-data")
   clearOverviewRows()
-  start()
+  initializeOverviewData()
+  setOverviewStorage()
 }
