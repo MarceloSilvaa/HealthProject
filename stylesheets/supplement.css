@@ -67,6 +67,6 @@
   background-color: var(--color-lightred);
   color: var(--color-red);
   padding: 0rem 0.5rem 0rem 0.5rem;
-  vertical-align: center;
   text-align: center;
+  transition: opacity 0.75s ease-in-out;
 }

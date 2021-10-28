@@ -12,6 +12,22 @@ export function getItemId() {
   return JSON.parse(localStorage.getItem("supplement-overview-data")).next
 }
 
+export function numberOf(input) {
+  if (typeof input === 'string' || input instanceof String) {
+    return parseInt(input)
+  }
+  else {
+    return input
+  }
+}
+
+export function isValidUnit(unit) {
+  if(unit === "ml" || unit === "g" || unit === "mg" || unit === "mcg") {
+    return true
+  }
+  return false
+}
+
 export function getFormData(id) {
   let data = 
   {

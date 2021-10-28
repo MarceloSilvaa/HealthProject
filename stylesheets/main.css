@@ -217,7 +217,6 @@ select.select-imported-style {
   margin-left: 5%;
 }
 
-.ease-in {
+.opacity-transition {
   opacity: 1 !important;
-  transition: opacity 0.75s ease-in;
 }

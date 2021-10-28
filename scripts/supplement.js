@@ -1,7 +1,7 @@
 import { showOverview } from "./global.mjs"
 import { showNotification, clearNotification, confirmAction, clearAction } from "./dialog.mjs" 
 import { isBeforeToday, goesBackOneYear, stringToDate, dateToString } from "./date.mjs"
-import { isEditPage, getItemId, loadForm, getFormData } from "./supplement_data.mjs";
+import { isEditPage, getItemId, numberOf, isValidUnit, loadForm, getFormData } from "./supplement_data.mjs";
 
 if(document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", start)
@@ -29,23 +29,36 @@ function setEventListeners() {
 }
 
 function setDataEventListeners() {
-  document.querySelector(".supplement-name").addEventListener("change", () => {
+  document.querySelector("#supplement-name").addEventListener("change", event => {
     let name = event.target.value
     event.target.value = name.charAt(0).toUpperCase() + name.substring(1, name.length)
+    if(name !== "") {
+      removeErrorMessage(event.target.parentElement.querySelector(".error-message"))
+    }
   })
 
   document.querySelector("#nutrient-unit-measurement").addEventListener("change", event => {
     updateUnitFields(event.target.value)
+    if(isValidUnit(event.target.value)) {
+      removeErrorMessage(event.target.parentElement.nextElementSibling)
+    }
   })
   
+  document.querySelector("#product-amount").addEventListener("change", event => {
+    if(hasValidNumber(event.target)) {
+      removeErrorMessage(event.target.parentElement.parentElement.nextElementSibling)
+    }
+  })
+
   document.querySelector("#product-servings").addEventListener("change", event => {
-    if(isValidNumber(event.target)) {
+    if(hasValidNumber(event.target)) {
       calculateRefilDate()
     }
   })
   
   document.querySelector("#personal-servings").addEventListener("change", event => {
-    if(isValidNumber(event.target)) {
+    if(hasValidNumber(event.target)) {
+      removeErrorMessage(event.target.parentElement.nextElementSibling)
       calculateRefilDate()
     }
   })
@@ -102,11 +115,10 @@ function setButtonEventListeners() {
   })
 }
 
-function isValidNumber(element) {
-  let value = element.value;
-  let min = element.min;
-  let max = element.max;
-
+function hasValidNumber(element) {
+  let value = numberOf(element.value)
+  let min = numberOf(element.min)
+  let max = numberOf(element.max)
   if(value < min || value > max) {
     return false;
   }
@@ -114,7 +126,7 @@ function isValidNumber(element) {
 }
 
 function updateUnitFields(unit) {
-  if(unit === "ml" || unit === "g" || unit === "mg" || unit === "mcg") {
+  if(isValidUnit(unit)) {
     document.querySelector("#nutrient-recommended-unit").innerText = unit
     document.querySelector("#nutrient-maximum-unit").innerText = unit
     document.querySelector("#product-amount-unit").innerText = unit
@@ -224,7 +236,6 @@ function highlightField(element, message, extraclass) {
   let errorElement = document.createElement("div")
   errorElement.classList = "error-message " + extraclass
   errorElement.innerText = message
-  let insertedElement
   if(element.classList.contains("user-required-name")) {
     element.parentElement.insertBefore(errorElement, element.nextSibling)
   }
@@ -237,10 +248,20 @@ function highlightField(element, message, extraclass) {
     }
   }
 
-  var x = errorElement.clientHeight;
+  let x = errorElement.clientHeight;
   setTimeout(() => {
-    errorElement.classList += " ease-in"
+    errorElement.classList += " opacity-transition"
   }, 10)
+}
+
+function removeErrorMessage(element) {
+  if(element == null || element.classList == null || !element.classList.contains("error-message")) {
+    return
+  }
+  element.classList.remove("opacity-transition")
+  setTimeout(() => {
+    element.remove()
+  }, 751)
 }
 
 function selectRequiredField() {
