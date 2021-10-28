@@ -71,6 +71,17 @@ function setDataEventListeners() {
   document.querySelector("#personal-refil").addEventListener("blur", event => {
     verifyDate(event.target, "refil")
   })
+
+  document.querySelectorAll(".large-input-number").forEach(element => {
+    element.addEventListener("change", event => {
+      if(event.target.value === "") {
+        return
+      }
+      if(!hasValidNumber(event.target)) {
+        event.target.value = ""
+      }
+    })
+  })
 }
 
 function setDialogEventListeners() {
