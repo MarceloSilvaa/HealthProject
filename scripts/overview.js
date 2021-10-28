@@ -130,6 +130,11 @@ function setOverviewStorage() {
 
 function displayOverviewData() {
   data.supplements.forEach(element => {
+    let date = ""
+    if(element.personal["refil-date"] !== "") {
+      date = new Date(element.personal["refil-date"]).toLocaleDateString()
+    }
+
     document.querySelector(".overview-items").innerHTML +=
     `<div class="overview-row">
       <span class="overview-id">${element.id}</span>
@@ -138,7 +143,7 @@ function displayOverviewData() {
       <span class="overview-serving overview-column">${element.personal.servings}</span>
       <span class="overview-time overview-column">${element.personal.time}</span>
       <span class="overview-food overview-column">${element.nutrient.food}</span>
-      <span class="overview-refil overview-column">${new Date(element.personal["refil-date"]).toLocaleDateString()}</span>
+      <span class="overview-refil overview-column">${date}</span>
       <a target="_blank" class="overview-link overview-column" href="${element.product.link}">${element.product.link}</a>
     </div>`
   })
