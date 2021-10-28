@@ -216,3 +216,8 @@ select.select-imported-style {
 .action-cancel-btn {
   margin-left: 5%;
 }
+
+.ease-in {
+  opacity: 1 !important;
+  transition: opacity 0.75s ease-in;
+}

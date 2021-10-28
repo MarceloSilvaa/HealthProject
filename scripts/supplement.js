@@ -224,6 +224,7 @@ function highlightField(element, message, extraclass) {
   let errorElement = document.createElement("div")
   errorElement.classList = "error-message " + extraclass
   errorElement.innerText = message
+  let insertedElement
   if(element.classList.contains("user-required-name")) {
     element.parentElement.insertBefore(errorElement, element.nextSibling)
   }
@@ -235,6 +236,11 @@ function highlightField(element, message, extraclass) {
       element.parentElement.parentElement.parentElement.insertBefore(errorElement, element.parentElement.parentElement.nextSibling)
     }
   }
+
+  var x = errorElement.clientHeight;
+  setTimeout(() => {
+    errorElement.classList += " ease-in"
+  }, 10)
 }
 
 function selectRequiredField() {
