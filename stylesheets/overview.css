@@ -1,0 +1,79 @@
+.overview-section {
+  margin: 3rem 10rem 3rem 10rem;
+}
+
+.overview-header-row {
+  display: flex;
+  align-items: center;
+}
+
+.overview-row {
+  display: flex;
+  flex-grow: 1;
+  margin-top: 1rem;
+}
+
+.overview-header {
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-bottom: .3rem solid darkgrey;
+  border-radius: 10%;
+  padding-bottom: .75rem;
+}
+
+.overview-column {
+  color: black;
+  margin-left: 1%;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.overview-id {
+  display: none;
+}
+
+.overview-nutrient {
+  margin-left: 0;
+  width: 15%;
+}
+
+.overview-dosage {
+  width: 10%;
+}
+
+.overview-serving {
+  width: 16%;
+}
+
+.overview-time {
+  width: 12%;
+}
+
+.overview-food {
+  width: 16%;
+}
+
+.overview-refil {
+  width: 10%;
+}
+
+.overview-link {
+  width: 15%;
+}
+
+.overview-nutrient:not(.overview-header) {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.overview-new-item {
+  display: flex;
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+.file-load, .file-save {
+  display: none;
+}

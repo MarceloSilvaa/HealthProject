@@ -1,0 +1,222 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  --color-red: rgb(175, 0, 0);
+  --color-lightred: rgba(240, 128, 128, 0.3);
+  --color-green: rgb(29, 143, 59);
+  --color-lightblue: rgb(0, 153, 255);
+  --color-darkgrey: #202124;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+}
+
+.main-header {
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  font-weight: bold;
+  background-color: #1A1A1B;
+}
+
+.main-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  color: white;
+}
+
+.big-brand-name {
+  font-size: 3rem;
+}
+
+.brand-name {
+  margin: 0;
+  color: var(--color-lightblue);
+}
+
+.nav li:hover, .nav a:hover, .nav label:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.nav ul {
+  margin: 0;
+  flex-grow: 1;
+  text-align: end;
+}
+
+.nav li {
+  display: inline;
+  margin: 0 1.5rem 0 1.5rem; 
+  font-size: 1.2rem;
+  color: var(--color-lightblue);
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--color-lightblue);
+}
+
+a[href=""] {
+  display: none;
+}
+
+.main-footer {
+  position: absolute;
+  bottom: 0;
+  height: 5rem;
+  width: 100%;
+  background-color: var(--color-lightblue);
+  background-blend-mode: darken;
+  background-image: url(../images/health2.jpg);
+  background-position: 30% 70%;
+  background-size: cover;
+}
+
+.footer-wrap {
+  padding-top: 5rem;
+}
+
+.form-element:focus {
+    box-shadow: 0 0 0.1rem 0.1rem var(--color-lightblue);
+    outline: none;
+}
+
+.btn {
+  text-align: center;
+  cursor: pointer;
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+.btn-round {
+  border-radius: 25px;
+}
+
+.btn-color {
+  color: black;
+  background-color: #EEEEEE;
+  border: 3px solid #333333;
+}
+
+.label {
+  font-size: 1rem;
+}
+
+.big-label {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.input {
+  font-size: 1rem;
+  vertical-align: middle;
+}
+
+.small-input-number {
+  width: 4.5rem;
+}
+
+.large-input-number {
+  width: 6rem;
+}
+
+.textarea {
+  resize: none;
+}
+
+.select {
+  font-size: 1rem;
+  padding: .15rem 2rem .15rem .5rem;
+  vertical-align: middle;
+  appearance: none;
+}
+
+select.select-imported-style {
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
+  linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
+  background-repeat: no-repeat, repeat;
+  /* arrow icon position (1em from the right, 50% vertical) , then gradient position*/
+  background-position: right .7em top 50%, 0 0;
+  /* icon size, then gradient */
+  background-size: .65em auto, 100%;
+}
+
+.checkbox {
+  transform: scale(2);
+}
+
+.icon {
+  line-height: 1;
+}
+
+.dark-message-container {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  padding: 1rem 2rem 1rem 2rem;
+  font-size: 1rem;
+  color: #ddd;
+  background-color: #202124;
+  border-radius: 1rem;
+}
+
+.notification-container {
+  z-index: 1;
+  left: 2rem;
+  bottom: 2rem;
+  max-width: 50%;
+  min-width: 10%;
+  min-height: 40px;
+}
+
+.notification-btn {
+  padding: 0;
+  margin-top: 1rem;
+  text-align: right;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #669df6;
+  background-color: var(--color-darkgrey);
+  border: none;
+}
+
+.action-container {
+  top: 40%;
+  left: 30%;
+  z-index: 2;
+  min-height: 10%;
+  max-height: 20%;
+  width: 40%;
+}
+
+.action-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.action-btn {
+  padding: 0;
+  border: none;
+  color: #669df6;
+  background-color: var(--color-darkgrey);
+}
+
+.action-confirmation-btn {
+  margin-right: 5%;
+}
+
+.action-cancel-btn {
+  margin-left: 5%;
+}
+
+.opacity-transition {
+  opacity: 1 !important;
+}
