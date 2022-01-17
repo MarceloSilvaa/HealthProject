@@ -83,6 +83,10 @@ a[href=""] {
   padding-top: 5rem;
 }
 
+.form-element {
+  border: 1px solid darkgrey;
+}
+
 .form-element:focus {
     box-shadow: 0 0 0.1rem 0.1rem var(--color-lightblue);
     outline: none;
@@ -119,6 +123,10 @@ a[href=""] {
   vertical-align: middle;
 }
 
+.input:focus {
+  border-color: var(--color-lightblue);
+}
+
 .small-input-number {
   width: 4.5rem;
 }
@@ -136,6 +144,10 @@ a[href=""] {
   padding: .15rem 2rem .15rem .5rem;
   vertical-align: middle;
   appearance: none;
+}
+
+.select:focus {
+  border-color: var(--color-lightblue);
 }
 
 select.select-imported-style {
