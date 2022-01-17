@@ -109,6 +109,10 @@ a[href=""] {
   border: 3px solid #333333;
 }
 
+.btn-color:hover, .btn-color:focus {
+  border-color: var(--color-lightblue);
+}
+
 .label {
   font-size: 1rem;
 }
