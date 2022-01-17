@@ -125,6 +125,8 @@ a[href=""] {
 .input {
   font-size: 1rem;
   vertical-align: middle;
+  font-size: 1rem;
+  padding: .15rem 0 .15rem .5rem;
 }
 
 .input:focus {
