@@ -133,6 +133,10 @@ a[href=""] {
   border-color: var(--color-lightblue);
 }
 
+.input:focus {
+  border-color: var(--color-lightblue);
+}
+
 .small-input-number {
   width: 4.5rem;
 }
