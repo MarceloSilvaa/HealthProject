@@ -76,7 +76,7 @@ a[href=""] {
   width: 100%;
   background-color: var(--color-lightblue);
   background-blend-mode: darken;
-  background-image: url(/images/health.jpg);
+  background-image: url(../images/health.jpg);
   background-position: 30% 70%;
   background-size: cover;
 }

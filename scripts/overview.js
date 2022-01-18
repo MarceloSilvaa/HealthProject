@@ -156,7 +156,7 @@ function displayOverviewData() {
 
     document.querySelector(".overview-items").innerHTML +=
     `<div class="overview-row">
-      <img class="overview-duplicate-item" src="/images/duplicate.png" alt="duplicate">
+      <img class="overview-duplicate-item" src="../images/duplicate.png" alt="duplicate">
       <span class="overview-id">${element.id}</span>
       <span class="overview-nutrient overview-column overview-nutrient-page">${element.name}</span>
       <span class="overview-dosage overview-column">${element.product.amount + " " + element.nutrient.unit}</span>
