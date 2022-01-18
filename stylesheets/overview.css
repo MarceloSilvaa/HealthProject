@@ -72,6 +72,15 @@
   color: var(--color-lightblue);
 }
 
+.overview-link:not(.overview-header) {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.overview-link:not(.overview-header):hover {
+  color: var(--color-lightblue);
+}
+
 .overview-new-item {
   display: flex;
   margin-top: 2rem;
