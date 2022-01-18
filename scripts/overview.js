@@ -8,7 +8,7 @@ else {
   start()
 }
 
-var data;
+var data
 
 function start() {
   initializeOverviewData()
@@ -44,7 +44,14 @@ function setDataEventListeners() {
 }
 
 function setItemEventListeners() {
-  document.querySelectorAll(".overview-nutrient:not(.overview-header)").forEach(element => {
+  document.querySelectorAll(".overview-duplicate-item").forEach(element => {
+    element.addEventListener("click", event => {
+      let item = getItemData(event.target)
+      duplicateSupplement(item)
+    })
+  })
+
+  document.querySelectorAll(".overview-nutrient-page").forEach(element => {
     element.addEventListener("click", event => {
       let aux = getItemData(event.target)
       localStorage.setItem("view-supplement-data", JSON.stringify(aux))
@@ -124,6 +131,18 @@ function deleteSupplement() {
   }
 }
 
+function duplicateSupplement(item) {
+  let dupItem = JSON.parse(JSON.stringify(item))
+  dupItem.id = data.next
+  data.supplements[data.size] = dupItem
+  data.size++
+  data.next++
+  clearOverviewRows()
+  displayOverviewData()
+  setItemEventListeners()
+  setOverviewStorage()
+}
+
 function setOverviewStorage() {
   localStorage.setItem("supplement-overview-data", JSON.stringify(data))
 }
@@ -137,8 +156,9 @@ function displayOverviewData() {
 
     document.querySelector(".overview-items").innerHTML +=
     `<div class="overview-row">
+      <img class="overview-duplicate-item" src="/images/duplicate.png" alt="duplicate">
       <span class="overview-id">${element.id}</span>
-      <span class="overview-nutrient overview-column">${element.name}</span>
+      <span class="overview-nutrient overview-column overview-nutrient-page">${element.name}</span>
       <span class="overview-dosage overview-column">${element.product.amount + " " + element.nutrient.unit}</span>
       <span class="overview-serving overview-column">${element.personal.servings}</span>
       <span class="overview-time overview-column">${element.personal.time}</span>

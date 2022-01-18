@@ -6,6 +6,8 @@
   --color-green: rgb(29, 143, 59);
   --color-lightblue: rgb(0, 153, 255);
   --color-darkgrey: #202124;
+  --color-black: #1A1A1B;
+  --color-dialog: #669df6;
 }
 
 html, body {
@@ -21,7 +23,7 @@ body {
 .main-header {
   padding: 0.5rem 1rem 0.5rem 1rem;
   font-weight: bold;
-  background-color: #1A1A1B;
+  background-color: var(--color-black);
 }
 
 .main-nav {
@@ -74,7 +76,7 @@ a[href=""] {
   width: 100%;
   background-color: var(--color-lightblue);
   background-blend-mode: darken;
-  background-image: url(../images/health2.jpg);
+  background-image: url(/images/health.jpg);
   background-position: 30% 70%;
   background-size: cover;
 }
@@ -200,7 +202,7 @@ select.select-imported-style {
   text-align: right;
   cursor: pointer;
   font-size: 1rem;
-  color: #669df6;
+  color: var(--color-dialog);
   background-color: var(--color-darkgrey);
   border: none;
 }
@@ -223,7 +225,7 @@ select.select-imported-style {
 .action-btn {
   padding: 0;
   border: none;
-  color: #669df6;
+  color: var(--color-dialog);
   background-color: var(--color-darkgrey);
 }
 
