@@ -63,13 +63,24 @@
   width: 15%;
 }
 
-.overview-nutrient:not(.overview-header) {
+.overview-nutrient-page {
   cursor: pointer;
   text-decoration: underline;
 }
 
-.overview-nutrient:not(.overview-header):hover {
+.overview-nutrient-page:hover {
   color: var(--color-lightblue);
+}
+
+.overview-duplicate-item {
+  position: absolute;
+  height: 1.2rem;
+  vertical-align: middle;
+  z-index: 1000;
+}
+
+.overview-duplicate-item:hover {
+  cursor: pointer;
 }
 
 .overview-link:not(.overview-header) {
