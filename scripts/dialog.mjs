@@ -1,6 +1,9 @@
 export function showNotification(message) {
   document.querySelector(".notification-message").innerText = message
   document.querySelector(".notification-container").style.display = "flex";
+  setTimeout(() => {
+    document.querySelector(".notification-container").style.display = "none";
+  }, 10 *  1000);
 }
 
 export function clearNotification() {

@@ -26,14 +26,16 @@ function setEventListeners() {
 
 function setDataEventListeners() {
   document.querySelector(".file-load").addEventListener("change", event => {
-    clearOverviewRows()
-    loadOverviewFile(event.target.files[0])
+    if(event.target.value !== "") {
+      clearOverviewRows()
+      loadOverviewFile(event.target)
+    }
   })
   
   document.querySelector(".file-save").addEventListener("click", () => {
     if(data.size === 0) {
       showNotification("There is no data to save.")
-      return;
+      return
     }
     saveData()
   })
@@ -181,26 +183,27 @@ function getItemData(element) {
   return itemData
 }
 
-function loadOverviewFile(file) {
+function loadOverviewFile(element) {
   let reader = new FileReader()
-  reader.onload = res => {
+  reader.addEventListener("load", res => {
     data = JSON.parse(res.target.result)
+    element.value = ""
     setOverviewStorage()
     displayOverviewData()
     setItemEventListeners()
     showNotification("Content was successfully loaded.")
-  }
-  reader.readAsText(file, "utf-8")
+  })
+  reader.readAsText(element.files[0], "utf-8")
 }
 
 function saveData() {
-  var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data));
-  var downloadAnchor = document.createElement("a");
-  downloadAnchor.setAttribute("href", dataStr);
-  downloadAnchor.setAttribute("download", "Supplement overview" + ".json");
-  document.body.appendChild(downloadAnchor);
-  downloadAnchor.click();
-  downloadAnchor.remove();
+  var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data))
+  var downloadAnchor = document.createElement("a")
+  downloadAnchor.setAttribute("href", dataStr)
+  downloadAnchor.setAttribute("download", "Supplement overview" + ".json")
+  document.body.appendChild(downloadAnchor)
+  downloadAnchor.click()
+  downloadAnchor.remove()
 }
 
 function clearData() {

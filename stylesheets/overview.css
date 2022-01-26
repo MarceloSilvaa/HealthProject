@@ -1,5 +1,5 @@
 .overview-section {
-  margin: 3rem 10rem 3rem 10rem;
+  margin: 3rem 5rem 3rem 5rem;
 }
 
 .overview-header-row {
@@ -36,7 +36,7 @@
 
 .overview-nutrient {
   margin-left: 0;
-  width: 15%;
+  width: 20%;
 }
 
 .overview-dosage {
@@ -44,15 +44,15 @@
 }
 
 .overview-serving {
-  width: 16%;
+  width: 15%;
 }
 
 .overview-time {
-  width: 12%;
+  width: 10%;
 }
 
 .overview-food {
-  width: 16%;
+  width: 15%;
 }
 
 .overview-refil {
@@ -60,7 +60,7 @@
 }
 
 .overview-link {
-  width: 15%;
+  width: 14%;
 }
 
 .overview-nutrient-page {
@@ -76,7 +76,7 @@
   position: absolute;
   height: 1.2rem;
   vertical-align: middle;
-  z-index: 1000;
+  z-index: 998;
 }
 
 .overview-duplicate-item:hover {
