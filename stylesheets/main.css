@@ -69,22 +69,6 @@ a[href=""] {
   display: none;
 }
 
-.main-footer {
-  position: absolute;
-  bottom: 0;
-  height: 5rem;
-  width: 100%;
-  background-color: var(--color-lightblue);
-  background-blend-mode: darken;
-  background-image: url(../images/health.jpg);
-  background-position: 30% 70%;
-  background-size: cover;
-}
-
-.footer-wrap {
-  padding-top: 5rem;
-}
-
 .form-element {
   border: 1px solid darkgrey;
 }
