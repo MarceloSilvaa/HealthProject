@@ -196,6 +196,16 @@ select.select-imported-style {
   min-height: 40px;
 }
 
+.notification-fade-out {
+  animation: fadeOut 2s;
+  animation-delay: 8s;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% {opacity: 0; }
+}
+
 .notification-btn {
   padding: 0;
   margin-top: 1rem;
