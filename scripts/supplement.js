@@ -1,5 +1,5 @@
 import { showOverview } from "./global.mjs"
-import { showNotification, clearNotification, confirmAction, clearAction } from "./dialog.mjs" 
+import { showNotification, confirmAction, clearAction } from "./dialog.mjs" 
 import { isBeforeToday, goesBackOneYear, stringToDate, dateToString } from "./date.mjs"
 import { isEditPage, getItemId, numberOf, isValidUnit, loadForm, getFormData } from "./supplement_data.mjs";
 
@@ -85,8 +85,6 @@ function setDataEventListeners() {
 }
 
 function setDialogEventListeners() {
-  document.querySelector(".notification-btn").addEventListener("click", clearNotification)
-
   if(!edit) {
     return
   }

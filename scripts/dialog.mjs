@@ -1,19 +1,43 @@
+let id = 1
+
 export function showNotification(message) {
-  document.querySelector(".notification-message").innerText = message
-  document.querySelector(".notification-container").style.display = "flex";
+  clearAllNotifications()
+  let notificationId = id
+  let element = document.createElement("div")
+  element.classList = "action-background dark-message-container notification-container notification-fade-out"
+  element.id = "notification-" + id
+  element.innerHTML = 
+  `<div class="notification-message">${message}</div>
+  <button class="notification-btn">Close</button>
+  </div>
+  `
+  document.body.appendChild(element)
+  id++
+  element.addEventListener("click", () => {
+    clearNotification(notificationId)
+  })
   setTimeout(() => {
-    document.querySelector(".notification-container").style.display = "none";
-  }, 10 *  1000);
+    clearNotification(notificationId)
+  }, 10 * 1000)
 }
 
-export function clearNotification() {
-  document.querySelector(".notification-message").innerText = ""
-  document.querySelector(".notification-container").style.display = "none"
+function clearNotification(notificationId) {
+  let element = document.querySelector("#notification-" + notificationId)
+  if(element == null) {
+    return
+  }
+  element.parentElement.removeChild(element)
+}
+
+function clearAllNotifications() {
+  document.querySelectorAll(".notification-container").forEach(element => {
+    element.parentElement.removeChild(element)
+  })
 }
 
 export function confirmAction(message) {
   document.querySelector(".action-message").innerText = message
-  document.querySelector(".action-container").style.display = "flex";
+  document.querySelector(".action-container").style.display = "flex"
   document.querySelectorAll(".action-background").forEach(element => {
     element.style.opacity = 0.5
     element.style.pointerEvents = "none"
@@ -22,7 +46,7 @@ export function confirmAction(message) {
 
 export function clearAction() {
   document.querySelector(".action-message").innerText = ""
-  document.querySelector(".action-container").style.display = "none";
+  document.querySelector(".action-container").style.display = "none"
   document.querySelectorAll(".action-background").forEach(element => {
     element.style.opacity = 1
     element.style.pointerEvents = "auto"

@@ -1,5 +1,5 @@
 import { showAddSupplement, showEditSupplement } from "./global.mjs"
-import { showNotification, clearNotification, confirmAction, clearAction } from "./dialog.mjs"
+import { showNotification, confirmAction, clearAction } from "./dialog.mjs"
 
 if(document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", start)
@@ -63,8 +63,6 @@ function setItemEventListeners() {
 }
 
 function setButtonEventListeners() {
-  document.querySelector(".notification-btn").addEventListener("click", clearNotification)
-
   document.querySelector(".action-confirmation-btn").addEventListener("click", event => {
     clearData()
     clearAction()
