@@ -172,6 +172,7 @@ select.select-imported-style {
 }
 
 .notification-container {
+  display: flex;
   z-index: 999;
   left: 2rem;
   bottom: 2rem;
@@ -181,7 +182,7 @@ select.select-imported-style {
 }
 
 .notification-fade-out {
-  animation: fadeOut 2s;
+  animation: fadeOut 2s ease-in forwards;
   animation-delay: 8s;
 }
 
