@@ -41,6 +41,7 @@ function setDataEventListeners() {
   })
   
   document.querySelector(".data-reset").addEventListener("click", () => {
+    document.querySelector(".action-confirmation-btn").addEventListener("click", resetAction)
     confirmAction("This action is irreversible. Are you sure you want to delete all stored data?")
   })
 }
@@ -55,11 +56,10 @@ function setItemEventListeners() {
 
   document.querySelectorAll(".delete-item").forEach(element => {
     element.addEventListener("click", event => {
-      let row = event.target.parentElement.parentElement.parentElement
-      let id = getId(row)
-      deleteItem(id)
-      setOverviewStorage()
-      row.remove()
+      let actionBtn = document.querySelector(".action-confirmation-btn")
+      actionBtn.addEventListener("click", deleteItemAction)
+      actionBtn.itemRow = event.target.parentElement.parentElement.parentElement
+      confirmAction("This action is irreversible. Are you sure you want to delete this item?")
     })
   })
 
@@ -73,16 +73,27 @@ function setItemEventListeners() {
 }
 
 function setButtonEventListeners() {
-  document.querySelector(".action-confirmation-btn").addEventListener("click", event => {
-    clearData()
-    clearAction()
-  })
-
   document.querySelector(".action-cancel-btn").addEventListener("click", clearAction)
 
   document.querySelector(".btn-new-item").addEventListener("click", () => {
     showAddSupplement()
   })
+}
+
+function resetAction() {
+  clearData()
+  clearAction()
+  removeEventListener('click', resetAction);
+}
+
+function deleteItemAction(event) {
+  let row = event.currentTarget.itemRow
+  let id = getId(row)
+  deleteItem(id)
+  setOverviewStorage()
+  row.remove()
+  clearAction()
+  removeEventListener('click', deleteItemAction);
 }
 
 function initializeOverviewData() {
