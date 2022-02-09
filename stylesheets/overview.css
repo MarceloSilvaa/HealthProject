@@ -16,7 +16,7 @@
 .overview-header {
   font-size: 1.2rem;
   font-weight: bold;
-  border-bottom: .3rem solid darkgrey;
+  border-bottom: .3rem solid var(--color-silver);
   border-radius: 10%;
   padding-bottom: .75rem;
 }
@@ -25,7 +25,6 @@
   color: black;
   margin-left: 1%;
   text-align: center;
-  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -37,6 +36,7 @@
 .overview-nutrient {
   margin-left: 0;
   width: 20%;
+  position: relative;
 }
 
 .overview-dosage {
@@ -72,14 +72,30 @@
   color: var(--color-lightblue);
 }
 
-.overview-duplicate-item {
+.page-toolbox {
+  display: none;
+  width: 5rem;
+  height: 1.5rem;
+  background-color: var(--color-silver);
+  border-radius: 0.5rem;
+  justify-content: space-around;
+  align-items: center;
   position: absolute;
-  height: 1.2rem;
-  vertical-align: middle;
+  top: -0.2rem;
+  right: 100%;
+  overflow: visible !important;
   z-index: 998;
 }
 
-.overview-duplicate-item:hover {
+.overview-nutrient:hover .page-toolbox {
+  display: flex;
+}
+
+.page-tool {
+  height: 1.2rem;
+}
+
+.page-tool {
   cursor: pointer;
 }
 

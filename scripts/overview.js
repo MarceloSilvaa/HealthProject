@@ -46,16 +46,16 @@ function setDataEventListeners() {
 }
 
 function setItemEventListeners() {
-  document.querySelectorAll(".overview-duplicate-item").forEach(element => {
+  document.querySelectorAll(".duplicate-item").forEach(element => {
     element.addEventListener("click", event => {
-      let item = getItemData(event.target)
+      let item = getItemData(event.target.parentElement.parentElement.parentElement)
       duplicateSupplement(item)
     })
   })
 
   document.querySelectorAll(".overview-nutrient-page").forEach(element => {
     element.addEventListener("click", event => {
-      let aux = getItemData(event.target)
+      let aux = getItemData(event.target.parentElement.parentElement)
       localStorage.setItem("view-supplement-data", JSON.stringify(aux))
       showEditSupplement()
     })
@@ -156,9 +156,13 @@ function displayOverviewData() {
 
     document.querySelector(".overview-items").innerHTML +=
     `<div class="overview-row">
-      <img class="overview-duplicate-item" src="./images/duplicate.png" alt="duplicate">
       <span class="overview-id">${element.id}</span>
-      <span class="overview-nutrient overview-column overview-nutrient-page">${element.name}</span>
+      <div class="overview-nutrient overview-column">
+        <span class="overview-nutrient-page">${element.name}</span>
+        <div class="page-toolbox">
+          <img class="page-tool duplicate-item" src="./images/duplicate.png" alt="duplicate">
+        </div>
+      </div>
       <span class="overview-dosage overview-column">${element.product.amount + " " + element.nutrient.unit}</span>
       <span class="overview-serving overview-column">${element.personal.servings}</span>
       <span class="overview-time overview-column">${element.personal.time}</span>
@@ -173,10 +177,10 @@ function clearOverviewRows() {
   document.querySelector(".overview-items").innerHTML = ""
 }
 
-function getItemData(element) {
-  let id =  element.parentElement.querySelector(".overview-id").innerText
-  let itemData = data.supplements.find(element => {
-    return element.id === parseInt(id)
+function getItemData(row) {
+  let id =  row.querySelector(".overview-id").innerText
+  let itemData = data.supplements.find(row => {
+    return row.id === parseInt(id)
   })
   return itemData
 }
