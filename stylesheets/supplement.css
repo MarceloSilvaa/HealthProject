@@ -14,7 +14,7 @@
 .container-header {
   font-size: 1.2rem;
   font-weight: bold;
-  border-bottom: .3rem solid darkgrey;
+  border-bottom: .3rem solid var(--color-silver);
   border-radius: 10%;
   padding-bottom: 0.5rem;
 }

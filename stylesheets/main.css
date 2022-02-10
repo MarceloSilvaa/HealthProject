@@ -71,7 +71,7 @@ a[href=""] {
 }
 
 .form-element {
-  border: 1px solid darkgrey;
+  border: 1px solid var(--color-silver);
 }
 
 .form-element:focus {
