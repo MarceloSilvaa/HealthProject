@@ -155,7 +155,7 @@ function verifyDate(element, type) {
   if(type === "start") {
     if(isBeforeToday(date) && !goesBackOneYear(date)) {
       element.value = ""
-      highlightField(element, "\u26A0 The date cannot be earlier than today.", "error-date")
+      highlightField(element, "The date cannot be earlier than today.", "error-date")
       return;
     }
   }
@@ -163,12 +163,12 @@ function verifyDate(element, type) {
   if(type === "refil") {
     if(isBeforeToday(date)) {
       element.value = ""
-      highlightField(element, "\u26A0 The date cannot be earlier than today.", "error-date")
+      highlightField(element, "The date cannot be earlier than today.", "error-date")
       return;
     }
     if(!openDateIsEmpty() && beforeOpenDate(date)) {
       element.value = ""
-      highlightField(element, "\u26A0 The date cannot be earlier than bottle opening date.", "error-date")
+      highlightField(element, "The date cannot be earlier than bottle opening date.", "error-date")
       return;
     }
   }
@@ -235,7 +235,7 @@ function verifyRequiredFields() {
     if(!element.value) {
       confirm = false;
       errorFields.push(element)
-      highlightField(element, "\u26A0 This field needs to be filled.", "error-required")
+      highlightField(element, "This field needs to be filled.", "error-required")
     }
   })
   return confirm;
