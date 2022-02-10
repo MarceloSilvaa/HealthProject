@@ -270,8 +270,7 @@ function highlightField(element, message, extraclass) {
       element.parentElement.parentElement.parentElement.insertBefore(errorElement, element.parentElement.parentElement.nextSibling)
     }
   }
-
-  let x = errorElement.clientHeight
+  
   setTimeout(() => {
     errorElement.classList += " opacity-transition"
   }, 10)
