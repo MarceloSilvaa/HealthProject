@@ -31,10 +31,10 @@ function setEventListeners() {
 function setDataEventListeners() {
   document.querySelector("#supplement-name").addEventListener("change", event => {
     let name = event.target.value
-    event.target.value = name.charAt(0).toUpperCase() + name.substring(1, name.length)
-    if(name !== "") {
-      removeErrorMessage(event.target.parentElement.querySelector(".error-message"))
+    if(name.length >= 1 && name.length <= 30) {
+      event.target.value = name.charAt(0).toUpperCase() + name.substring(1, name.length)
     }
+    removeErrorMessage(event.target.parentElement.querySelector(".error-message"))
   })
 
   document.querySelector("#nutrient-unit-measurement").addEventListener("change", event => {
@@ -155,7 +155,7 @@ function verifyDate(element, type) {
   if(type === "start") {
     if(isBeforeToday(date) && !goesBackOneYear(date)) {
       element.value = ""
-      highlightField(element, "\u26A0 The date cannot be earlier than today.", "error-date")
+      highlightField(element, "The date cannot be earlier than today.", "error-date")
       return;
     }
   }
@@ -163,12 +163,12 @@ function verifyDate(element, type) {
   if(type === "refil") {
     if(isBeforeToday(date)) {
       element.value = ""
-      highlightField(element, "\u26A0 The date cannot be earlier than today.", "error-date")
+      highlightField(element, "The date cannot be earlier than today.", "error-date")
       return;
     }
     if(!openDateIsEmpty() && beforeOpenDate(date)) {
       element.value = ""
-      highlightField(element, "\u26A0 The date cannot be earlier than bottle opening date.", "error-date")
+      highlightField(element, "The date cannot be earlier than bottle opening date.", "error-date")
       return;
     }
   }
@@ -229,16 +229,30 @@ function clearAllErrors() {
 
 function verifyRequiredFields() {
   errorFields = []
-  let confirm = true;
+  let confirm = true
   let arr = document.querySelectorAll(".user-required")
   arr.forEach(element => {
     if(!element.value) {
-      confirm = false;
+      confirm = false
       errorFields.push(element)
-      highlightField(element, "\u26A0 This field needs to be filled.", "error-required")
+      highlightField(element, "This field needs to be filled.", "error-required")
     }
   })
-  return confirm;
+  if(errorNameLength()) {
+    confirm = false
+  }
+  return confirm
+}
+
+function errorNameLength() {
+  let element = document.querySelector("#supplement-name")
+  let name = element.value
+  if(name.length > 30) {
+    errorFields.push(element)
+    highlightField(element, "Name has more than 30 characters.", "error-name")
+    return true
+  }
+  return false
 }
 
 function highlightField(element, message, extraclass) {
@@ -256,8 +270,7 @@ function highlightField(element, message, extraclass) {
       element.parentElement.parentElement.parentElement.insertBefore(errorElement, element.parentElement.parentElement.nextSibling)
     }
   }
-
-  let x = errorElement.clientHeight;
+  
   setTimeout(() => {
     errorElement.classList += " opacity-transition"
   }, 10)

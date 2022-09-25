@@ -41,21 +41,31 @@ function setDataEventListeners() {
   })
   
   document.querySelector(".data-reset").addEventListener("click", () => {
+    document.querySelector(".action-confirmation-btn").addEventListener("click", resetAction)
     confirmAction("This action is irreversible. Are you sure you want to delete all stored data?")
   })
 }
 
 function setItemEventListeners() {
-  document.querySelectorAll(".overview-duplicate-item").forEach(element => {
+  document.querySelectorAll(".duplicate-item").forEach(element => {
     element.addEventListener("click", event => {
-      let item = getItemData(event.target)
+      let item = getItemData(event.target.parentElement.parentElement.parentElement)
       duplicateSupplement(item)
+    })
+  })
+
+  document.querySelectorAll(".delete-item").forEach(element => {
+    element.addEventListener("click", event => {
+      let actionBtn = document.querySelector(".action-confirmation-btn")
+      actionBtn.addEventListener("click", deleteItemAction)
+      actionBtn.itemRow = event.target.parentElement.parentElement.parentElement
+      confirmAction("This action is irreversible. Are you sure you want to delete this item?")
     })
   })
 
   document.querySelectorAll(".overview-nutrient-page").forEach(element => {
     element.addEventListener("click", event => {
-      let aux = getItemData(event.target)
+      let aux = getItemData(event.target.parentElement.parentElement)
       localStorage.setItem("view-supplement-data", JSON.stringify(aux))
       showEditSupplement()
     })
@@ -63,16 +73,27 @@ function setItemEventListeners() {
 }
 
 function setButtonEventListeners() {
-  document.querySelector(".action-confirmation-btn").addEventListener("click", event => {
-    clearData()
-    clearAction()
-  })
-  
   document.querySelector(".action-cancel-btn").addEventListener("click", clearAction)
 
   document.querySelector(".btn-new-item").addEventListener("click", () => {
     showAddSupplement()
   })
+}
+
+function resetAction() {
+  clearData()
+  clearAction()
+  removeEventListener('click', resetAction);
+}
+
+function deleteItemAction(event) {
+  let row = event.currentTarget.itemRow
+  let id = getId(row)
+  deleteItem(id)
+  setOverviewStorage()
+  row.remove()
+  clearAction()
+  removeEventListener('click', deleteItemAction);
 }
 
 function initializeOverviewData() {
@@ -122,13 +143,16 @@ function deleteSupplement() {
   localStorage.removeItem("view-supplement-data")
   let removeData = JSON.parse(localStorage.getItem("delete-supplement-data"))
   if(removeData != null) {
-    let id = removeData
-    data.supplements = data.supplements.filter(item => {
-      return item.id != id
-    })
-    data.size--
+    deleteItem(removeData)
     localStorage.removeItem("delete-supplement-data")
   }
+}
+
+function deleteItem(id) {
+  data.supplements = data.supplements.filter(item => {
+    return item.id != id
+  })
+  data.size--
 }
 
 function duplicateSupplement(item) {
@@ -156,9 +180,14 @@ function displayOverviewData() {
 
     document.querySelector(".overview-items").innerHTML +=
     `<div class="overview-row">
-      <img class="overview-duplicate-item" src="./images/duplicate.png" alt="duplicate">
       <span class="overview-id">${element.id}</span>
-      <span class="overview-nutrient overview-column overview-nutrient-page">${element.name}</span>
+      <div class="overview-nutrient overview-column">
+        <span class="overview-nutrient-page">${element.name}</span>
+        <div class="page-toolbox">
+          <img class="page-tool duplicate-item" src="./images/duplicate.png" alt="duplicate">
+          <img class="page-tool delete-item" src="./images/delete.png" alt="delete">
+        </div>
+      </div>
       <span class="overview-dosage overview-column">${element.product.amount + " " + element.nutrient.unit}</span>
       <span class="overview-serving overview-column">${element.personal.servings}</span>
       <span class="overview-time overview-column">${element.personal.time}</span>
@@ -173,13 +202,17 @@ function clearOverviewRows() {
   document.querySelector(".overview-items").innerHTML = ""
 }
 
-function getItemData(element) {
-  let id =  element.parentElement.querySelector(".overview-id").innerText
-  let itemData = data.supplements.find(element => {
-    return element.id === parseInt(id)
+function getItemData(row) {
+  let id = getId(row)
+  let itemData = data.supplements.find(row => {
+    return row.id === parseInt(id)
   })
   return itemData
 }
+
+function getId(row) {
+  return row.querySelector(".overview-id").innerText
+} 
 
 function loadOverviewFile(element) {
   let reader = new FileReader()
