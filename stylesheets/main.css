@@ -154,6 +154,7 @@ select.select-imported-style {
 }
 
 .checkbox {
+  max-width: fit-content;
   transform: scale(2);
 }
 
