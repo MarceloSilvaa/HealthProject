@@ -31,7 +31,7 @@ public class Supplement {
 	private SupplementProduct product;
 	
 	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="supplement_product_id")
+	@JoinColumn(name="supplement_personal_id")
 	private SupplementPersonal personal;
 	
 	public Supplement() {
