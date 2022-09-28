@@ -16,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="user")
 public class User {
@@ -54,6 +56,7 @@ public class User {
 		joinColumns=@JoinColumn(name="user_id"),
 		inverseJoinColumns=@JoinColumn(name="role_id")
 	)
+	@JsonManagedReference
 	private List<Role> roles;
 	
 	public User() {
@@ -171,7 +174,7 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", email=" + email + ", active=" + active + ", supplements=" + supplements
-				+ ", roles=" + roles + "]";
+				+ "]";
 	}
 	
 }

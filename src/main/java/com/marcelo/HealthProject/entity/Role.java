@@ -15,6 +15,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name="role")
 public class Role {
@@ -27,13 +29,8 @@ public class Role {
 	@Column(name="name")
 	private String name;
 	
-	@ManyToMany(fetch=FetchType.LAZY, 
-			cascade={CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-	@JoinTable(
-		name="users_roles",
-		joinColumns=@JoinColumn(name="role_id"),
-		inverseJoinColumns=@JoinColumn(name="user_id")
-	)
+	@ManyToMany(mappedBy="roles")
+	@JsonBackReference
 	private List<User> users;
 	
 	public Role() {
@@ -82,7 +79,7 @@ public class Role {
 
 	@Override
 	public String toString() {
-		return "Role [id=" + id + ", name=" + name + ", users=" + users + "]";
+		return "Role [id=" + id + ", name=" + name + "]";
 	}
 	
 }
