@@ -16,6 +16,7 @@ public class UserRestExceptionHandler {
 		UserErrorResponse error = new UserErrorResponse();
 		
 		error.setStatus(HttpStatus.NOT_FOUND.value());
+		error.setError(HttpStatus.valueOf(error.getStatus()).getReasonPhrase());
 		error.setMessage(exc.getMessage());
 		error.setTimeStamp(System.currentTimeMillis());
 
@@ -23,13 +24,13 @@ public class UserRestExceptionHandler {
 	}
 	
 	// generic exception handler to catch any exception (catch all)
-	
 	@ExceptionHandler
 	public ResponseEntity<UserErrorResponse> handleException(Exception exc) {
 		
 		UserErrorResponse error = new UserErrorResponse();
 		
 		error.setStatus(HttpStatus.BAD_REQUEST.value());
+		error.setError(HttpStatus.valueOf(error.getStatus()).getReasonPhrase());
 		error.setMessage(exc.getMessage());
 		error.setTimeStamp(System.currentTimeMillis());
 				

@@ -3,6 +3,7 @@ package com.marcelo.HealthProject.exception;
 public class UserErrorResponse {
 
 	private int status;
+	private String error;
 	private String message;
 	private long timeStamp;
 
@@ -10,8 +11,9 @@ public class UserErrorResponse {
 		
 	}
 
-	public UserErrorResponse(int status, String message, long timeStamp) {
+	public UserErrorResponse(int status, String error, String message, long timeStamp) {
 		this.status = status;
+		this.error = error;
 		this.message = message;
 		this.timeStamp = timeStamp;
 	}
@@ -22,6 +24,14 @@ public class UserErrorResponse {
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	
+	public String getError() {
+		return error;
+	}
+	
+	public void setError(String error) {
+		this.error = error;
 	}
 
 	public String getMessage() {
