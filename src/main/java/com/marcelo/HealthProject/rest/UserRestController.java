@@ -31,11 +31,7 @@ public class UserRestController {
 	@GetMapping("/{userId}")
 	public User findById(@PathVariable int userId) {
 		User user = userService.findById(userId);
-		
-		if(user == null) {
-			throw new UserNotFoundException("Could not find user with id " + userId);
-		}
-		
+
 		return user;
 	}
 	
@@ -58,10 +54,6 @@ public class UserRestController {
 	@DeleteMapping("/{userId}")
 	public String deleteById(@PathVariable int userId) {
 		User user = userService.findById(userId);
-		
-		if(user == null) {
-			throw new UserNotFoundException("Could not find user with id " + userId);
-		}
 		
 		userService.deleteById(userId);
 		
