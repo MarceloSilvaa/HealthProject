@@ -1,5 +1,6 @@
 package com.marcelo.HealthProject.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -70,6 +71,13 @@ public class Role {
 
 	public void setUsers(List<User> users) {
 		this.users = users;
+	}
+	
+	public void addUser(User user) {
+		if(users == null) {
+			users = new ArrayList<>();
+		}
+		users.add(user);
 	}
 
 	@Override

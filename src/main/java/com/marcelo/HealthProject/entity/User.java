@@ -1,5 +1,6 @@
 package com.marcelo.HealthProject.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -143,6 +144,13 @@ public class User {
 	public void setSupplements(List<Supplement> supplements) {
 		this.supplements = supplements;
 	}
+	
+	public void addSupplement(Supplement supplement) {
+		if(supplements == null) {
+			supplements = new ArrayList<>();
+		}
+		supplements.add(supplement);
+	}
 
 	public List<Role> getRoles() {
 		return roles;
@@ -150,6 +158,13 @@ public class User {
 
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
+	}
+	
+	public void addRole(Role role) {
+		if(roles == null) {
+			roles = new ArrayList<>();
+		}
+		roles.add(role);
 	}
 
 	@Override
