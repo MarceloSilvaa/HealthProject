@@ -1,4 +1,4 @@
-package com.marcelo.HealthProject.rest;
+package com.marcelo.HealthProject.controller;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ import com.marcelo.HealthProject.service.UserService;
 
 @RestController
 @RequestMapping("/users")
-public class UserRestController {
+public class UserController {
 	
 	@Autowired
 	private UserService userService;
