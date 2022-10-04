@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -60,7 +61,19 @@ public class UserServiceImpl implements UserService {
 	public User findByUsername(String username) {
 		return userDAO.findByUsername(username);
 	}
-
+	
+	@Transactional
+	@Override
+	public User findByUsernameCustomVerify(String username) throws UserNotFoundException {
+		User user = userDAO.findByUsername(username);
+		
+		if(user == null) {
+			throw new UserNotFoundException("Could not find user with username " + username);
+		}
+		
+		return user;
+	}
+	
 	@Transactional
 	@Override
 	public void save(User user) {
@@ -92,11 +105,11 @@ public class UserServiceImpl implements UserService {
 	
 	@Transactional
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UserNotFoundException {
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userDAO.findByUsername(username);
 		
 		if(user == null) {
-			throw new UserNotFoundException("Could not find user with username " + username);
+			throw new UsernameNotFoundException("Invalid username or password.");
 		}
 		
 		return new org.springframework.security.core.userdetails.User

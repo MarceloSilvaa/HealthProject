@@ -15,6 +15,8 @@ public interface UserService {
 	
     public User findByUsername(String username);
 	
+	public User findByUsernameCustomVerify(String username);
+    
     public void save(User user);
     
 	public void save(Customer user);
@@ -22,4 +24,5 @@ public interface UserService {
 	public void deleteById(int id);
 	
 	public UserDetails loadUserByUsername(String username);
+
 }
