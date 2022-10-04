@@ -35,6 +35,13 @@ public class UserController {
 		return user;
 	}
 	
+	@GetMapping("/{username}")
+	public User findByUsername(@PathVariable String username) {
+		User user = userService.findByUsernameCustomVerify(username);
+
+		return user;
+	}
+	
 	@PostMapping("")
 	public User add(@RequestBody User user) {
 		user.setId(0);
@@ -52,9 +59,7 @@ public class UserController {
 	}
 	
 	@DeleteMapping("/{userId}")
-	public String deleteById(@PathVariable int userId) {
-		User user = userService.findById(userId);
-		
+	public String deleteById(@PathVariable int userId) {		
 		userService.deleteById(userId);
 		
 		return "Deleted user with id " + userId;
