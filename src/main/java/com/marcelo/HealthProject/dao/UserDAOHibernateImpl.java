@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.marcelo.HealthProject.entity.User;
+import com.marcelo.HealthProject.user.Customer;
 
 @Repository
 public class UserDAOHibernateImpl implements UserDAO {
@@ -38,12 +39,30 @@ public class UserDAOHibernateImpl implements UserDAO {
 	}
 
 	@Override
+	public User findByUsername(String username) {
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query<User> query = session.createQuery("from User where username=:name", User.class);
+		query.setParameter("name", username);
+		query.executeUpdate();
+		
+		User user = null;
+		try {
+			user = query.getSingleResult();
+		} catch (Exception e) {
+			user = null;
+		}
+		
+		return user;
+	}
+	
+	@Override
 	public void save(User user) {
 		Session session = entityManager.unwrap(Session.class);
 		
 		session.saveOrUpdate(user);
 	}
-
+	
 	@Override
 	public void deleteById(int id) {
 		Session session = entityManager.unwrap(Session.class);
@@ -52,5 +71,5 @@ public class UserDAOHibernateImpl implements UserDAO {
 		query.setParameter("userId", id);
 		query.executeUpdate();
 	}
-
+	
 }

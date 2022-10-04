@@ -3,6 +3,7 @@ package com.marcelo.HealthProject.dao;
 import java.util.List;
 
 import com.marcelo.HealthProject.entity.User;
+import com.marcelo.HealthProject.user.Customer;
 
 public interface UserDAO {
 	
@@ -10,7 +11,9 @@ public interface UserDAO {
 	
 	public User findById(int id);
 	
-	public void save(User user);
+    public User findByUsername(String username);
+	
+    public void save(User user);
 	
 	public void deleteById(int id);
 }
