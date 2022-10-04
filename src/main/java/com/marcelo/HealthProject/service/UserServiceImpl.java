@@ -92,7 +92,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Transactional
 	@Override
-	public UserDetails loadUserByUsername(String username) {
+	public UserDetails loadUserByUsername(String username) throws UserNotFoundException {
 		User user = userDAO.findByUsername(username);
 		
 		if(user == null) {
