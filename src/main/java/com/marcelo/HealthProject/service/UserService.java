@@ -3,11 +3,12 @@ package com.marcelo.HealthProject.service;
 import java.util.List;
 
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import com.marcelo.HealthProject.entity.User;
 import com.marcelo.HealthProject.user.Customer;
 
-public interface UserService {
+public interface UserService extends UserDetailsService {
 	
 	public List<User> findAll();
 	

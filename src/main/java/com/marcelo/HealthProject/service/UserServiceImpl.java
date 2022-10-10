@@ -30,9 +30,6 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDAO userDAO;
 	
-	@Autowired
-	private BCryptPasswordEncoder passwordEncoder;
-	
 	@Transactional
 	@Override
 	public List<User> findAll() {
@@ -86,7 +83,7 @@ public class UserServiceImpl implements UserService {
 		User newUser = new User();
 		
 		newUser.setUsername(user.getUsername());
-		newUser.setPassword(passwordEncoder.encode(user.getPassword()));
+		newUser.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
 		newUser.setFirstName(user.getFirstName());
 		newUser.setLastName(user.getLastName());
 		newUser.setEmail(user.getEmail());
