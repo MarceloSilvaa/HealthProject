@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.marcelo.HealthProject.entity.User;
-import com.marcelo.HealthProject.user.Customer;
 
 @Repository
 public class UserDAOHibernateImpl implements UserDAO {

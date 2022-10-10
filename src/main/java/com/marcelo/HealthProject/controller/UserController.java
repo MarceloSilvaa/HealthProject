@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.marcelo.HealthProject.entity.User;
-import com.marcelo.HealthProject.exception.UserNotFoundException;
 import com.marcelo.HealthProject.service.UserService;
 
 @RestController

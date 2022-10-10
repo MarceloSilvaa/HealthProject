@@ -3,7 +3,6 @@ package com.marcelo.HealthProject.dao;
 import java.util.List;
 
 import com.marcelo.HealthProject.entity.User;
-import com.marcelo.HealthProject.user.Customer;
 
 public interface UserDAO {
 	
