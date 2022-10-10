@@ -42,9 +42,8 @@ public class UserDAOHibernateImpl implements UserDAO {
 	public User findByUsername(String username) {
 		Session session = entityManager.unwrap(Session.class);
 		
-		Query<User> query = session.createQuery("from User where username=:name", User.class);
-		query.setParameter("name", username);
-		query.executeUpdate();
+		Query<User> query = session.createQuery("from User where username=:theName", User.class);
+		query.setParameter("theName", username);
 		
 		User user = null;
 		try {
