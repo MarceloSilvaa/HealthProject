@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Health Awareness | Registration Confirmation</title>
+	<meta name="description" content="Your health improves if your awareness improves">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" th:href="@{/stylesheets/main.css}"/>
+</head>
+
+<body style="margin:0; 
+	  font: normal 14px/20px Arial, Helvetica, sans-serif; 
+	  height:100%; background-color: #fff;">
+	
+	<div style="height:auto; min-height:100%;"> 
+		
+		<div style="color: #444; text-align: center; width:800px; 
+			 margin-left: -400px; position:absolute; 
+			 top: 30%; left:50%;">
+			 
+				<h1 style="margin:0; font-size:150px; 
+					line-height:150px; font-weight:bold;">200</h1>
+				
+				<h2 style="margin-top:20px; font-size: 30px;">User successfully registered</h2>
+				
+				<a th:href="@{/showLoginPage}" 
+				   style="margin-top:20px;">Go to login</a>
+		</div>
+	</div>
+</body>
+</html>

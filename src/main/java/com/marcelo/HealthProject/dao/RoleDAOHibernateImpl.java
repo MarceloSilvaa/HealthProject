@@ -21,7 +21,6 @@ public class RoleDAOHibernateImpl implements RoleDAO {
 		
 		Query<Role> query = session.createQuery("FROM Role WHERE name=:rname", Role.class);
 		query.setParameter("rname", roleName);
-		query.executeUpdate();
 		
 		Role role = null;
 		try {
