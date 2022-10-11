@@ -165,3 +165,16 @@ select.select-imported-style {
 .opacity-transition {
   opacity: 1 !important;
 }
+
+.center-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh !important;
+}
+
+.btns-around {
+	display: flex;
+	justify-content: space-around !important;
+}
