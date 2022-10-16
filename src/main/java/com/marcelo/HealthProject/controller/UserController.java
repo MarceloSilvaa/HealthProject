@@ -34,7 +34,7 @@ public class UserController {
 		return user;
 	}
 	
-	@GetMapping("/{username}")
+	@GetMapping("/username/{username}")
 	public User findByUsername(@PathVariable String username) {
 		User user = userService.findByUsernameCustomVerify(username);
 
