@@ -114,9 +114,9 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 INSERT INTO `user` (username,password,first_name,last_name,email,active)
 VALUES 
-('admin','{bcrypt}$2a$10$DHb/sM9U5WIqWzF2CPVfwuE11tsreokubQRoj7qwu/xy9Mx10hOeG','Marcelo','Silva','ola1@gmail.com',1),
-('support','{bcrypt}$2a$10$9pm4OeHmBDfs5HSga.icA.NY1m8F4rXzO/vKHeS2S10o7AqzjnBfS','Ana','Marques','ola2@gmail.com',1),
-('user','{bcrypt}$2a$10$9PmbqXWHmgPCd8LXbj.9tuYcA4I.LSqARmnGUGJu/BRneIw80SEka','Melissa','Pereira','ola3@gmail.com',1);
+('admin','$2a$10$wq3.MucONlaGULiMI7XojORONU7CRU9/5qSziZV5hPUUOxxQsBVyK','Marcelo','Silva','ola1@gmail.com',1),
+('support','$2a$10$8Rcm8OCktUFMLYXIiZFM1eThzP1rRJMEE1ISRKCOUFWahO5oVlk2K','Ana','Marques','ola2@gmail.com',1),
+('user','$2a$10$AtN7JiCzqW5HvqWhNOhSL.nb/zCJUPakwU01h9oNJdZjn0C5XB6ae','Melissa','Pereira','ola3@gmail.com',1);
 
 INSERT INTO `role` (name)
 VALUES 
