@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import com.marcelo.HealthProject.entity.Supplement;
 import com.marcelo.HealthProject.entity.User;
-import com.marcelo.HealthProject.exception.UserNotFoundException;
 
 @Repository
 public class SupplementDAOHibernateImpl implements SupplementDAO {
@@ -20,12 +19,7 @@ public class SupplementDAOHibernateImpl implements SupplementDAO {
 	private EntityManager entityManager;
 	
 	@Override
-	public List<Supplement> findAllByUserId(User user) {		
-		return user.getSupplements();
-	}
-	
-	@Override
-	public List<Supplement> findAllByUsername(User user) {
+	public List<Supplement> findAllByUser(User user) {		
 		return user.getSupplements();
 	}
 

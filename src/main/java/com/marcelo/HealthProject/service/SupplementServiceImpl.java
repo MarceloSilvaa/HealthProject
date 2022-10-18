@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.marcelo.HealthProject.dao.SupplementDAO;
-import com.marcelo.HealthProject.dao.UserDAO;
 import com.marcelo.HealthProject.entity.Supplement;
 import com.marcelo.HealthProject.entity.User;
 import com.marcelo.HealthProject.exception.SupplementNotFoundException;
@@ -26,7 +25,7 @@ public class SupplementServiceImpl implements SupplementService {
 	public List<Supplement> findAllByUserId(int userId) {
 		User user = userService.findById(userId);
 		
-		return supplementDAO.findAllByUserId(user);
+		return supplementDAO.findAllByUser(user);
 	}
 	
 	@Transactional
@@ -34,7 +33,7 @@ public class SupplementServiceImpl implements SupplementService {
 	public List<Supplement> findAllByUsername(String username) {
 		User user = userService.findByUsernameCustomVerify(username);
 		
-		return supplementDAO.findAllByUsername(user);
+		return supplementDAO.findAllByUser(user);
 	}
 
 	@Transactional
