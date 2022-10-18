@@ -25,7 +25,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
-	private int id;
+	private Integer id;
 	
 	@Column(name="username")
 	private String username;
@@ -43,7 +43,7 @@ public class User {
 	private String email;
 	
 	@Column(name="active")
-	private boolean active;
+	private Boolean active;
 	
 	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name="user_id")
@@ -63,7 +63,7 @@ public class User {
 		
 	}
 
-	public User(String username, String password, String firstName, String lastName, String email, boolean active) {
+	public User(String username, String password, String firstName, String lastName, String email, Boolean active) {
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
@@ -73,7 +73,7 @@ public class User {
 	}
 
 	public User(String username, String password, String firstName, String lastName, String email,
-			boolean active, List<Supplement> supplements, List<Role> roles) {
+			Boolean active, List<Supplement> supplements, List<Role> roles) {
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
@@ -84,11 +84,11 @@ public class User {
 		this.roles = roles;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -132,11 +132,11 @@ public class User {
 		this.email = email;
 	}
 
-	public boolean isActive() {
+	public Boolean isActive() {
 		return active;
 	}
 
-	public void setActive(boolean active) {
+	public void setActive(Boolean active) {
 		this.active = active;
 	}
 

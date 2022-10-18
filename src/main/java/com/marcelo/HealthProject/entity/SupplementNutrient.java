@@ -14,16 +14,16 @@ public class SupplementNutrient {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
-	private int id;
+	private Integer id;
 	
 	@Column(name="type")
 	private String type;
 	
 	@Column(name="fat_soluble")
-	private boolean fatSoluble;
+	private Boolean fatSoluble;
 	
 	@Column(name="water_soluble")
-	private boolean waterSoluble;
+	private Boolean waterSoluble;
 	
 	@Column(name="time")
 	private String time;
@@ -47,7 +47,7 @@ public class SupplementNutrient {
 		
 	}
 
-	public SupplementNutrient(String type, boolean fatSoluble, boolean waterSoluble, String time, String food,
+	public SupplementNutrient(String type, Boolean fatSoluble, Boolean waterSoluble, String time, String food,
 			String unitMeasurement, String recommendedIntake, String maximumIntake, String note) {
 		this.type = type;
 		this.fatSoluble = fatSoluble;
@@ -60,11 +60,11 @@ public class SupplementNutrient {
 		this.note = note;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -76,19 +76,19 @@ public class SupplementNutrient {
 		this.type = type;
 	}
 
-	public boolean isFatSoluble() {
+	public Boolean isFatSoluble() {
 		return fatSoluble;
 	}
 
-	public void setFatSoluble(boolean fatSoluble) {
+	public void setFatSoluble(Boolean fatSoluble) {
 		this.fatSoluble = fatSoluble;
 	}
 
-	public boolean isWaterSoluble() {
+	public Boolean isWaterSoluble() {
 		return waterSoluble;
 	}
 
-	public void setWaterSoluble(boolean waterSoluble) {
+	public void setWaterSoluble(Boolean waterSoluble) {
 		this.waterSoluble = waterSoluble;
 	}
 

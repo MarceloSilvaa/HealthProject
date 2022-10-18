@@ -16,10 +16,10 @@ public class SupplementPersonal {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
-	private int id;
+	private Integer id;
 	
 	@Column(name="nr_servings")
-	private int nrServings;
+	private Integer nrServings;
 	
 	@Column(name="time")
 	private String time;
@@ -34,26 +34,26 @@ public class SupplementPersonal {
 		
 	}
 
-	public SupplementPersonal(int nrServings, String time, Date start, Date refil) {
+	public SupplementPersonal(Integer nrServings, String time, Date start, Date refil) {
 		this.nrServings = nrServings;
 		this.time = time;
 		this.start = start;
 		this.refil = refil;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public int getNrServings() {
+	public Integer getNrServings() {
 		return nrServings;
 	}
 
-	public void setNrServings(int nrServings) {
+	public void setNrServings(Integer nrServings) {
 		this.nrServings = nrServings;
 	}
 

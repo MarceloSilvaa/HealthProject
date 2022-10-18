@@ -14,16 +14,16 @@ public class SupplementProduct {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
-	private int id;
+	private Integer id;
 	
 	@Column(name="amount")
-	private int amount;
+	private Integer amount;
 	
 	@Column(name="nr_servings")
-	private int nrServings;
+	private Integer nrServings;
 	
 	@Column(name="price")
-	private int price;
+	private Integer price;
 	
 	@Column(name="price_currency")
 	private String priceCurrency;
@@ -38,7 +38,7 @@ public class SupplementProduct {
 		
 	}
 
-	public SupplementProduct(int amount, int nrServings, int price, String priceCurrency, String company, String link) {
+	public SupplementProduct(Integer amount, Integer nrServings, Integer price, String priceCurrency, String company, String link) {
 		this.amount = amount;
 		this.nrServings = nrServings;
 		this.price = price;
@@ -47,35 +47,35 @@ public class SupplementProduct {
 		this.link = link;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public int getAmount() {
+	public Integer getAmount() {
 		return amount;
 	}
 
-	public void setAmount(int amount) {
+	public void setAmount(Integer amount) {
 		this.amount = amount;
 	}
 
-	public int getNrServings() {
+	public Integer getNrServings() {
 		return nrServings;
 	}
 
-	public void setNrServings(int nrServings) {
+	public void setNrServings(Integer nrServings) {
 		this.nrServings = nrServings;
 	}
 
-	public int getPrice() {
+	public Integer getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(Integer price) {
 		this.price = price;
 	}
 
