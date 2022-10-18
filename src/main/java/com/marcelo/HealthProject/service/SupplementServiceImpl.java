@@ -7,11 +7,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.marcelo.HealthProject.dao.SupplementDAO;
+import com.marcelo.HealthProject.dao.UserDAO;
 import com.marcelo.HealthProject.entity.Supplement;
+import com.marcelo.HealthProject.entity.User;
 import com.marcelo.HealthProject.exception.SupplementNotFoundException;
 
 @Service
 public class SupplementServiceImpl implements SupplementService {
+	
+	@Autowired
+	private UserService userService;
 	
 	@Autowired
 	private SupplementDAO supplementDAO;
@@ -19,13 +24,17 @@ public class SupplementServiceImpl implements SupplementService {
 	@Transactional
 	@Override
 	public List<Supplement> findAllByUserId(int userId) {
-		return supplementDAO.findAllByUserId(userId);
+		User user = userService.findById(userId);
+		
+		return supplementDAO.findAllByUserId(user);
 	}
 	
 	@Transactional
 	@Override
 	public List<Supplement> findAllByUsername(String username) {
-		return supplementDAO.findAllByUsername(username);
+		User user = userService.findByUsernameCustomVerify(username);
+		
+		return supplementDAO.findAllByUsername(user);
 	}
 
 	@Transactional
