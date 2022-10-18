@@ -14,7 +14,7 @@ import com.marcelo.HealthProject.service.SupplementService;
 
 @RestController
 @RequestMapping("/supplements")
-public class SupplementsController {
+public class SupplementController {
 	
 	@Autowired
 	private SupplementService supplementService;
