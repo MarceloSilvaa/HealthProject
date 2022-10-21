@@ -70,7 +70,7 @@ public class SecurityConfiguration {
 								HttpSession session = request.getSession();
 								session.setAttribute("user", user);
 								
-								response.sendRedirect(request.getContextPath() + "/");
+								response.sendRedirect(request.getContextPath() + "/supplements/u?username=" + user.getUsername());
 							}
 						})
 						.permitAll()
