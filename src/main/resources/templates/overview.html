@@ -13,7 +13,7 @@
     <link rel="stylesheet" th:href="@{/stylesheets/main.css}">
     <link rel="stylesheet" th:href="@{/stylesheets/overview.css}">
     <link rel="stylesheet" th:href="@{/stylesheets/dialog.css}"> 
-    <script type="module" th:src="@{/scripts/overview.js}" defer></script>
+    <!-- <script type="module" th:src="@{/scripts/overview.js}" defer></script> -->
   </head>
   
   <body>
@@ -66,7 +66,9 @@
       			<span class="overview-nutrient-page" th:text="${supplement.name}"></span>
       			<div class="page-toolbox">
           			<img class="page-tool duplicate-item" th:src="@{/images/duplicate.png}" alt="duplicate">
-          			<img class="page-tool delete-item" th:src="@{/images/delete.png}" alt="delete">
+          			<a class="page-tool delete-item" th:href="@{'/supplements/delete/'+${supplement.id}(username=${#authentication.getPrincipal().getUsername()})}">
+          				<img class="page-tool delete-item" th:src="@{/images/delete.png}" alt="delete">
+          			</a>
         		</div>
       		</div>
       		<span class="overview-dosage overview-column" th:text="${supplement.product.amount}"></span>
