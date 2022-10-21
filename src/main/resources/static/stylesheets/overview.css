@@ -114,6 +114,6 @@
   justify-content: center;
 }
 
-.file-load, .file-save {
+.file-load, .file-save, .logout-form, .logout {
   display: none;
 }
