@@ -67,7 +67,7 @@
       			<div class="page-toolbox">
           			<img class="page-tool duplicate-item" th:src="@{/images/duplicate.png}" alt="duplicate">
           			<a class="page-tool delete-item" 
-          			   th:href="@{'/supplements/delete/'+${supplement.id}(username=${#authentication.getPrincipal().getUsername()})}"
+          			   th:href="@{'/supplements/delete/'+${supplement.id}}"
           			   onclick="if (!(confirm('Are you sure you want to delete this supplement?'))) return false">
           				<img class="page-tool delete-item" th:src="@{/images/delete.png}" alt="delete">
           			</a>
