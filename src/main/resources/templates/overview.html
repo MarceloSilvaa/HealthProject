@@ -66,9 +66,7 @@
       			<span class="overview-nutrient-page" th:text="${supplement.name}"></span>
       			<div class="page-toolbox">
           			<img class="page-tool duplicate-item" th:src="@{/images/duplicate.png}" alt="duplicate">
-          			<a class="page-tool" th:href="@{'/supplements/delete/'+${supplement.id}}">
-          				<img class="page-tool delete-item" th:src="@{/images/delete.png}" alt="delete">
-          			</a>
+          			<img class="page-tool delete-item" th:src="@{/images/delete.png}" alt="delete">
         		</div>
       		</div>
       		<span class="overview-dosage overview-column" th:text="${supplement.product.amount}"></span>
