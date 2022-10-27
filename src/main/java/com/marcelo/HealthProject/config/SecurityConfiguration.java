@@ -21,6 +21,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import com.marcelo.HealthProject.entity.User;
+import com.marcelo.HealthProject.security.AuthenticationRequestSecurity;
 import com.marcelo.HealthProject.service.UserService;
 
 @Configuration
@@ -63,7 +64,7 @@ public class SecurityConfiguration {
 
 								String username = authentication.getName();
 								
-								logger.info("userName=" + username);
+								logger.info("username=" + username);
 
 								User user = userService.findByUsername(username);
 								
@@ -97,5 +98,10 @@ public class SecurityConfiguration {
 		auth.setUserDetailsService(userService); //set the custom user details service
 		auth.setPasswordEncoder(passwordEncoder()); //set the password encoder - bcrypt
 		return auth;
+	}
+	
+	@Bean
+	public AuthenticationRequestSecurity authenticationRequestSecurity() {
+		return new AuthenticationRequestSecurity();
 	}
 }
