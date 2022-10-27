@@ -36,6 +36,20 @@ public class UserRestExceptionHandler {
 		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
 	}
 	
+	// handler for user forbidden access
+	@ExceptionHandler
+	public ResponseEntity<UserErrorResponse> handleException(UserForbiddenException exc) {
+			
+		UserErrorResponse error = new UserErrorResponse();
+			
+		error.setStatus(HttpStatus.FORBIDDEN.value());
+		error.setError(HttpStatus.valueOf(error.getStatus()).getReasonPhrase());
+		error.setMessage(exc.getMessage());
+		error.setTimeStamp(System.currentTimeMillis());
+
+		return new ResponseEntity<>(error, HttpStatus.FORBIDDEN);
+	}
+	
 	// generic exception handler to catch any exception (catch all)
 	@ExceptionHandler
 	public ResponseEntity<UserErrorResponse> handleException(Exception exc) {
