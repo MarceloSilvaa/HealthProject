@@ -38,7 +38,20 @@ function setGeneralEventListeners() {
 	- Resetting data
 ------------------------------------ */
 function setDataEventListeners() {
-	
+	document.querySelector(".data-reset").addEventListener("click", event => {
+		
+		// Don't let href link be followed      
+    event.preventDefault()
+    
+    // Store href link in the confirmation button
+    let actionBtn = document.querySelector(".action-confirmation-btn")
+    actionBtn.url = event.target.href
+   
+    // Wait for confirmation
+    actionBtn.addEventListener("click", resetAction)
+    confirmAction("This action is irreversible. Are you sure you want to delete all supplements?")
+    
+  })
 }
 
 /* ------------------------------------
@@ -70,6 +83,12 @@ function setItemEventListeners() {
 
 // ---------------------------------------------------------------------------------
 // Functions that require confirmation
+
+function resetAction(event) {
+  deleteAsync(event.currentTarget.url)
+  clearAction()
+  removeEventListener('click', resetAction);
+}
 
 function deleteItemAction(event) {
 	deleteAsync(event.currentTarget.url)

@@ -22,7 +22,7 @@
         <h1 class="brand-name big-brand-name">Health Awareness</h1>
         <ul>
           <li>
-            <a target="_blank" href="https://www.nhs.uk/conditions/vitamins-and-minerals/">NHS</a>
+            <a target="_blank" href="https://www.nhs.uk/conditions/vitamins-and-minerals">NHS</a>
           </li>
           <li>
             <a target="_blank" href="https://www.healthline.com/nutrition/vitamins-and-supplements">Healthline</a>
@@ -31,14 +31,21 @@
             <label for="file-load">Load</label>
             <input class="file-load" type="file" name="file-load" id="file-load">
           </li>
-          <li class="file-save">Save</li>
-          <li class="data-reset">Reset</li>
+          <li class="file-save">
+          	Save
+          </li>
+          <li>
+          	<a class="data-reset"
+          		 th:href="@{'/supplements/reset/'+${#authentication.getPrincipal().getUsername()}}">
+          		 	Reset
+          	</a>
+          </li>
           <li>
           	<label for="logout">Logout</label>
-			<form class="logout-form" action="#" th:action="@{/logout}" method="POST">
-				<input class="logout" type="submit" name="logout" id="logout" value="Logout"/>
-			</form>
-		  </li>
+						<form class="logout-form" action="#" th:action="@{/logout}" method="POST">
+							<input class="logout" type="submit" name="logout" id="logout" value="Logout"/>
+						</form>
+		  		</li>
         </ul>
       </nav>
     </header>
