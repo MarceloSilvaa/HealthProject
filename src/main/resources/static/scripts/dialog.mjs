@@ -31,11 +31,15 @@ function clearNotification(notificationId) {
 
 function clearAllNotifications() {
   document.querySelectorAll(".notification-container").forEach(element => {
-    element.parentElement.removeChild(element)
+  	element.parentElement.removeChild(element)
   })
 }
 
 export function confirmAction(message) {
+	showAction(message)
+}
+
+export function showAction(message) {
   document.querySelector(".action-message").innerText = message
   document.querySelector(".action-container").style.display = "flex"
   document.querySelectorAll(".action-background").forEach(element => {

@@ -16,18 +16,29 @@ function start() {
 // Event Listeners
 
 function setEventListeners() {
-	setGeneralEventListeners();
+	setGeneralEventListeners()
+	setDataEventListeners()
 	setItemEventListeners()
 }
-
 
 /* ------------------------------------
 	Listen to buttons responsible for:
 	- Clearing action
-	- Creating new item
 ------------------------------------ */
 function setGeneralEventListeners() {
-	document.querySelector(".action-cancel-btn").addEventListener("click", clearAction)
+	document.querySelector(".action-cancel-btn").addEventListener("click", () => {
+		clearAction()
+	})
+}
+
+/* ------------------------------------
+	Listen to buttons responsible for:
+	- Loading data
+	- Saving data
+	- Resetting data
+------------------------------------ */
+function setDataEventListeners() {
+	
 }
 
 /* ------------------------------------
@@ -35,25 +46,33 @@ function setGeneralEventListeners() {
 	- Duplicating item
 	- Deleting item
 	- Opening item form
+	- Creating new item
 ------------------------------------ */
 function setItemEventListeners() {
 	
 	document.querySelectorAll(".delete-item").forEach(element => {
 		element.addEventListener("click", event => {
-			let actionBtn = document.querySelector(".action-confirmation-btn")
-      		actionBtn.addEventListener("click", deleteItemAction)
-      		actionBtn.itemRow = event.target.parentElement.parentElement.parentElement
-      		confirmAction("This action is irreversible. Are you sure you want to delete this item?")
+			
+			// Don't let href link be followed      
+      event.preventDefault()
+      
+      // Store href link in the confirmation button
+      let actionBtn = document.querySelector(".action-confirmation-btn")
+      actionBtn.url = element.parentElement.href
+      
+      // Wait for confirmation
+      actionBtn.addEventListener("click", deleteItemAction)
+      confirmAction("This action is irreversible. Are you sure you want to delete this item?")
+      
 		})
 	})
 }
 
 // ---------------------------------------------------------------------------------
-// Functions that require previous confirmation
+// Functions that require confirmation
 
 function deleteItemAction(event) {
-	let id = getItemId(event.currentTarget.itemRow)
-	deleteAsync(location.href + "/delete/" + id)
+	deleteAsync(event.currentTarget.url)
 	clearAction()
 	removeEventListener('click', deleteItemAction)
 }
