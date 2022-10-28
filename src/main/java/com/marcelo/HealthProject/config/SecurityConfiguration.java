@@ -43,12 +43,14 @@ public class SecurityConfiguration {
         return http		
 				.authorizeRequests(configurer ->
 					configurer
+						.antMatchers("/support/**").hasRole("ADMIN")
+						.antMatchers("/users/**").hasAnyRole("SUPPORT","ADMIN")
+						.antMatchers("/supplements/**").hasRole("USER")
+						.antMatchers("/**").hasAnyRole("USER","SUPPORT","ADMIN")
 						.antMatchers("/images/**").permitAll()
 						.antMatchers("/scripts/**").permitAll()
 						.antMatchers("/stylesheets/**").permitAll()
-						.antMatchers("/").hasAnyRole("USER","SUPPORT","ADMIN")
-						.antMatchers("/users/**").hasAnyRole("SUPPORT","ADMIN")
-						.antMatchers("/support/**").hasRole("ADMIN")
+						.anyRequest().authenticated()
 				)
 				.formLogin(configurer ->
 					configurer
