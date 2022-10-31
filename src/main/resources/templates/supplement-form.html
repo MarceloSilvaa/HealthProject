@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html lang="en"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+	<head>
+    <title>Health Awareness | Supplement Information</title>
+    <meta name="description" content="Your health improves if your awareness improves">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link rel="stylesheet" th:href="@{/stylesheets/main.css}">
+    <link rel="stylesheet" href="@{/stylesheets/supplement.css}">
+    <link rel="stylesheet" th:href="@{/stylesheets/dialog.css}">
+    <script type="module" th:src="@{/scripts/supplement.js}" defer></script>
+  </head>
+  
+  <body>
+  	<form class="supplement-section"
+  				th:action="@{/supplements/save}"
+			  	th:object="${supplement}"
+			  	method="POST">
+  		
+  		<!-- Add hidden form field to handle update -->
+			<input type="hidden" th:field="*{id}" />
+  		
+  		<div class="container name-container">
+        <input class="user-required user-field user-required-name form-element input supplement-name" 
+        			 type="text" th:field="*{name}"
+        			 name="supplement-name" id="supplement-name" 
+        			 placeholder="Nutrient name *" autofocus required>
+      </div>
+      
+      <!-- Nutrient section -->
+      <div class="scientific-container">
+      	<span class="container container-header">About the nutrient</span>
+      	
+      	<div class="supplement-row">
+          <label class="label" for="nutrient-type">Type of nutrient</label>
+          <select class="user-field form-element select select-imported-style"
+          				th:field="*{nutrient.type}"
+          				name="nutrient-type" id="nutrient-type">
+            <option></option>
+            <option th:value="Vitamin" th:text="Vitamin"></option>
+            <option th:value="Mineral" th:text="Mineral"></option>
+            <option th:value="Amino Acid" th:text="Amino Acid"></option>
+            <option th:value="Herb" th:text="Herb"></option>
+            <option th:value="Fat" th:text="Fat"></option>
+            <option th:value="Other" th:text="Other"></option>
+          </select>
+        </div>
+        
+        <div class="supplement-row">
+          <label class="label" for="nutrient-fat-soluble">Fat soluble</label>
+          <input class="user-field checkbox" 
+          			 type="checkbox" th:field="*{nutrient.fatSoluble}"
+          			 name="nutrient-fat-soluble" id="nutrient-fat-soluble"> 
+        </div>
+        
+        <div class="supplement-row">
+          <label class="label" for="nutrient-water-soluble">Water soluble</label>
+          <input class="user-field checkbox" 
+          			 type="checkbox" th:field="*{nutrient.waterSoluble}"
+          			 name="nutrient-water-soluble" id="nutrient-water-soluble"> 
+        </div>
+        
+        <div class="supplement-row">
+          <label class="label" for="nutrient-time">Best time of day to take</label>
+          <select class="user-field form-element select select-imported-style" 
+          				th:field="*{nutrient.time}"
+          				name="nutrient-time" id="nutrient-time">
+            <option></option>
+            <option th:value="Morning" th:text="Morning"></option>
+            <option th:value="Afternoon" th:text="Afternoon"></option>
+            <option th:value="Night" th:text="Night"></option>
+          </select>
+        </div>
+        
+        <div class="supplement-row">
+          <label class="label" for="nutrient-food">Relation with food</label>
+          <select class="user-field form-element select select-imported-style"
+          				th:field="*{nutrient.food}"
+          				name="nutrient-food" id="nutrient-food">
+            <option></option>
+            <option th:value="Do not take with food" th:text="Do not take with food"></option>
+            <option th:value="Take before eating" th:text="Take before eating"></option>
+            <option th:value="Take after eating" th:text="Take after eating"></option>
+          </select>
+        </div>
+        
+        <div class="supplement-row">
+          <label class="label" for="nutrient-unit-measurement">Unit of measurement *</label>
+          <select class="user-required user-field form-element select select-imported-style" 
+          				th:field="*{nutrient.unitMeasurement}"
+          				name="nutrient-unit-measurement" id="nutrient-unit-measurement" 
+          				required>
+            <option></option>
+            <option th:value="ml" th:text="ml"></option>
+            <option th:value="g" th:text="g"></option>
+            <option th:value="mg" th:text="mg"></option>
+            <option th:value="mcg" th:text="mcg"></option>
+          </select>
+        </div>
+        
+        <div class="supplement-row">
+          <label class="label" for="nutrient-recommended-intake">Recommended daily intake</label>
+          <div>
+            <input class="user-field form-element form-element input large-input-number" 
+            			 type="number" th:field="*{nutrient.recommendedIntake}"
+            			 name="nutrient-recommended-intake" id="nutrient-recommended-intake" 
+            			 min="1" max="9999" placeholder="1&#45;9999">
+            <span id="nutrient-recommended-unit">Unit undefined</span>
+          </div>
+        </div>
+        
+        <div class="supplement-row">
+          <label class="label" for="nutrient-maximum-intake">Maximum daily intake</label>
+          <div>
+            <input class="user-field form-element input large-input-number" 
+            			 type="number" th:field="*{nutrient.maximumIntake}"
+            			 name="nutrient-maximum-intake" id="nutrient-maximum-intake" 
+            			 min="1" max="9999" placeholder="1&#45;9999">
+            <span id="nutrient-maximum-unit">Unit undefined</span>
+          </div>
+        </div>
+        
+        <div class="supplement-row">
+          <label class="label" for="nutrient-notes">Notes</label>
+          <textarea class="user-field form-element input textarea" 
+          					th:field="*{nutrient.note}"
+          					name="nutrient-notes" id="nutrient-notes" 
+          					rows="6" placeholder="Should be taken with:&#10;&#10;Should not be taken with:&#10;&#10;Should not be taken for longer than:&#10;&#10;Can cause decrease in:&#10;"></textarea>
+        </div>
+      </div>
+      
+      <!-- Product section -->
+      <div class="product-container">
+      	<div class="container container-header">About the product</div>
+      	
+      	<div class="supplement-row">
+          <label class="label" for="product-amount">Amount per serving *</label>
+          <div>
+            <input class="user-required user-field form-element input large-input-number" 
+            			 type="number" th:field="*{product.amount}"
+            			 name="product-amount" id="product-amount" 
+            			 min="1" max="9999" placeholder="1&#45;9999" required>
+            <span id="product-amount-unit">Unit undefined</span>
+          </div>
+        </div>
+        
+        <div class="supplement-row">
+          <label class="label" for="product-servings">Number of servings</label>
+          <input class="user-field form-element input large-input-number" 
+          			 type="number" th:field="*{product.nrServings}"
+          			 name="product-servings" id="product-servings" 
+          			 min="1" max="999" placeholder="1&#45;999">
+        </div>
+      	
+      	<div class="supplement-row">
+          <label class="label" for="product-price">Price</label>
+          <div>
+            <input class="user-field form-element input large-input-number" 
+            			 type="number" th:field="*{product.price}"
+            			 name="product-price" id="product-price"
+            			 min="0" max="9999" placeholder="0&#45;9999">
+            			 
+            <select class="user-field form-element select select-imported-style"
+            				th:field="*{product.priceCurrency}"
+            				name="product-price-currency" id="product-price-currency">
+              <option></option>
+              <option th:value="EUR" th:text="EUR"></option>
+              <option th:value="GBP" th:text="GBP"></option>
+              <option th:value="USD" th:text="USD"></option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="supplement-row">
+          <label class="label" for="product-company">Company name</label>
+          <input class="user-field form-element input" 
+          			 type="text" th:field="*{product.company}"
+          			 name="product-company" id="product-company">
+        </div>
+        
+        <div class="supplement-row">
+          <label class="label" for="product-link">Link</label>
+          <input class="user-field form-element input" 
+          			 type="url" th:field="*{product.link}"
+          			 name="product-link" id="product-link">
+        </div>
+      </div>
+      
+      <!-- Personal section -->
+      <div class="personal-container">
+      	<div class="container container-header">Personal use</div>
+      	
+      	<div class="supplement-row">
+          <label class="label" for="personal-servings">Number of servings per day *</label>
+          <input class="user-required user-field form-element input large-input-number" 
+          		   type="number" th:field="*{personal.nrServings}"
+          		   name="personal-servings" id="personal-servings" 
+          		   min="0" max="9" placeholder="0&#45;9" 
+          		   required>
+        </div>
+        
+        <div class="supplement-row">
+          <label class="label" for="personal-time">Chosen time to take</label>
+          <select class="user-field form-element select select-imported-style"
+          				th:field="*{personal.time}"
+          				name="personal-time" id="personal-time">
+            <option></option>
+            <option th:value="Morning" th:text="Morning"></option>
+            <option th:value="Afternoon" th:text="Afternoon"></option>
+            <option th:value="Night" th:text="Night"></option>
+          </select>
+        </div>
+        
+        <div class="supplement-row">
+          <label class="label" for="personal-start">Bottle opening date</label>
+          <input class="user-field form-element input" 
+          			 type="date" th:field="*{personal.start}"
+          			 name="personal-start" id="personal-start">
+        </div>
+        
+        <div class="supplement-row">
+          <label class="label" for="personal-refil">Estimated refil date</label>
+          <input class="user-field form-element input" 
+          			 type="date" th:field="*{personal.refil}"
+          			 name="personal-refil" id="personal-refil">
+        </div>
+      </div>
+      
+      <div class="container buttons-container">
+        <button class="form-element btn btn-round btn-color btn-add btn-confirm" 
+        				type="submit">Save</button>
+        				
+        <button class="form-element btn btn-round btn-color btn-cancel" 
+        				type="button"
+        				th:href="@{/supplements}">Cancel</button>
+      </div>
+  	</form>
+  </body>
+</html>
