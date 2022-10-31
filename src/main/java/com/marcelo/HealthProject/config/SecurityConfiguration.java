@@ -46,10 +46,10 @@ public class SecurityConfiguration {
 						.antMatchers("/support/**").hasRole("ADMIN")
 						.antMatchers("/users/**").hasAnyRole("SUPPORT","ADMIN")
 						.antMatchers("/supplements/**").hasRole("USER")
-						.antMatchers("/**").hasAnyRole("USER","SUPPORT","ADMIN")
 						.antMatchers("/images/**").permitAll()
 						.antMatchers("/scripts/**").permitAll()
 						.antMatchers("/stylesheets/**").permitAll()
+						.antMatchers("/**").hasAnyRole("USER","SUPPORT","ADMIN")
 						.anyRequest().authenticated()
 				)
 				.formLogin(configurer ->
