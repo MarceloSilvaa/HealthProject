@@ -59,5 +59,4 @@ public class SupplementServiceImpl implements SupplementService {
 	public void deleteById(int supplementId) {
 		supplementDAO.deleteById(supplementId);
 	}
-
 }
