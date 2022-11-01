@@ -10,9 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <link rel="stylesheet" th:href="@{/stylesheets/main.css}">
-    <link rel="stylesheet" href="@{/stylesheets/supplement.css}">
+    <link rel="stylesheet" th:href="@{/stylesheets/supplement.css}">
     <link rel="stylesheet" th:href="@{/stylesheets/dialog.css}">
-    <script type="module" th:src="@{/scripts/supplement.js}" defer></script>
+    <!--<script type="module" th:src="@{/scripts/supplement.js}" defer></script> -->
   </head>
   
   <body>
@@ -40,27 +40,27 @@
           <select class="user-field form-element select select-imported-style"
           				th:field="*{nutrient.type}"
           				name="nutrient-type" id="nutrient-type">
-            <option></option>
-            <option th:value="Vitamin" th:text="Vitamin"></option>
-            <option th:value="Mineral" th:text="Mineral"></option>
-            <option th:value="Amino Acid" th:text="Amino Acid"></option>
-            <option th:value="Herb" th:text="Herb"></option>
-            <option th:value="Fat" th:text="Fat"></option>
-            <option th:value="Other" th:text="Other"></option>
+            <option value=""></option>
+            <option value="Vitamin">Vitamin</option>
+            <option value="Mineral">Mineral</option>
+            <option value="Amino Acid">Amino Acid</option>
+            <option value="Herb">Herb</option>
+            <option value="Fat">Fat</option>
+            <option value="Other">Other</option>
           </select>
         </div>
         
         <div class="supplement-row">
           <label class="label" for="nutrient-fat-soluble">Fat soluble</label>
           <input class="user-field checkbox" 
-          			 type="checkbox" th:field="*{nutrient.fatSoluble}"
+          			 type="checkbox" th:checked="*{nutrient.fatSoluble}"
           			 name="nutrient-fat-soluble" id="nutrient-fat-soluble"> 
         </div>
         
         <div class="supplement-row">
           <label class="label" for="nutrient-water-soluble">Water soluble</label>
           <input class="user-field checkbox" 
-          			 type="checkbox" th:field="*{nutrient.waterSoluble}"
+          			 type="checkbox" th:checked="*{nutrient.waterSoluble}"
           			 name="nutrient-water-soluble" id="nutrient-water-soluble"> 
         </div>
         
@@ -69,10 +69,10 @@
           <select class="user-field form-element select select-imported-style" 
           				th:field="*{nutrient.time}"
           				name="nutrient-time" id="nutrient-time">
-            <option></option>
-            <option th:value="Morning" th:text="Morning"></option>
-            <option th:value="Afternoon" th:text="Afternoon"></option>
-            <option th:value="Night" th:text="Night"></option>
+            <option value=""></option>
+            <option value="Morning">Morning</option>
+            <option value="Afternoon">Afternoon</option>
+            <option value="Night">Night</option>
           </select>
         </div>
         
@@ -81,10 +81,10 @@
           <select class="user-field form-element select select-imported-style"
           				th:field="*{nutrient.food}"
           				name="nutrient-food" id="nutrient-food">
-            <option></option>
-            <option th:value="Do not take with food" th:text="Do not take with food"></option>
-            <option th:value="Take before eating" th:text="Take before eating"></option>
-            <option th:value="Take after eating" th:text="Take after eating"></option>
+            <option value=""></option>
+            <option value="Do not take with food">Do not take with food</option>
+            <option value="Take before eating">Take before eating</option>
+            <option value="Take after eating">Take after eating</option>
           </select>
         </div>
         
@@ -94,11 +94,11 @@
           				th:field="*{nutrient.unitMeasurement}"
           				name="nutrient-unit-measurement" id="nutrient-unit-measurement" 
           				required>
-            <option></option>
-            <option th:value="ml" th:text="ml"></option>
-            <option th:value="g" th:text="g"></option>
-            <option th:value="mg" th:text="mg"></option>
-            <option th:value="mcg" th:text="mcg"></option>
+            <option value=""></option>
+            <option value="ml">ml</option>
+            <option value="g">g</option>
+            <option value="mg">mg</option>
+            <option value="mcg">mcg</option>
           </select>
         </div>
         
@@ -167,10 +167,10 @@
             <select class="user-field form-element select select-imported-style"
             				th:field="*{product.priceCurrency}"
             				name="product-price-currency" id="product-price-currency">
-              <option></option>
-              <option th:value="EUR" th:text="EUR"></option>
-              <option th:value="GBP" th:text="GBP"></option>
-              <option th:value="USD" th:text="USD"></option>
+              <option value=""></option>
+              <option value="EUR">EUR</option>
+              <option value="GBP">GBP</option>
+              <option value="USD">USD</option>
             </select>
           </div>
         </div>
@@ -208,10 +208,10 @@
           <select class="user-field form-element select select-imported-style"
           				th:field="*{personal.time}"
           				name="personal-time" id="personal-time">
-            <option></option>
-            <option th:value="Morning" th:text="Morning"></option>
-            <option th:value="Afternoon" th:text="Afternoon"></option>
-            <option th:value="Night" th:text="Night"></option>
+            <option value=""></option>
+            <option value="Morning">Morning</option>
+            <option value="Afternoon">Afternoon</option>
+            <option value="Night">Night</option>
           </select>
         </div>
         
