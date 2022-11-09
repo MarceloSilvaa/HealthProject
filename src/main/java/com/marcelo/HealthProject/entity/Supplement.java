@@ -19,6 +19,9 @@ public class Supplement {
 	@Column(name="id")
 	private Integer id;
 	
+	@Column(name="user_id")
+	private Integer userId;
+	
 	@Column(name="name")
 	private String name;
 	
@@ -38,8 +41,9 @@ public class Supplement {
 		
 	}
 
-	public Supplement(String name, SupplementNutrient nutrient, SupplementProduct product,
+	public Supplement(Integer userId, String name, SupplementNutrient nutrient, SupplementProduct product,
 			SupplementPersonal personal) {
+		this.userId = userId;
 		this.name = name;
 		this.nutrient = nutrient;
 		this.product = product;
@@ -52,6 +56,14 @@ public class Supplement {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 	public String getName() {
@@ -88,8 +100,11 @@ public class Supplement {
 
 	@Override
 	public String toString() {
-		return "Supplement [id=" + id + ", name=" + name + ", nutrient=" + nutrient + ", product=" + product
-				+ ", personal=" + personal + "]";
+		return "Supplement [id=" + id + ", userId=" + userId + ", name=" + name + ""
+				+ ", nutrient=" + nutrient 
+				+ ", product=" + product
+				+ ", personal=" + personal
+				+ "]";
 	}
 	
 }

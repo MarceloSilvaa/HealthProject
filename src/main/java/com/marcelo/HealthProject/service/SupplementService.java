@@ -12,7 +12,7 @@ public interface SupplementService {
 	
 	public Supplement findById(int supplementId);
 	
-	public void save(int userId, Supplement supplement);
+	public void save(Supplement supplement);
 	
 	public void deleteById(int supplementId);
 }

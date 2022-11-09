@@ -50,8 +50,8 @@ public class SupplementServiceImpl implements SupplementService {
 	
 	@Transactional
 	@Override
-	public void save(int userId, Supplement supplement) {
-		supplementDAO.save(userId, supplement);
+	public void save(Supplement supplement) {
+		supplementDAO.save(supplement);
 	}
 	
 	@Transactional

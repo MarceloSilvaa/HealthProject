@@ -1,7 +1,6 @@
 package com.marcelo.HealthProject.controller;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -72,7 +71,9 @@ public class SupplementController {
 	public String save(@ModelAttribute("supplement") Supplement supplement) {
 		Integer userId = authenticationRequestSecurity.getAuthenticationUserId();
 		
-		supplementService.save(userId, supplement);
+		supplement.setUserId(userId);
+		
+		supplementService.save(supplement);
 		
 		return "redirect:/supplements";
 	}
