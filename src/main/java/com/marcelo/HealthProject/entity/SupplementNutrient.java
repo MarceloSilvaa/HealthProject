@@ -6,6 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="supplement_nutrient")
@@ -31,12 +35,18 @@ public class SupplementNutrient {
 	@Column(name="food")
 	private String food;
 	
+	@NotNull(message="Field is required")
+	@Size(min=1, message="Field is required")
 	@Column(name="unit_measurement")
 	private String unitMeasurement;
 	
+	@Min(value=1, message = "Value must be greater than or equal to 1")
+	@Max(value=9999, message = "Value must be less than or equal to 9999")
 	@Column(name="recommended_intake")
 	private String recommendedIntake;
 	
+	@Min(value=1, message = "Value must be greater than or equal to 1")
+	@Max(value=9999, message = "Value must be less than or equal to 9999")
 	@Column(name="maximum_intake")
 	private String maximumIntake;
 	

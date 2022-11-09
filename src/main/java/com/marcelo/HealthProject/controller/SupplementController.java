@@ -2,10 +2,16 @@ package com.marcelo.HealthProject.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +34,14 @@ public class SupplementController {
 	
 	// Need to verify if userId that is being passed for methods matches the user authentication
 	// Probably should do this inside supplement service since it has a bean for UserDAO 
+	
+	@InitBinder
+	public void initBinder(WebDataBinder dataBinder) {
+		
+		StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+		
+		dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+	}
 	
 	@GetMapping("/{userId}")
 	public String findAllByUserId(@PathVariable int userId, Model model) {
@@ -68,10 +82,12 @@ public class SupplementController {
 	}
 	
 	@PostMapping("/save")
-	public String save(@ModelAttribute("supplement") Supplement supplement) {
+	public String save(@Valid @ModelAttribute("supplement") Supplement supplement, BindingResult theBindingResult) {
 		Integer userId = authenticationRequestSecurity.getAuthenticationUserId();
 		
 		supplement.setUserId(userId);
+		
+		System.out.println("\n\n\n" + supplement);
 		
 		supplementService.save(supplement);
 		

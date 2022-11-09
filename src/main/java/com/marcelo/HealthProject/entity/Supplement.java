@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="supplement")
@@ -22,6 +24,8 @@ public class Supplement {
 	@Column(name="user_id")
 	private Integer userId;
 	
+	@NotNull(message="Field is required")
+	@Size(min=1, max=30, message="Name length must in the following range: 1-30")
 	@Column(name="name")
 	private String name;
 	
