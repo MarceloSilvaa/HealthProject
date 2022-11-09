@@ -149,6 +149,21 @@ public class SupplementNutrient {
 	public void setNote(String note) {
 		this.note = note;
 	}
+	
+	public SupplementNutrient createDeepCopy() {
+		SupplementNutrient newSupplement = new SupplementNutrient();
+		newSupplement.setId(null);
+		newSupplement.setType(this.getType());
+		newSupplement.setFatSoluble(this.isFatSoluble());
+		newSupplement.setWaterSoluble(this.isWaterSoluble());
+		newSupplement.setTime(this.getTime());
+		newSupplement.setFood(this.getFood());
+		newSupplement.setUnitMeasurement(this.getUnitMeasurement());
+		newSupplement.setRecommendedIntake(this.getRecommendedIntake());
+		newSupplement.setMaximumIntake(this.getMaximumIntake());
+		newSupplement.setNote(this.getNote());
+		return newSupplement;
+	}
 
 	@Override
 	public String toString() {

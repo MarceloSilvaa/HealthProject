@@ -114,6 +114,18 @@ public class SupplementProduct {
 		this.link = link;
 	}
 
+	public SupplementProduct createDeepCopy() {
+		SupplementProduct newSupplement = new SupplementProduct();
+		newSupplement.setId(null);
+		newSupplement.setAmount(this.getAmount());
+		newSupplement.setNrServings(this.getNrServings());
+		newSupplement.setPrice(this.getPrice());
+		newSupplement.setPriceCurrency(this.getPriceCurrency());
+		newSupplement.setCompany(this.getCompany());
+		newSupplement.setLink(this.getLink());
+		return newSupplement;
+	}
+	
 	@Override
 	public String toString() {
 		return "SupplementProduct [id=" + id + ", amount=" + amount + ", nrServings=" + nrServings + ", price=" + price

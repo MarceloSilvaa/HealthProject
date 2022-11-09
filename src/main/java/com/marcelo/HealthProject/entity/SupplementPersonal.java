@@ -87,7 +87,17 @@ public class SupplementPersonal {
 	public void setRefil(Date refil) {
 		this.refil = refil;
 	}
-
+	
+	public SupplementPersonal createDeepCopy() {
+		SupplementPersonal newSupplement = new SupplementPersonal();
+		newSupplement.setId(null);
+		newSupplement.setNrServings(this.getNrServings());
+		newSupplement.setTime(this.getTime());
+		newSupplement.setStart(this.getStart());
+		newSupplement.setRefil(this.getRefil());
+		return newSupplement;
+	}
+	
 	@Override
 	public String toString() {
 		return "SupplementPersonal [id=" + id + ", nrServings=" + nrServings + ", time=" + time + ", start=" + start

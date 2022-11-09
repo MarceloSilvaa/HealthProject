@@ -92,6 +92,19 @@ public class SupplementController {
 		return "redirect:/supplements";
 	}
 	
+	@GetMapping("/duplicate/{supplementId}")
+	public String duplicate(@PathVariable int supplementId) {
+		// Need to verify if the supplement that is being duplicated belongs to user
+		
+		Supplement supplement = supplementService.findById(supplementId);
+		
+		Supplement newSupplement = supplement.createDeepCopy();
+		
+		supplementService.save(newSupplement);
+		
+		return "redirect:/supplements";
+	}
+	
 	@GetMapping("/delete/{supplementId}")
 	public String deleteById(@PathVariable int supplementId) {		
 		// Need to verify if the supplement that is being deleted belongs to user

@@ -101,6 +101,17 @@ public class Supplement {
 	public void setPersonal(SupplementPersonal personal) {
 		this.personal = personal;
 	}
+	
+	public Supplement createDeepCopy() {
+		Supplement newSupplement = new Supplement();
+		newSupplement.setId(null);
+		newSupplement.setUserId(this.getUserId());
+		newSupplement.setName(this.getName());
+		newSupplement.setNutrient(this.getNutrient().createDeepCopy());
+		newSupplement.setProduct(this.getProduct().createDeepCopy());
+		newSupplement.setPersonal(this.getPersonal().createDeepCopy());
+		return newSupplement;
+	}
 
 	@Override
 	public String toString() {
