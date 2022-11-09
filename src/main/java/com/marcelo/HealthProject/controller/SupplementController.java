@@ -87,8 +87,6 @@ public class SupplementController {
 		
 		supplement.setUserId(userId);
 		
-		System.out.println("\n\n\n" + supplement);
-		
 		supplementService.save(supplement);
 		
 		return "redirect:/supplements";
