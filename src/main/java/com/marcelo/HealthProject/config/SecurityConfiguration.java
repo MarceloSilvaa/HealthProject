@@ -49,6 +49,7 @@ public class SecurityConfiguration {
 						.antMatchers("/images/**").permitAll()
 						.antMatchers("/scripts/**").permitAll()
 						.antMatchers("/stylesheets/**").permitAll()
+						.antMatchers("/register/**").permitAll()
 						.antMatchers("/**").hasAnyRole("USER","SUPPORT","ADMIN")
 						.anyRequest().authenticated()
 				)
