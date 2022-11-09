@@ -25,17 +25,37 @@ public class SupplementDAOHibernateImpl implements SupplementDAO {
 
 	@Override
 	public Supplement findById(int supplementId) {
-		return null;
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query<Supplement> query = 
+				session.createQuery("FROM Supplement WHERE id=:supplementId", Supplement.class);
+		query.setParameter("supplementId", supplementId);
+
+
+		Supplement supplement = null;
+		try {
+			supplement = query.getSingleResult();
+		}
+		catch(Exception e) {
+			supplement = null;
+		}
+		
+		return supplement;
 	}
 
 	@Override
-	public void save(int userId, Supplement supplement) {
+	public void save(Supplement supplement) {
+		Session session = entityManager.unwrap(Session.class);
 		
+		session.saveOrUpdate(supplement);
 	}
 
 	@Override
 	public void deleteById(int supplementId) {
+		Session session = entityManager.unwrap(Session.class);
 		
+		Query query = session.createQuery("DELETE FROM Supplement WHERE id=:supplementId");
+		query.setParameter("supplementId", supplementId);
+		query.executeUpdate();
 	}
-
 }
