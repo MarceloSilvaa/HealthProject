@@ -83,11 +83,17 @@
       		<span class="overview-time overview-column" th:text="${supplement.personal.time}"></span>
       		<span class="overview-food overview-column" th:text="${supplement.nutrient.time}"></span>
       		<span class="overview-refil overview-column" th:text="${supplement.personal.refil}"></span>
-      		<a target="_blank" class="overview-link overview-column" th:href="${supplement.product.link}" th:text="${supplement.product.link}"></a>
+      		<a target="_blank" class="overview-link overview-column" 
+      			 th:href="${supplement.product.link}" th:text="${supplement.product.link}">
+      		</a>
       	</div>	
       </div>
       <div class="overview-new-item">
-        <button class="form-element btn btn-round btn-color btn-new-item" type="button">Add new supplement</button>
+        <a class="form-element btn btn-round btn-color btn-new-item" 
+        	 type="button"
+        	 th:href="@{/supplements/showAddForm}">
+        	Add new supplement
+        </a>
       </div>
     </section>
   </body>
