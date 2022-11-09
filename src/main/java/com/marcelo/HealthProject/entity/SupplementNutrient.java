@@ -43,12 +43,12 @@ public class SupplementNutrient {
 	@Min(value=1, message = "Value must be greater than or equal to 1")
 	@Max(value=9999, message = "Value must be less than or equal to 9999")
 	@Column(name="recommended_intake")
-	private String recommendedIntake;
+	private Integer recommendedIntake;
 	
 	@Min(value=1, message = "Value must be greater than or equal to 1")
 	@Max(value=9999, message = "Value must be less than or equal to 9999")
 	@Column(name="maximum_intake")
-	private String maximumIntake;
+	private Integer maximumIntake;
 	
 	@Column(name="note")
 	private String note;
@@ -58,7 +58,7 @@ public class SupplementNutrient {
 	}
 
 	public SupplementNutrient(String type, Boolean fatSoluble, Boolean waterSoluble, String time, String food,
-			String unitMeasurement, String recommendedIntake, String maximumIntake, String note) {
+			String unitMeasurement, Integer recommendedIntake, Integer maximumIntake, String note) {
 		this.type = type;
 		this.fatSoluble = fatSoluble;
 		this.waterSoluble = waterSoluble;
@@ -126,19 +126,19 @@ public class SupplementNutrient {
 		this.unitMeasurement = unitMeasurement;
 	}
 
-	public String getRecommendedIntake() {
+	public Integer getRecommendedIntake() {
 		return recommendedIntake;
 	}
 
-	public void setRecommendedIntake(String recommendedIntake) {
+	public void setRecommendedIntake(Integer recommendedIntake) {
 		this.recommendedIntake = recommendedIntake;
 	}
 
-	public String getMaximumIntake() {
+	public Integer getMaximumIntake() {
 		return maximumIntake;
 	}
 
-	public void setMaximumIntake(String maximumIntake) {
+	public void setMaximumIntake(Integer maximumIntake) {
 		this.maximumIntake = maximumIntake;
 	}
 
