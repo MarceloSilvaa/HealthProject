@@ -19,3 +19,15 @@ You can see the [code here](https://github.com/MarceloSilvaa/HealthProject/tree/
 This version is still in progress...
 
 You can see the [code here](https://github.com/MarceloSilvaa/HealthProject/tree/client-server).
+
+## To-Do list
+
+Javascript code for the client side is a work in progress, since the removal of local storage usage.
+
+### Overview page
+- Load feature not available yet
+- Save feature not available yet
+
+### Supplement form page
+- Should add more validation code for the supplement form
+- Currently not updating correctly the unit of measurement after selection
