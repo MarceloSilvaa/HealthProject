@@ -74,7 +74,7 @@ public class SupplementController {
 	
 	@GetMapping("/showUpdateForm")
 	public String showUpdateForm(@RequestParam("supplementId") int supplementId, Model model) {
-		// Need to verify if the supplement that is being duplicated belongs to user
+		// Need to verify if the supplement that is being updated belongs to user
 		
 		Supplement supplement = supplementService.findById(supplementId);
 		
