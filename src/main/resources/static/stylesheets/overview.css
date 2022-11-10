@@ -67,6 +67,7 @@
 .overview-nutrient-page {
   cursor: pointer;
   text-decoration: underline;
+  color: black;
 }
 
 .overview-nutrient-page:hover {

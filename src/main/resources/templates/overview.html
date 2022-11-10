@@ -70,7 +70,10 @@
       	<div class="overview-row" th:each="supplement: ${supplementList}">
       		<span class="overview-id" th:text="${supplement.id}"></span>
       		<div class="overview-nutrient overview-column">
-      			<span class="overview-nutrient-page" th:text="${supplement.name}"></span>
+      			<a class="overview-nutrient-page" 
+      				 th:text="${supplement.name}"
+      				 th:href="@{/supplements/showUpdateForm(supplementId=${supplement.id})}">
+      			</a>
       			<div class="page-toolbox">
       					<a class="page-tool" th:href="@{'/supplements/duplicate/'+${supplement.id}}">
       						<img class="page-tool duplicate-item" th:src="@{/images/duplicate.png}" alt="duplicate">
