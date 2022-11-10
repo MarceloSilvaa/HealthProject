@@ -22,12 +22,19 @@ You can see the [code here](https://github.com/MarceloSilvaa/HealthProject/tree/
 
 ## To-Do list
 
-Javascript code for the client side is a work in progress, since the removal of local storage usage.
+### Client side
+- Javascript code for the client side is a work in progress, since the removal of local storage usage.
+
+### Server side
+- Use AOP for logging
+- Add user verification for supplement operations
 
 ### Overview page
 - Load feature not available yet
 - Save feature not available yet
+- Add option for sorting by field
 
 ### Supplement form page
-- Should add more validation code for the supplement form
+- Add more validation code for the supplement form
 - Currently not updating correctly the unit of measurement after selection
+- Hibernate not saving checkbox values
