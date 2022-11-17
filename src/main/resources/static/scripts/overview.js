@@ -1,5 +1,5 @@
 import { showNotification, confirmAction, clearAction } from "./dialog.mjs"
-import { deleteAsync } from "./request.mjs"
+import { getAsync, postAsync, deleteAsync } from "./request.mjs"
 
 if(document.readyState === "loading") {
   	document.addEventListener("DOMContentLoaded", start)
@@ -38,6 +38,11 @@ function setGeneralEventListeners() {
 	- Resetting data
 ------------------------------------ */
 function setDataEventListeners() {
+  
+  document.querySelector(".file-save").addEventListener("click", () => {
+    saveData()
+  })
+	
 	document.querySelector(".data-reset").addEventListener("click", event => {
 		
 		// Don't let href link be followed      
@@ -49,17 +54,14 @@ function setDataEventListeners() {
    
     // Wait for confirmation
     actionBtn.addEventListener("click", resetAction)
-    confirmAction("This action is irreversible. Are you sure you want to delete all supplements?")
+    confirmAction("Are you sure you want to delete all supplements?")
     
   })
 }
 
 /* ------------------------------------
 	Listen to buttons responsible for:
-	- Duplicating item
 	- Deleting item
-	- Opening item form
-	- Creating new item
 ------------------------------------ */
 function setItemEventListeners() {
 	
@@ -75,7 +77,7 @@ function setItemEventListeners() {
       
       // Wait for confirmation
       actionBtn.addEventListener("click", deleteItemAction)
-      confirmAction("This action is irreversible. Are you sure you want to delete this item?")
+      confirmAction("Are you sure you want to delete this item?")
       
 		})
 	})
@@ -97,8 +99,31 @@ function deleteItemAction(event) {
 }
 
 // ---------------------------------------------------------------------------------
+// Data control
+
+async function saveData() {
+	let data = await getAsync("http://localhost:8080/supplements/list")
+	
+  let dataStr = "data:text/json;charset=utf-8," + 
+  		encodeURIComponent(JSON.stringify({ "supplementList": data }))
+  		
+  let downloadAnchor = document.createElement("a")
+  downloadAnchor.setAttribute("href", dataStr)
+  downloadAnchor.setAttribute("download", "Supplements" + ".json")
+  document.body.appendChild(downloadAnchor)
+  downloadAnchor.click()
+  downloadAnchor.remove()
+  
+  showNotification("Data was successfully saved locally.")
+}
+
+// ---------------------------------------------------------------------------------
 // Row functions
 
 function getItemId(row) {
   return row.querySelector(".overview-id").innerText
+}
+
+function clearOverviewRows() {
+  document.querySelector(".overview-items").innerHTML = ""
 }

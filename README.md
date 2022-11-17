@@ -31,10 +31,11 @@ You can see the [code here](https://github.com/MarceloSilvaa/HealthProject/tree/
 
 ### Overview page
 - Load feature not available yet
-- Save feature not available yet
 - Add option for sorting by field
 
 ### Supplement form page
 - Add more validation code for the supplement form
 - Currently not updating correctly the unit of measurement after selection
 - Hibernate not saving checkbox values
+- Should use java code to load the select field
+- Should create a hidden field for each section of the supplement, with that component id, so it stops creating new row for the nested objects of the supplement when editing
