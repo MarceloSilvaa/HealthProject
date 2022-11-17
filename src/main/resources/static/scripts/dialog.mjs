@@ -49,10 +49,17 @@ export function showAction(message) {
 }
 
 export function clearAction() {
+	// Clear screen
   document.querySelector(".action-message").innerText = ""
   document.querySelector(".action-container").style.display = "none"
   document.querySelectorAll(".action-background").forEach(element => {
     element.style.opacity = 1
     element.style.pointerEvents = "auto"
   })
+  
+  // Clear auxiliary properties
+  let confirmBtn = document.querySelector(".action-confirmation-btn")
+  if(confirmBtn.url != null) {
+		delete confirmBtn.url
+	}
 }
