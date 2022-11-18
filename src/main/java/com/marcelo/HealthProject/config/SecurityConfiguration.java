@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.trace.http.HttpTraceRepository;
+import org.springframework.boot.actuate.trace.http.InMemoryHttpTraceRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -43,6 +45,7 @@ public class SecurityConfiguration {
         return http		
 				.authorizeRequests(configurer ->
 					configurer
+						.antMatchers("/actuator/**").hasRole("ADMIN")
 						.antMatchers("/support/**").hasRole("ADMIN")
 						.antMatchers("/users/**").hasAnyRole("SUPPORT","ADMIN")
 						.antMatchers("/supplements/**").hasRole("USER")
@@ -107,4 +110,9 @@ public class SecurityConfiguration {
 	public AuthenticationRequestSecurity authenticationRequestSecurity() {
 		return new AuthenticationRequestSecurity();
 	}
+	
+    @Bean
+    public HttpTraceRepository httpTraceRepository() {
+        return new InMemoryHttpTraceRepository();
+    }
 }
